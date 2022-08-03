@@ -30,7 +30,7 @@
               </template>
               <template v-else> Acheter </template>
             </BuyBtn>
-            <ContactButton></ContactButton>
+            <ContactButton />
           </div>
         </div>
 

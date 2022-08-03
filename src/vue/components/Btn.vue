@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from "vue";
+import { computed, toRef } from "vue";
 
-const { color, textColor, typeButton, disabled, to } = defineProps({
+const props = defineProps({
   color: { type: String, default: "primary" },
   textColor: {
     type: String,
@@ -21,10 +21,20 @@ const { color, textColor, typeButton, disabled, to } = defineProps({
   },
 });
 
+const { color, textColor, typeButton, to } = props;
+
+const disabledRef = toRef(props, "disabled");
+
 const emits = defineEmits(["click", "btn-click"]);
 const clickAction = () => emits("click", "btn-click");
 
-const bgColor = computed(() => (disabled ? "gray-400" : color));
+const bgColorComputed = computed(() =>
+  disabledRef.value ? "gray-400" : color
+);
+
+const textColorComputed = computed(() =>
+  disabledRef.value ? "gray-600" : textColor
+);
 </script>
 
 <template>
@@ -33,7 +43,7 @@ const bgColor = computed(() => (disabled ? "gray-400" : color));
       @click="clickAction"
       :type="typeButton"
       :disabled="disabled"
-      :class="`inline-block pulse px-6 py-3 text-md font-medium leading-6 text-center text-${textColor}  transition bg-${bgColor} hover:text-secondary  hover:border-white hover:border-1 rounded shadow ripple hover:shadow-lg focus:outline-none `"
+      :class="`inline-block pulse px-6 py-3 text-md font-medium leading-6 text-center text-${textColorComputed}  transition bg-${bgColorComputed} hover:text-secondary  hover:border-white hover:border-1 rounded shadow ripple hover:shadow-lg focus:outline-none `"
     >
       <span class="uppercase">
         <slot></slot>
