@@ -1,0 +1,1 @@
+get https://catherinelapsy-backend.herokuapp.com/api/products/?filters[slug]=contre-transfert&populate=deep,4

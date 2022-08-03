@@ -1,0 +1,76 @@
+---
+import { Markdown } from "astro/components";
+import { Image } from "@astrojs/image/components";
+
+import Layout from "../layouts/Layout.astro";
+
+import HeaderPage from "../vue/components/HeaderPage.vue";
+import TextWithImage from "../vue/components/TextWithImage.vue";
+import ContactButton from "../vue/components/ContactButton.vue";
+import ContactForm from "../vue/components/ContactForm.vue";
+
+export async function getStaticPaths() {
+  const apiURL = import.meta.env.PUBLIC_API;
+  const response = await fetch(`${apiURL}/pages`);
+  const results = await response.json();
+  return results.data.map((result) => ({
+    params: { slug: result.attributes.slug },
+  }));
+}
+
+const apiURL = import.meta.env.PUBLIC_API;
+const { slug } = Astro.params;
+
+const url = `${apiURL}/pages/?filters[slug]=${slug}&populate=deep,4`;
+
+const { data } = await fetch(url).then((res) => res.json());
+
+const doc = data[0].attributes;
+
+console.log(doc);
+const imageOG = doc.imageOG?.data?.attributes.url;
+const contentsWithImage = doc.textwithimage;
+---
+
+<Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
+  <article>
+    <div v-if="doc" class="bg-gray-100 pb-14 content-page">
+      <HeaderPage doc={doc} />
+
+      <div
+        class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
+      >
+        {doc.image.url && (
+          <img
+            src={doc.image?.url}
+            class="mb-7"
+            v-if="doc.image?.url"
+            alt={doc.image?.alt}
+            height={doc.image?.height}
+            width={doc.image?.width}
+          />
+        )}
+
+        <div class="content">
+          <Markdown>
+            {doc.content}
+          </Markdown>
+
+          <TextWithImage contents={contentsWithImage} />
+
+          {doc.hasContactButton && (
+            <div class="text-center">
+              <ContactButton client:load />
+            </div>
+          )}
+
+          {doc.hasContactForm && (
+            <div class="text-center">
+              <ContactForm client:load />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

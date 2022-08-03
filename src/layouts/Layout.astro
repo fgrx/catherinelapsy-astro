@@ -1,55 +1,163 @@
 ---
-export interface Props {
-	title: string;
-}
+import NavBar from "../vue/components/NavBar.vue";
+import Footer from "../vue/components/Footer.vue";
 
-const { title } = Astro.props as Props;
+const { title, metaDescription, imageOG } = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL;
+const apiURL = import.meta.env.PUBLIC_API;
+
+const { menu } = await fetch(`${apiURL}/menus/menu-principal?nested`).then(
+  (res) => res.json()
+);
+
+const links = menu.items.map((item) => {
+  const formatChildrensMenu = () => {
+    if (item.children.length) {
+      return item.children.map((child) => {
+        return {
+          title: child.title,
+          to: child.url,
+          target: child.target,
+          image: "",
+        };
+      });
+    } else {
+      return null;
+    }
+  };
+
+  return {
+    id: item.id,
+    text: item.title,
+    to: item.url,
+    meta: { subMenu: item.children.length },
+    children: formatChildrensMenu(),
+  };
+});
+
+// TODO
+// const footerResponse = await fetch(`${apiURL}/footer?populate=*`);
+// const footerRes = await footerResponse.json();
+// const footerItems= footerRes.data.attributes.item
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content={imageOG} />
+    <meta property="og:site_name" content="Catherine la Psy" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/favicons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/favicons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/favicons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/favicons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/favicons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/favicons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/favicons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/favicons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/favicons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicons/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+
+    <script
+      type="text/plain"
+      data-cookiecategory="analytics"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VR6MVVZH60"
+    >
+
+    </script>
+    <script type="text/plain" data-cookiecategory="analytics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VR6MVVZH60");
+    </script>
+  </head>
+  <body>
+    <main class="font-readex">
+      <NavBar client:load links={links} />
+      <slot />
+      <Footer />
+    </main>
+  </body>
 </html>
-<style>
-	:root {
-		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
-		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-
-		--color-text: hsl(12, 5%, 4%);
-		--color-bg: hsl(10, 21%, 95%);
-		--color-border: hsl(17, 24%, 90%);
-	}
-
-	html {
-		font-family: system-ui, sans-serif;
-		font-size: var(--font-size-base);
-		color: var(--color-text);
-		background-color: var(--color-bg);
-	}
-
-	body {
-		margin: 0;
-	}
-
-	:global(h1) {
-		font-size: var(--font-size-xl);
-	}
-
-	:global(h2) {
-		font-size: var(--font-size-lg);
-	}
-
-	:global(code) {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

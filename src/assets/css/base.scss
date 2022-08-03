@@ -1,0 +1,56 @@
+h2 {
+  font-size: 2em;
+  font-family: "Lexend Deca", sans-serif;
+}
+
+h1 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.content h2 {
+  margin-top: 1em;
+  font-size: 2em;
+}
+
+.content h3 {
+  color: #177e84 !important;
+  font-size: 1.5em;
+}
+
+.content p {
+  margin-bottom: 1em;
+}
+
+.content a {
+  font-weight: bold;
+}
+
+article {
+  li {
+    list-style-type: disc;
+    margin-left: 2em;
+  }
+}
+
+.content ul {
+  margin-bottom: 0.6em;
+}
+
+table {
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: 1px solid rgb(208, 208, 208);
+}
+
+td,
+th {
+  padding: 1em;
+  border-left: 1px solid rgb(208, 208, 208);
+  border-right: 1px solid rgb(208, 208, 208);
+}
+
+thead,
+tr:nth-child(even) {
+  background-color: rgb(231, 231, 231);
+}
