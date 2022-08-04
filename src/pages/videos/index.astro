@@ -15,7 +15,7 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const apiURL = import.meta.env.PUBLIC_API;
-const { currentPage: page } = Astro.props.page;
+const page = 1;
 
 const doc = {
   title: "Mes vidéos",

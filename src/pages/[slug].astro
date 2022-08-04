@@ -8,6 +8,7 @@ import HeaderPage from "../vue/components/HeaderPage.vue";
 import TextWithImage from "../vue/components/TextWithImage.vue";
 import ContactButton from "../vue/components/ContactButton.vue";
 import ContactForm from "../vue/components/ContactForm.vue";
+import LinkBtn from "../vue/components/LinkBtn.vue";
 
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
@@ -27,7 +28,16 @@ const { data } = await fetch(url).then((res) => res.json());
 
 const doc = data[0].attributes;
 
-console.log(doc);
+const topImage = doc.image?.data?.attributes;
+
+const links = doc.link.map((link) => {
+  return {
+    text: link.text,
+    url: link.url,
+    target: link.isBlank ? "_blank" : "_self",
+  };
+});
+
 const imageOG = doc.imageOG?.data?.attributes.url;
 const contentsWithImage = doc.textwithimage;
 ---
@@ -40,16 +50,7 @@ const contentsWithImage = doc.textwithimage;
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        {doc.image.url && (
-          <img
-            src={doc.image?.url}
-            class="mb-7"
-            v-if="doc.image?.url"
-            alt={doc.image?.alt}
-            height={doc.image?.height}
-            width={doc.image?.width}
-          />
-        )}
+        {topImage && <img src={topImage.url} alt={topImage.alt} />}
 
         <div class="content">
           <Markdown>
@@ -69,6 +70,12 @@ const contentsWithImage = doc.textwithimage;
               <ContactForm client:load />
             </div>
           )}
+
+          {links.map((link) => (
+            <LinkBtn class="text-center" url={link.url} target={link.target}>
+              {link.text}
+            </LinkBtn>
+          ))}
         </div>
       </div>
     </div>

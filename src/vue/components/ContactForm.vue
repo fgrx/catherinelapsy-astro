@@ -52,10 +52,10 @@ export default {
             formData,
             body: new URLSearchParams(formData).toString(),
           });
-          console.log("result :", res);
+
           this.isSent = true;
         } catch (error) {
-          console.log(error);
+          console.error(error);
           this.error =
             "Une erreur s'est produite... N'hésitez pas à me contacter par Instagram ! Merci pour votre patience :) .";
         }

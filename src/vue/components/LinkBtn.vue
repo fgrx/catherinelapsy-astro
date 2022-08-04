@@ -1,5 +1,5 @@
 <script setup>
-import Btn from "./Btn";
+import Btn from "./Btn.vue";
 
 const { url, color, text, to, target, position } = defineProps({
   url: String,
@@ -13,13 +13,7 @@ const { url, color, text, to, target, position } = defineProps({
 
 <template>
   <div :class="position">
-    <a v-if="url" :href="url" :target="target">
-      <Btn :color="color" :textColor="text">
-        <slot></slot>
-      </Btn>
-    </a>
-
-    <a v-if="to" :href="to">
+    <a :href="url" :target="target">
       <Btn :color="color" :textColor="text">
         <slot></slot>
       </Btn>
