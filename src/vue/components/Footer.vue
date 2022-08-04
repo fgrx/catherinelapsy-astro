@@ -1,3 +1,7 @@
+<script setup>
+const { links } = defineProps({ links: Object });
+</script>
+
 <template>
   <div class="bg-dark text-gray-200">
     <div class="container mx-auto text-center text-sm py-14">
@@ -38,53 +42,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      links: [
-        {
-          text: "Ateliers en ligne",
-          to: "/ateliers",
-        },
-        {
-          text: "Lettre Psy",
-          to: "/emails-prives",
-        },
-        {
-          text: "Vidéos",
-          to: "/videos",
-        },
-        {
-          text: "Podcast",
-          to: "/podcast",
-        },
-        {
-          text: "Articles",
-          to: "/posts",
-        },
-        {
-          text: "Qui sommes-nous ?",
-          to: "/qui-sommes-nous",
-        },
-        {
-          text: "Liens",
-          to: "/liens",
-        },
-        {
-          text: "Contact",
-          to: "/contact",
-        },
-        {
-          text: "Mentions légales",
-          to: "/mentions-legales",
-        },
-      ],
-    };
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 .title_site_1 {

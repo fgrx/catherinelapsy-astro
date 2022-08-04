@@ -7,11 +7,23 @@ const { title, metaDescription, imageOG } = Astro.props;
 const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 const apiURL = import.meta.env.PUBLIC_API;
 
-const { menu } = await fetch(`${apiURL}/menus/menu-principal?nested`).then(
+const { menu: menuFooter } = await fetch(`${apiURL}/menus/menu-footer`).then(
   (res) => res.json()
 );
 
-const links = menu.items.map((item) => {
+const linksFooter = menuFooter.items.map((item) => {
+  return {
+    id: item.id,
+    text: item.title,
+    to: item.url,
+  };
+});
+
+const { menu: MenuPrincipal } = await fetch(
+  `${apiURL}/menus/menu-principal?nested`
+).then((res) => res.json());
+
+const links = MenuPrincipal.items.map((item) => {
   const formatChildrensMenu = () => {
     if (item.children.length) {
       return item.children.map((child) => {
@@ -157,7 +169,7 @@ const links = menu.items.map((item) => {
     <main class="font-readex">
       <NavBar client:load links={links} />
       <slot />
-      <Footer />
+      <Footer links={linksFooter} />
     </main>
   </body>
 </html>
