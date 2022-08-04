@@ -3,7 +3,7 @@ import { computed } from "vue";
 
 const { doc } = defineProps({ doc: Object });
 
-const logo = computed(() => doc.logo?.data?.attributes?.url);
+const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
 </script>
 
 <template>

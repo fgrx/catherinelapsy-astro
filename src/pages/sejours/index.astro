@@ -8,14 +8,14 @@ import ListAlternate from "../../vue/components/ListAlternate.vue";
 const apiURL = import.meta.env.PUBLIC_API;
 
 const doc = {
-  title: "Tous les ateliers",
-  logo: "https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388922/computer_f6a7acae0f.svg?updated_at=2022-07-21T07:35:24.022Z",
+  title: "Tous nos séjours",
+  logo: "https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388924/palm_e36975c2b3.svg?updated_at=2022-07-21T07:35:26.248Z",
   description:
-    "Des ateliers de psychothérapie à destination des particuliers et professionnels.",
+    "Des séjours psy pour travailler sur soi de manière intensive dans des cadres idylliques.",
 };
 
 const { data } = await fetch(
-  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Atelier&populate=*`
+  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Séjour&populate=*`
 ).then((res) => res.json());
 
 const products = data.map((element) => {
@@ -33,15 +33,6 @@ const products = data.map((element) => {
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        <h2>Tous nos Ateliers Psy</h2>
-
-        <p>
-          Les Ateliers psy de Catherine La Psy n’ont pas pour vocation de
-          remplacer une psychothérapie en face à face. Ils sont là pour vous
-          accompagner sur des sujets précis à votre rythme, chez vous, avec
-          toutes les ressources nécessaires pour effectuer vous-même un premier
-          travail
-        </p>
         <ListAlternate items={products} textBtn="En savoir plus" />
       </div>
     </div>
