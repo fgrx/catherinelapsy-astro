@@ -1,3 +1,12 @@
+<script setup>
+const { codeList } = defineProps({
+  codeList: {
+    type: String,
+    default: "qD1uT",
+  },
+});
+</script>
+
 <template>
   <form
     action="https://app.getresponse.com/add_subscriber.html"
@@ -28,16 +37,5 @@
     </div>
   </form>
 </template>
-
-<script>
-export default {
-  props: {
-    codeList: {
-      type: String,
-      default: "qD1uT",
-    },
-  },
-};
-</script>
 
 <style lang="scss" scoped></style>

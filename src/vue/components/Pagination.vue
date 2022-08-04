@@ -9,10 +9,7 @@ const { pagination } = defineProps({ pagination: Object });
         <div class="flex text-gray-700">
           <a
             v-if="pagination.previousPage"
-            :href="{
-              name: `${pagination.url}-page`,
-              params: { page: pagination.previousPage },
-            }"
+            :href="`./${pagination.previousPage}`"
           >
             <div
               class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer"
@@ -40,10 +37,7 @@ const { pagination } = defineProps({ pagination: Object });
             <a
               v-for="(pageNumber, index) in pagination.nbPages"
               :key="`page${index}`"
-              :href="{
-                name: `${pagination.url}-page`,
-                params: { page: pageNumber },
-              }"
+              :href="`./${pageNumber}`"
             >
               <div
                 class="w-12 h-12 flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full"
@@ -58,13 +52,7 @@ const { pagination } = defineProps({ pagination: Object });
             </a>
           </div>
 
-          <a
-            v-if="pagination.nextPage"
-            :href="{
-              name: `${pagination.url}-page`,
-              params: { page: pagination.nextPage },
-            }"
-          >
+          <a v-if="pagination.nextPage" :href="`./${pagination.nextPage}`">
             <div
               class="h-12 w-12 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer"
             >

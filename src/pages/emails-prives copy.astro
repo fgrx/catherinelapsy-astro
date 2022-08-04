@@ -1,0 +1,59 @@
+---
+import { Markdown } from "astro/components";
+
+import Layout from "../layouts/Layout.astro";
+
+import HeaderPage from "../vue/components/HeaderPage.vue";
+import LettrePsyItems from "../vue/components/LettrePsyItems.vue";
+import NewsLetterForm from "../vue/components/NewsLetterForm.vue";
+
+const apiURL = import.meta.env.PUBLIC_API;
+
+const url = `${apiURL}/pages/?filters[slug]=emails-prives&populate=deep,4`;
+
+const { data } = await fetch(url).then((res) => res.json());
+
+const doc = data[0].attributes;
+
+const imageOG = doc.imageOG?.data?.attributes.url;
+---
+
+<Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
+  <article>
+    <div v-if="doc" class="bg-gray-100 pb-14 content-page">
+      <HeaderPage doc={doc} />
+
+      <div
+        class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
+      >
+        {doc.image.url && (
+          <img
+            src={doc.image?.url}
+            class="mb-7"
+            v-if="doc.image?.url"
+            alt={doc.image?.alt}
+            height={doc.image?.height}
+            width={doc.image?.width}
+          />
+        )}
+
+        <div class="content">
+          <Markdown>
+            {doc.content}
+          </Markdown>
+
+          <NewsLetterForm class="border my-5 border-emerald-600 rounded p-5" />
+
+          <Markdown>
+            ## Envie de savoir à quoi ressemble la Lettre Psy ?
+
+            Voici quelques anciennes éditions qui vous permettrons du contenu de notre Lettre Psy
+            :
+          </Markdown>
+
+          <LettrePsyItems />
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
