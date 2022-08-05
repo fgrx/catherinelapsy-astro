@@ -1,3 +1,11 @@
+<script setup>
+import NewsletterForm from "../NewsletterForm.vue";
+
+const { title } = defineProps({
+  title: { type: String, default: "S'abonner à la Lettre Psy" },
+});
+</script>
+
 <template>
   <div
     class="bg-gradient-to-r from-primaryDark to-primary text-white py-8 px-5"
@@ -7,7 +15,7 @@
         <div class="flex md:col-span-7 lg:col-span-8 items-center">
           <img
             class="icon md:mr-10 hidden md:block"
-            src="@/assets/mail.png"
+            src="../../../assets/images/mail.png"
             alt=""
             width="200"
             height="100"
@@ -28,17 +36,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      default: "S'abonner à la Lettre Psy",
-    },
-  },
-};
-</script>
 
 <style scoped>
 .icon {

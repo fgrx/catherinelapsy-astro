@@ -20,14 +20,12 @@ export default {
   getImageFormat(dataObject, format) {
     const formats = dataObject.data?.attributes.formats;
 
-    if (!formats) return false;
-
-    if (formats[format]) {
+    if (formats && formats[format]) {
       const { url, width, height } = formats[format];
       return { url, width, height };
-    } else {
-      const { url, width, height } = dataObject.data.attributes;
-      return { url, width, height };
     }
+
+    const { url, width, height } = dataObject.data.attributes;
+    return { url, width, height };
   },
 };

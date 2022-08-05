@@ -1,12 +1,13 @@
 <script setup>
+import { Markdown } from "astro/components";
 import Btn from "./Btn.vue";
+import imageService from "../../services/imageService.js";
 
 const { contents } = defineProps({ contents: Object });
 
 const rowNumbers = 6;
 const defaultWidth = 3;
 
-const imageWidth = contents.imageWidth || defaultWidth;
 const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
 </script>
 
@@ -18,38 +19,44 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
   >
     <div
       v-if="content.image"
-      :class="`md:w-${imageWidth}/${rowNumbers} px-7 portrait-box`"
+      :class="`md:w-${content.imageWidth}/${rowNumbers}`"
     >
-      <img
-        :src="
-          content.image.data.attributes.formats?.small?.url ||
-          content.image.data.attributes.url
-        "
-        :width="
-          content.image.data.attributes.formats?.small?.width ||
-          content.image.data.attributes.width
-        "
-        :height="
-          content.image.data.attributes.formats?.small?.height ||
-          content.image.data.attributes.height
-        "
-        alt=""
-        :class="content.roundImage ? 'rounded-full' : ''"
-      />
+      <div :class="content.position === 'left' ? 'md:pr-7' : 'md:pl-7'">
+        <img
+          :src="
+            content.imageWidth > 3
+              ? imageService.formatImage(content.image, 'medium').url
+              : imageService.formatImage(content.image, 'small').url
+          "
+          :width="
+            content.imageWidth > 3
+              ? imageService.formatImage(content.image, 'medium').width
+              : imageService.formatImage(content.image, 'small').width
+          "
+          :height="
+            content.imageWidth > 3
+              ? imageService.formatImage(content.image, 'medium').height
+              : imageService.formatImage(content.image, 'small').heihgt
+          "
+          alt="Bannière de présentation"
+          :class="content.roundImage ? 'rounded-full' : ''"
+        />
+      </div>
     </div>
 
-    <div :class="`md:w-${contentWidth}/${rowNumbers}`">
-      <h2>{{ content.title }}</h2>
-
-      <p>{{ content.content }}</p>
-
+    <div :class="`md:w-${rowNumbers - content.imageWidth}/${rowNumbers}`">
       <div
-        v-if="content.url"
-        :class="content.position === 'left' ? 'text-right' : 'text-left'"
+        :class="content.position === 'left' ? 'md:text-right' : 'md:text-left'"
       >
-        <a :href="content.url"
-          ><Btn>{{ content.textURL }}</Btn></a
-        >
+        <h2>{{ content.title }}</h2>
+
+        <p v-html="content.content"></p>
+
+        <div v-if="content.url" class="mt-4">
+          <a :href="content.url"
+            ><Btn>{{ content.textURL }}</Btn></a
+          >
+        </div>
       </div>
     </div>
   </div>

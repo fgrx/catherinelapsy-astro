@@ -1,36 +1,20 @@
+<script setup>
+const { image } = defineProps({ image: String });
+</script>
+
 <template>
   <div class="container-block">
     <div class="container-block-text">
       <slot></slot>
     </div>
 
-    <nuxt-img
+    <img
       v-if="image"
-      :src="imageURL"
-      format="webp"
-      quality="70"
-      class="w-full container-block-image"
-      sizes="300:500,600:800,800:1200"
-      fit="cover"
+      :src="image"
+      class="w-full container-block-image object-cover"
     />
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    image: {
-      type: String,
-      default: "",
-    },
-  },
-  computed: {
-    imageURL() {
-      return `images/ressources-psy/${this.image}`;
-    },
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 h3 {

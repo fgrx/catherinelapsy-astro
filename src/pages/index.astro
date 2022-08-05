@@ -1,76 +1,55 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+import TopHome from "../vue/components/home/TopHome.vue";
+import Newsletter from "../vue/components/home/Newsletter.vue";
+import TextWithImage from "../vue/components/TextWithImage.vue";
+
+import Ressources from "../vue/components/Ressources.vue";
+
+const apiURL = import.meta.env.PUBLIC_API;
+
+const url = `${apiURL}/Site-configuation?populate=deep,4`;
+console.log(url);
+
+const { data } = await fetch(url).then((res) => res.json());
+
+const doc = data.attributes;
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			Check out the <code>src/pages</code> directory to get started.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
+<Layout
+  title={`Bienvenue sur ${doc.siteName}`}
+  metaDescription={doc.siteDescription}
+>
+  <main>
+    <section>
+      <TopHome
+        subtitle={doc.homeSubtitle}
+        explanation={doc.homeExplanation}
+        heroImage={doc.hero.data.attributes}
+      />
+    </section>
 
-		</ul>
-	</main>
+    <section>
+      <Newsletter title="S'abonner à la Lettre Psy" />
+    </section>
+
+    {doc.contentBloc.length && (
+      <section class="bg-gray-200">
+        <div class="py-10 px-5 container mx-auto">
+          <TextWithImage contents={doc.contentBloc} />
+        </div>
+      </section>
+    )}
+
+    <section>
+      <div class="pt-10">
+        <Ressources ressources={doc.ressources} />
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-	:root {
-		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
-	}
 
-	h1 {
-		margin: 2rem 0;
-	}
-
-	main {
-		margin: auto;
-		padding: 1em;
-		max-width: 60ch;
-	}
-
-	.text-gradient {
-		font-weight: 900;
-		background-image: var(--astro-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 100% 200%;
-		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			background-position-y: 0%;
-		}
-		50% {
-			background-position-y: 80%;
-		}
-	}
-
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		background: #4f39fa;
-		padding: 1rem;
-		border-radius: 0.4rem;
-		color: var(--color-bg);
-	}
-
-	.instructions code {
-		font-size: 0.875em;
-		border: 0.1em solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.15em 0.25em;
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
 </style>

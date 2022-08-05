@@ -1,3 +1,15 @@
+<script setup>
+const { subtitle, explanation, heroImage } = defineProps({
+  subtitle: String,
+  explanation: String,
+  heroImage: Object,
+});
+
+const image = heroImage.formats.medium;
+
+const imageWebpUrl = image.url.replace(".png", ".webp");
+</script>
+
 <template>
   <div class="overflow-hidden bg-gradient-to-r from-primaryDark to-primary">
     <div class="container text-center md:text-left mx-auto mt-8 md:mt-0 px-5">
@@ -18,36 +30,17 @@
           </h1>
         </div>
         <div class="flex-1">
-          <nuxt-picture
-            src="images/catefab-photo-small.webp"
-            height="650"
-            format="webp"
-            width="650"
-            size=""
-            quality="70"
-            fit="fill"
-            alt="Portraits de Catherine et Fabien"
+          <img
+            :src="imageWebpUrl"
+            :height="image.height"
+            :width="image.width"
+            :alt="image.alternativeText"
           />
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    subtitle: {
-      type: String,
-      default: "",
-    },
-    explanation: {
-      type: String,
-      default: "",
-    },
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 img {
