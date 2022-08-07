@@ -67,18 +67,22 @@ const discount = {
           />
         )}
 
-        <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
-          <div class="md:flex justify-center  md:my-0">
-            <BuyBtn
-              url={doc.purchaseURL}
-              isClosed={!doc.isOpen}
-              discount={discount}
-              price={doc.price}
-              label={doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"}
-            />
-            <ContactButton client:load />
+        {doc.purchaseURL && (
+          <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+            <div class="md:flex justify-center  md:my-0">
+              <BuyBtn
+                url={doc.purchaseURL}
+                isClosed={!doc.isOpen}
+                discount={discount}
+                price={doc.price}
+                label={
+                  doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                }
+              />
+              <ContactButton client:load />
+            </div>
           </div>
-        </div>
+        )}
 
         {doc.countdown?.deadline && (
           <Countdown
@@ -138,18 +142,22 @@ const discount = {
           {doc.content3}
         </Markdown>
 
-        <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
-          <div class="md:flex justify-center  md:my-0">
-            <BuyBtn
-              url={doc.purchaseURL}
-              isClosed={!doc.isOpen}
-              discount={discount}
-              price={doc.price}
-              label={doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"}
-            />
-            <ContactButton client:load />
+        {doc.purchaseURL && (
+          <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+            <div class="md:flex justify-center  md:my-0">
+              <BuyBtn
+                url={doc.purchaseURL}
+                isClosed={!doc.isOpen}
+                discount={discount}
+                price={doc.price}
+                label={
+                  doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                }
+              />
+              <ContactButton client:load />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   </article>
@@ -159,5 +167,22 @@ const discount = {
   .content img {
     width: 100%;
     height: auto;
+  }
+
+  a {
+    background: #177e84;
+    color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 2em;
+    padding-left: 2em;
+    border-radius: 5px;
+    margin-top: 1em;
+    margin-bottom: 3em;
+    text-align: center;
+    display: block;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
