@@ -1,5 +1,4 @@
 <script setup>
-import { Markdown } from "astro/components";
 import Btn from "./Btn.vue";
 import imageService from "../../services/imageService.js";
 
