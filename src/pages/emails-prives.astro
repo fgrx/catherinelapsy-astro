@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 
 import HeaderPage from "../vue/components/HeaderPage.vue";
 import LettrePsyItems from "../vue/components/LettrePsyItems.vue";
-import NewsLetterForm from "../vue/components/NewsLetterForm.vue";
+import NewsLetterForm from "../vue/components/NewsletterForm.vue";
 
 const apiURL = import.meta.env.PUBLIC_API;
 
@@ -42,7 +42,9 @@ const imageOG = doc.imageOG?.data?.attributes.url;
             {doc.content}
           </Markdown>
 
-          <NewsLetterForm class="border my-5 border-emerald-600 rounded p-5" />
+          <div class="border my-5 border-emerald-600 rounded p-5">
+            <NewsLetterForm codeList="qD1uT" />
+          </div>
 
           <Markdown>
             ## Envie de savoir à quoi ressemble la Lettre Psy ?
