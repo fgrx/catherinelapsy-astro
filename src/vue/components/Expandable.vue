@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import { marked } from "marked";
 
+import arrowRight from "../../assets/images/arrow-right.svg";
+import arrowDown from "../../assets/images/arrow-down.svg";
+
 const { expandable } = defineProps({ expandable: Object });
 
 expandable.content = marked.parse(expandable.content);
@@ -16,20 +19,8 @@ const isExpanded = ref(false);
   >
     <div>{{ expandable.title }}</div>
 
-    <img
-      src="../../assets/images/arrow-right.svg"
-      alt=""
-      height="30"
-      width="30"
-      v-if="!isExpanded"
-    />
-    <img
-      src="../../assets/images/arrow-down.svg"
-      alt=""
-      height="30"
-      width="30"
-      v-if="isExpanded"
-    />
+    <img :src="arrowRight" alt="" height="30" width="30" v-if="!isExpanded" />
+    <img :src="arrowDown" alt="" height="30" width="30" v-if="isExpanded" />
   </div>
 
   <div

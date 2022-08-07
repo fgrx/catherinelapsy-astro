@@ -1,6 +1,9 @@
 <script setup>
 import NewsletterForm from "../NewsletterForm.vue";
 
+//import emailIcon from "../../../assets/images/mail.png";
+
+// https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388187/mail_596664d_5d9d09b680.png
 const { title } = defineProps({
   title: { type: String, default: "S'abonner à la Lettre Psy" },
 });
@@ -15,13 +18,13 @@ const { title } = defineProps({
         <div class="flex md:col-span-7 lg:col-span-8 items-center">
           <img
             class="icon md:mr-10 hidden md:block"
-            src="../../../assets/images/mail.png"
-            alt=""
+            src="https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388187/mail_596664d_5d9d09b680.png"
+            alt="Dessin de courrier"
             width="200"
             height="100"
           />
           <div class="">
-            <h2 class="text-secondary">{{ title }}</h2>
+            <h2 class="text-secondary text-3xl">{{ title }}</h2>
             <p>
               Abonnez-vous gratuitement à notre email bimensuel pour comprendre
               sa psychologie et mieux se connaitre.

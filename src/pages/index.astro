@@ -10,7 +10,6 @@ import Ressources from "../vue/components/Ressources.vue";
 const apiURL = import.meta.env.PUBLIC_API;
 
 const url = `${apiURL}/Site-configuation?populate=deep,4`;
-console.log(url);
 
 const { data } = await fetch(url).then((res) => res.json());
 

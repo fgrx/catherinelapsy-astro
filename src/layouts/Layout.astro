@@ -1,11 +1,12 @@
 ---
+import "../assets/css/base.scss";
+
 import NavBar from "../vue/components/NavBar.vue";
 import Footer from "../vue/components/Footer.vue";
 import Message from "../vue/components/Message.vue";
 
 const { title, metaDescription, imageOG } = Astro.props;
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 const apiURL = import.meta.env.PUBLIC_API;
 
 const { menu: menuFooter } = await fetch(`${apiURL}/menus/menu-footer`).then(
@@ -150,18 +151,21 @@ const message = data.attributes.Message;
     <meta name="theme-color" content="#ffffff" />
 
     <script
-      type="text/plain"
+      type="text/partytown"
       data-cookiecategory="analytics"
-      async
       src="https://www.googletagmanager.com/gtag/js?id=UA-221308343-1"
     >
-      <script
-        type="text/plain"
-        async
-        src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-      />;
+
     </script>
-    <script type="text/plain" data-cookiecategory="analytics">
+
+    <script
+      type="text/partytown"
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    >
+
+    </script>
+
+    <script data-cookiecategory="analytics">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         window.dataLayer.push(arguments);

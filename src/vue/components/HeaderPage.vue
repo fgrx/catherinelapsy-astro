@@ -12,9 +12,12 @@ const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
   >
     <div class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12">
       <div class="flex">
-        <div class="hidden align-top md:block flex-initial mr-10" v-if="logo">
-          <img :src="logo" alt="" class="logo-header" />
-        </div>
+        <template v-if="logo?.length">
+          <div class="hidden align-top md:block flex-initial">
+            <img :src="logo" alt="" class="logo-header pr-5 object-contain" />
+          </div>
+        </template>
+
         <div class="flex-initial">
           <h1
             data-v-a2b46a4c=""
@@ -24,15 +27,18 @@ const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
           >
             {{ doc.title }}
           </h1>
+
+          <h2 class="text-secondary text-2xl" v-if="doc.subtitle">
+            {{ doc.subtitle }}
+          </h2>
+          <p
+            :class="`text-left text-xl text-${doc.colorText || 'white'}`"
+            v-if="doc.description"
+          >
+            {{ doc.description }}
+          </p>
         </div>
       </div>
-      <h2 class="text-secondary" v-if="doc.subtitle">{{ doc.subtitle }}</h2>
-      <p
-        :class="`text-left text-xl text-${doc.colorText || 'white'}`"
-        v-if="doc.description"
-      >
-        {{ doc.description }}
-      </p>
     </div>
   </div>
 </template>

@@ -9,7 +9,7 @@ import Pagination from "../../vue/components/Pagination.vue";
 
 export async function getStaticPaths({ paginate }) {
   const apiURL = import.meta.env.PUBLIC_API;
-  const response = await fetch(`${apiURL}/youtube-videos?sort=date:desc`);
+  const response = await fetch(`${apiURL}/posts?sort=date:desc`);
   const results = await response.json();
   return paginate(results.data, { pageSize: 5 });
 }
@@ -18,18 +18,18 @@ const apiURL = import.meta.env.PUBLIC_API;
 const page = 1;
 
 const doc = {
-  title: "Mes vidéos",
-  logo: "video.svg",
+  title: "Tous les articles",
+  logo: "posts.svg",
   description:
     "Nous produisons des vidéos sur la psychologie pour vous faire découvrir le monde de la psychothérapie. Nous nous efforçons d'expliquer simplement des concepts parfois complexes afin de vous aider à mieux vous comprendre.",
 };
 const imageOG = "";
 
-const currentPage = parseInt(page) || 1;
+const currentPage = 1;
 const itemsPerPage = 5;
 
-const { meta } = await fetch(`${apiURL}/youtube-videos?sort=date:desc`).then(
-  (res) => res.json()
+const { meta } = await fetch(`${apiURL}/posts?sort=date:desc`).then((res) =>
+  res.json()
 );
 
 const nbItems = meta.pagination.total;
@@ -40,22 +40,21 @@ const startAt = () => {
 };
 
 const { data } = await fetch(
-  `${apiURL}/youtube-videos?sort=date:desc&populate=image&pagination[start]=${startAt()}&pagination[limit]=${itemsPerPage}`
+  `${apiURL}/posts?sort=date:desc&populate=image&pagination[start]=${startAt()}&pagination[limit]=${itemsPerPage}`
 ).then((res) => res.json());
 
 const itemsToDisplay = data.map((element) => {
-  const video = element.attributes;
-  video.dir = "/videos";
-  video.image = imageService.formatImage(video.image, "medium");
-  video.url = `https://www.youtube.com/watch?v=${video.url}`;
-  return video;
+  const post = element.attributes;
+  post.dir = "/posts";
+  post.image = imageService.formatImage(post.image, "medium");
+  return post;
 });
 
 const nextPage = currentPage < nbPages ? currentPage + 1 : null;
 const previousPage = currentPage - 1 > 0 ? currentPage - 1 : null;
 
 const pagination = {
-  url: "videos",
+  url: "posts/page",
   currentPage,
   nextPage,
   previousPage,
@@ -66,23 +65,13 @@ const pagination = {
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
   <article>
-    <div v-if="doc" class="bg-gray-100 pb-14 content-page">
+    <div class="bg-gray-100">
       <HeaderPage doc={doc} />
-
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        <h2>Nos vidéos sur la psychologie</h2>
-        <p>
-          Nous publions des vidéos sur le thème de la psychologie sur Youtube.
-          Vous pouvez vous abonner à notre chaîne en allant sur
-          <a
-            class="underline text-primary font-semibold"
-            href="https://www.youtube.com/channel/UCuocS66l-pMtFcaP3L01z5Q"
-            >ma chaîne Youtube
-          </a>.
-        </p>
-        <ListAlternate items={itemsToDisplay} textBtn="Voir sur Youtube" />
+        <h2>Articles sur la psychologie & la psychothérapie</h2>
+        <ListAlternate textBtn="Lire l'article" items={itemsToDisplay} />
       </div>
     </div>
   </article>

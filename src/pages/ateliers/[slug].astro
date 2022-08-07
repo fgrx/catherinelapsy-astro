@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import imageService from "../../services/imageService";
-import { Image } from "@astrojs/image/components";
+import LinkBtn from "../../vue/components/LinkBtn.vue";
 
 import HeaderPage from "../../vue/components/HeaderPage.vue";
 import ContactButton from "../../vue/components/ContactButton.vue";
@@ -90,19 +90,31 @@ const discount = {
           </Countdown>
         )}
 
+        {doc.summary && (
+          <div class="my-5 py-5 px-5 text-gray-800 text-lg important font-semibold border-gray-300 border rounded-md">
+            <Markdown>{doc.summary}</Markdown>
+          </div>
+        )}
+
+        <PictosAteliers pictos={doc.picto} />
+
         <Markdown>
           {doc.content1}
         </Markdown>
 
         {doc.youtubeURL && <EmbedYoutube youtubeID={doc.youtubeURL} />}
 
-        <PictosAteliers pictos={doc.picto} />
-
         {doc.gallery && <Gallery images={doc.gallery.data} />}
 
         <Markdown>
           {doc.content2}
         </Markdown>
+
+        {doc.preview && (
+          <LinkBtn class="text-center" url={doc.preview.url} target="_blank">
+            {doc.preview.text}
+          </LinkBtn>
+        )}
 
         {doc.testimonial.length ? (
           <section v-if="doc.testimonial">
@@ -113,10 +125,6 @@ const discount = {
           ""
         )}
 
-        <Markdown>
-          {doc.content3}
-        </Markdown>
-
         {doc.program.length ? (
           <section v-if="doc.program.length">
             <h2>Programme de l'atelier</h2>
@@ -125,6 +133,10 @@ const discount = {
         ) : (
           ""
         )}
+
+        <Markdown>
+          {doc.content3}
+        </Markdown>
 
         <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
           <div class="md:flex justify-center  md:my-0">

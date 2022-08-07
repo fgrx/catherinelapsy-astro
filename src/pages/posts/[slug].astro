@@ -1,0 +1,73 @@
+---
+import { Markdown } from "astro/components";
+import { Image } from "@astrojs/image/components";
+
+import Layout from "../../layouts/Layout.astro";
+
+import HeaderPage from "../../vue/components/HeaderPage.vue";
+import YoutubePlayer from "../../vue/components/YoutubePlayer.vue";
+import AnchorPlayer from "../../vue/components/AnchorPlayer.vue";
+
+export async function getStaticPaths() {
+  const apiURL = import.meta.env.PUBLIC_API;
+  const response = await fetch(`${apiURL}/posts`);
+  const results = await response.json();
+  return results.data.map((result) => ({
+    params: { slug: result.attributes.slug },
+  }));
+}
+
+const apiURL = import.meta.env.PUBLIC_API;
+const { slug } = Astro.params;
+
+const url = `${apiURL}/posts/?filters[slug]=${slug}&populate=deep,4`;
+
+const { data } = await fetch(url).then((res) => res.json());
+
+const doc = data[0].attributes;
+
+const topImage = doc.image?.data?.attributes;
+
+// const links = doc.link.map((link) => {
+//   return {
+//     text: link.text,
+//     url: link.url,
+//     target: link.isBlank ? "_blank" : "_self",
+//   };
+// });
+
+const imageOG = doc.imageOG?.data?.attributes.url;
+const contentsWithImage = doc.textwithimage;
+---
+
+<Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
+  <article>
+    <div v-if="doc" class="bg-gray-100 pb-14 content-page">
+      <HeaderPage doc={doc} />
+
+      <div
+        class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
+      >
+        {topImage && (
+          <img class="object-fit" src={topImage.url} alt={topImage.alt} />
+        )}
+
+        <div class="content">
+          <Markdown>
+            {doc.content}
+          </Markdown>
+
+          {doc.youtube.map((video) => <YoutubePlayer video={video} />)}
+
+          {doc.podcast.map((podcast) => <AnchorPlayer podcast={podcast} />)}
+
+          <!-- {links.map((link) => (
+            <LinkBtn class="text-center" url={link.url} target={link.target}>
+              {link.text}
+            </LinkBtn>
+          ))} -->
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

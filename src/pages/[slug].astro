@@ -50,12 +50,14 @@ const contentsWithImage = doc.textwithimage;
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        {topImage && <img src={topImage.url} alt={topImage.alt} />}
+        {topImage && <img class="mb-4" src={topImage.url} alt={topImage.alt} />}
 
         <div class="content">
-          <Markdown>
-            {doc.content}
-          </Markdown>
+          <div class="content-md">
+            <Markdown>
+              {doc.content}
+            </Markdown>
+          </div>
 
           <TextWithImage contents={contentsWithImage} />
 
@@ -81,3 +83,10 @@ const contentsWithImage = doc.textwithimage;
     </div>
   </article>
 </Layout>
+
+<style scoped>
+  .content-md a {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+</style>

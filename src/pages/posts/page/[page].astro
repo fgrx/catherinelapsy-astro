@@ -1,0 +1,79 @@
+---
+import imageService from "../../../services/imageService";
+
+import Layout from "../../../layouts/Layout.astro";
+
+import HeaderPage from "../../../vue/components/HeaderPage.vue";
+import ListAlternate from "../../../vue/components/ListAlternate.vue";
+import Pagination from "../../../vue/components/Pagination.vue";
+
+export async function getStaticPaths({ paginate }) {
+  const apiURL = import.meta.env.PUBLIC_API;
+  const response = await fetch(`${apiURL}/posts?sort=date:desc`);
+  const results = await response.json();
+  return paginate(results.data, { pageSize: 5 });
+}
+
+const apiURL = import.meta.env.PUBLIC_API;
+const { currentPage: page } = Astro.props.page;
+
+const doc = {
+  title: "Tous les articles",
+  logo: "post.svg",
+  description:
+    "Vous voulez en savoir un plus sur la psychologie et la psychothérapie ? Voici quelques articles qui pourraient vous intéresser. ",
+};
+const imageOG = "";
+
+const currentPage = parseInt(page) || 1;
+const itemsPerPage = 8;
+
+const { meta } = await fetch(`${apiURL}/posts?sort=date:desc`).then((res) =>
+  res.json()
+);
+
+const nbItems = meta.pagination.total;
+const nbPages = Math.ceil(nbItems / itemsPerPage);
+
+const startAt = () => {
+  return (currentPage - 1) * itemsPerPage;
+};
+
+const { data } = await fetch(
+  `${apiURL}/posts?sort=date:desc&populate=image&pagination[start]=${startAt()}&pagination[limit]=${itemsPerPage}`
+).then((res) => res.json());
+
+const itemsToDisplay = data.map((element) => {
+  const post = element.attributes;
+  post.dir = "/posts";
+  post.image = imageService.formatImage(post.image, "medium");
+  return post;
+});
+
+const nextPage = currentPage < nbPages ? currentPage + 1 : null;
+const previousPage = currentPage - 1 > 0 ? currentPage - 1 : null;
+
+const pagination = {
+  url: "posts",
+  currentPage,
+  nextPage,
+  previousPage,
+  nbPages,
+  itemsPerPage,
+};
+---
+
+<Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
+  <article>
+    <div class="bg-gray-100">
+      <HeaderPage doc={doc} />
+      <div
+        class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
+      >
+        <h2>Articles sur la psychologie & la psychothérapie</h2>
+        <ListAlternate textBtn="Lire l'article" items={itemsToDisplay} />
+      </div>
+    </div>
+  </article>
+  <Pagination pagination={pagination} />
+</Layout>

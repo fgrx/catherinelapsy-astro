@@ -35,15 +35,15 @@ h1 {
   transition: all 0.5s ease-out;
 }
 
-.nuxt-content h2 {
+.content h2 {
   margin-top: 1em;
 }
 
-.nuxt-content p {
+.content p {
   margin-bottom: 1em;
 }
 
-.nuxt-content a {
+.content a {
   font-weight: bold;
 }
 
