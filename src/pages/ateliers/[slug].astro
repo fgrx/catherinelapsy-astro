@@ -7,7 +7,6 @@ import HeaderPage from "../../vue/components/HeaderPage.vue";
 import ContactButton from "../../vue/components/ContactButton.vue";
 import Countdown from "../../vue/components/Countdown.vue";
 import BuyBtn from "../../vue/components/BuyBtn.vue";
-import NewsletterForm from "../../vue/components/NewsletterForm.vue";
 import EmbedYoutube from "../../vue/components/EmbedYoutube.vue";
 import PictosAteliers from "../../vue/components/PictosAtelier.vue";
 import Testimonials from "../../vue/components/Testimonials.vue";
@@ -47,6 +46,8 @@ const discount = {
   discountTo: doc.discountPrice,
   hasDiscount: doc.hasDiscount || false,
 };
+
+console.log(doc);
 ---
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
@@ -102,6 +103,8 @@ const discount = {
 
         <PictosAteliers pictos={doc.picto} />
 
+        {doc.teaser && <EmbedYoutube youtubeID={doc.teaser.url} />}
+
         <Markdown>
           {doc.content1}
         </Markdown>
@@ -115,9 +118,14 @@ const discount = {
         </Markdown>
 
         {doc.preview && (
-          <LinkBtn class="text-center" url={doc.preview.url} target="_blank">
-            {doc.preview.text}
-          </LinkBtn>
+          <div class="text-center my-8">
+            <LinkBtn
+              url={doc.preview.url}
+              target={doc.preview.target ? "_blank" : "_self"}
+            >
+              {doc.preview.text}
+            </LinkBtn>
+          </div>
         )}
 
         {doc.testimonial.length ? (
