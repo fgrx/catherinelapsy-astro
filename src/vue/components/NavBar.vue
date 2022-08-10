@@ -102,7 +102,9 @@
         class="transform text-white top-0 left-0 w-64 bg-primaryDark fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30"
         :class="isOpen ? 'translate-x-0' : '-translate-x-full'"
       >
-        <div class="p-5 text-white font-medium text-lg hover:text-red-200">
+        <div
+          class="p-5 text-white font-medium text-lg hover:text-red-200 text-center"
+        >
           <a href="/">
             <div class="title_site_1">Catherine</div>
             <div class="space-x-2 mt-3">
@@ -112,11 +114,11 @@
           </a>
         </div>
 
-        <ul class="ml-5 mt-12">
+        <ul class="px-4 mt-1">
           <li
             v-for="(link, index) in linksWithSubMenu"
             :key="index"
-            class="font-medium text-xl py-2"
+            class="font-medium text-xl py-5"
             @click="isOpen = false"
           >
             <a class="hover:text-secondary" :href="link.to">{{ link.text }}</a>
@@ -196,14 +198,14 @@ export default {
 <style scoped>
 .title_site_1 {
   padding-top: 0.5em;
-  font-size: 0.8em;
+  font-size: 1em;
   line-height: 0.5em;
   font-family: "Playfair Display", sans-serif;
   font-style: italic;
   transform: rotate(-11deg);
 }
 .title_site_2 {
-  font-size: 1.3em;
+  font-size: 1.5em;
   line-height: 1.1em;
   font-family: "Playfair Display", sans-serif;
   font-style: italic;

@@ -14,7 +14,13 @@ export default {
       alt: alternativeText,
     };
 
-    return image;
+    const imageWebp = image;
+
+    imageWebp.url = image.url.replace(".png", ".webp");
+    imageWebp.url = image.url.replace(".jpg", ".webp");
+    imageWebp.url = image.url.replace(".jpeg", ".webp");
+
+    return imageWebp;
   },
 
   getImageFormat(dataObject, format) {

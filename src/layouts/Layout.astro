@@ -55,6 +55,9 @@ const url = `${apiURL}/Site-configuation?populate=deep,4`;
 const { data } = await fetch(url).then((res) => res.json());
 
 const message = data.attributes.Message;
+
+const fonts =
+  "https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Playfair+Display:ital,wght@0,400;1,700&display=swap";
 ---
 
 <!DOCTYPE html>
@@ -74,10 +77,14 @@ const message = data.attributes.Message;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Playfair+Display:ital,wght@0,400;1,700&display=swap"
-      rel="stylesheet"
+    <link href="" rel="preload" as="style" />
+
+    <link rel="stylesheet" href={fonts} media="print" onload="this.media='all'"
     />
+
+    <noscript>
+      <link rel="stylesheet" href={fonts} />
+    </noscript>
 
     <link
       rel="apple-touch-icon"
@@ -153,156 +160,149 @@ const message = data.attributes.Message;
     <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png"
     />
     <meta name="theme-color" content="#ffffff" />
-
-    <script
-      type="text/partytown"
-      data-cookiecategory="analytics"
-      src="https://www.googletagmanager.com/gtag/js?id=UA-221308343-1"
-    >
-
-    </script>
-
-    <script
+    <!-- <script
       type="text/partytown"
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    >
+    > -->
+  </head><script
+    data-cookiecategory="analytics"
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-221308343-1"
+  >
 
-    </script>
+  </script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    <script data-cookiecategory="analytics">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+    gtag("config", "UA-221308343-1");
+  </script><script>
+    import "../plugins/cookieconsent/cookieconsent.css";
+    import "../plugins/cookieconsent/cookieconsent.js";
 
-      gtag("config", "UA-221308343-1");
-    </script>
+    window.addEventListener("load", function () {
+      // obtain cookieconsent plugin
+      var cookieconsent = initCookieConsent();
 
-    <!-- https://github.com/orestbida/cookieconsent -->
-    <script>
-      import "../plugins/cookieconsent/cookieconsent.css";
-      import "../plugins/cookieconsent/cookieconsent.js";
+      // run plugin with config object
+      cookieconsent.run({
+        autorun: true,
+        current_lang: "en",
+        autoclear_cookies: true,
+        page_scripts: true,
 
-      window.addEventListener("load", function () {
-        // obtain cookieconsent plugin
-        var cookieconsent = initCookieConsent();
+        onFirstAction: function (user_preferences, cookie) {
+          // callback triggered only once
+        },
 
-        // run plugin with config object
-        cookieconsent.run({
-          autorun: true,
-          current_lang: "en",
-          autoclear_cookies: true,
-          page_scripts: true,
+        onAccept: function (cookie) {
+          // ... cookieconsent accepted
+        },
 
-          onFirstAction: function (user_preferences, cookie) {
-            // callback triggered only once
-          },
+        onChange: function (cookie, changed_preferences) {
+          // ... cookieconsent preferences were changed
+        },
 
-          onAccept: function (cookie) {
-            // ... cookieconsent accepted
-          },
-
-          onChange: function (cookie, changed_preferences) {
-            // ... cookieconsent preferences were changed
-          },
-
-          languages: {
-            en: {
-              consent_modal: {
-                title: "Cookies",
-                description:
-                  "Nous utilisons des cookies d’origine et des cookies tiers. Ces cookies sont destinés à vous offrir une navigation optimisée sur ce site web et de nous donner un aperçu de son utilisation, en vue de l’amélioration des services que nous offrons. En poursuivant votre navigation, nous considérons que vous acceptez l’usage des cookies.",
-                primary_btn: {
-                  color: "#ccc",
-                  text: "Accepter",
-                  role: "Tout accepter", // 'accept_selected' or 'accept_all'
-                },
-                secondary_btn: {
-                  text: "Préférences",
-                  role: "Préférences", // 'settings' or 'accept_necessary'
-                },
+        languages: {
+          en: {
+            consent_modal: {
+              title: "Cookies",
+              description:
+                "Nous utilisons des cookies d’origine et des cookies tiers. Ces cookies sont destinés à vous offrir une navigation optimisée sur ce site web et de nous donner un aperçu de son utilisation, en vue de l’amélioration des services que nous offrons. En poursuivant votre navigation, nous considérons que vous acceptez l’usage des cookies.",
+              primary_btn: {
+                color: "#ccc",
+                text: "Accepter",
+                role: "Tout accepter", // 'accept_selected' or 'accept_all'
               },
-              settings_modal: {
-                title: "Gestion des cookies",
-                save_settings_btn: "Sauvegarder",
-                accept_all_btn: "Tout accepter",
-                reject_all_btn: "Tout refuser", // optional, [v.2.5.0 +]
-                cookie_table_headers: [
-                  { col1: "Name" },
-                  { col2: "Domain" },
-                  { col3: "Expiration" },
-                  { col4: "Description" },
-                  { col5: "Type" },
-                ],
-                blocks: [
-                  {
-                    title: "Utilisation des cookies",
-                    description:
-                      "Nous utilisons les cookies à des fins statistiques. Vous pouvez choisir ceux que vous souhaitez désactier.",
-                  },
-                  {
-                    title: "Cookies obligatoires",
-                    description:
-                      "Ces cookies sont nécessaires au fonctionnement du site. Sans eux son fonctionnement sera altéré.",
-                    toggle: {
-                      value: "nécessaires",
-                      enabled: true,
-                      readonly: true,
-                    },
-                  },
-                  {
-                    title: "Cookies et statistiques",
-                    description:
-                      "Nous utilisons l'outil Google Analytics à des fins statistiques afin d'améliorer nos services.",
-                    toggle: {
-                      value: "analytics",
-                      enabled: false,
-                      readonly: false,
-                    },
-                    cookie_table: [
-                      {
-                        col1: "^_ga",
-                        col2: "google.com",
-                        col3: "2 years",
-                        col4: "description ...",
-                        col5: "Permanent cookie",
-                        is_regex: true,
-                      },
-                      {
-                        col1: "_gid",
-                        col2: "google.com",
-                        col3: "1 day",
-                        col4: "description ...",
-                        col5: "Permanent cookie",
-                      },
-                    ],
-                  },
-                  {
-                    title: "Plus d'informations",
-                    description:
-                      'Pour toute question veuillez, veuillez nous contacter : <a class="cc-link" href="/contact/">Page de contact</a>.',
-                  },
-                ],
+              secondary_btn: {
+                text: "Préférences",
+                role: "Préférences", // 'settings' or 'accept_necessary'
               },
             },
+            settings_modal: {
+              title: "Gestion des cookies",
+              save_settings_btn: "Sauvegarder",
+              accept_all_btn: "Tout accepter",
+              reject_all_btn: "Tout refuser", // optional, [v.2.5.0 +]
+              cookie_table_headers: [
+                { col1: "Name" },
+                { col2: "Domain" },
+                { col3: "Expiration" },
+                { col4: "Description" },
+                { col5: "Type" },
+              ],
+              blocks: [
+                {
+                  title: "Utilisation des cookies",
+                  description:
+                    "Nous utilisons les cookies à des fins statistiques. Vous pouvez choisir ceux que vous souhaitez désactier.",
+                },
+                {
+                  title: "Cookies obligatoires",
+                  description:
+                    "Ces cookies sont nécessaires au fonctionnement du site. Sans eux son fonctionnement sera altéré.",
+                  toggle: {
+                    value: "nécessaires",
+                    enabled: true,
+                    readonly: true,
+                  },
+                },
+                {
+                  title: "Cookies et statistiques",
+                  description:
+                    "Nous utilisons l'outil Google Analytics à des fins statistiques afin d'améliorer nos services.",
+                  toggle: {
+                    value: "analytics",
+                    enabled: false,
+                    readonly: false,
+                  },
+                  cookie_table: [
+                    {
+                      col1: "^_ga",
+                      col2: "google.com",
+                      col3: "2 years",
+                      col4: "description ...",
+                      col5: "Permanent cookie",
+                      is_regex: true,
+                    },
+                    {
+                      col1: "_gid",
+                      col2: "google.com",
+                      col3: "1 day",
+                      col4: "description ...",
+                      col5: "Permanent cookie",
+                    },
+                  ],
+                },
+                {
+                  title: "Plus d'informations",
+                  description:
+                    'Pour toute question veuillez, veuillez nous contacter : <a class="cc-link" href="/contact/">Page de contact</a>.',
+                },
+              ],
+            },
           },
-        });
+        },
       });
-    </script>
-  </head>
-  <body>
-    <main class="font-readex">
-      <NavBar client:load links={links} />
-      <Message
-        title={message.title}
-        content={message.content}
-        isShown={message.isShown}
-        link={message.link}
-        logo={message.logo.data.attributes}
-      />
-      <slot />
-      <Footer links={linksFooter} />
-    </main>
-  </body>
+    });
+  </script>
 </html>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<!-- https://github.com/orestbida/cookieconsent -->
+
+<main class="font-readex">
+  <NavBar client:load links={links} />
+  <Message
+    title={message.title}
+    content={message.content}
+    isShown={message.isShown}
+    link={message.link}
+    logo={message.logo.data.attributes}
+  />
+  <slot />
+  <Footer links={linksFooter} />
+</main>
