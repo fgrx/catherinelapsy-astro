@@ -14,13 +14,13 @@
           v-if="link.target === '_blank'"
           :href="link.to"
           target="link.target"
-          class="hover:text-secondary"
+          class="hover:text-secondary py-5"
         >
           <span v-if="link.isLive">Atelier en live</span>
           {{ link.title }}</a
         >
         <a
-          class="hover:text-secondary"
+          class="hover:text-secondary py-5"
           v-if="link.target !== '_blank'"
           :href="link.to"
         >
