@@ -9,7 +9,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/image": "^0.3.2",
+    "@astrojs/image": "^0.3.3",
     "@astrojs/netlify": "^0.5.0",
     "@astrojs/partytown": "^0.1.9",
     "@astrojs/sitemap": "^0.3.0",

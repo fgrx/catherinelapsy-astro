@@ -1,4 +1,5 @@
 ---
+import { Image } from "@astrojs/image/components";
 import Markdown from "@astrojs/markdown-component";
 
 import Layout from "../../layouts/Layout.astro";
@@ -48,7 +49,14 @@ const contentsWithImage = doc.textwithimage;
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
         {topImage && (
-          <img class="object-fit" src={topImage.url} alt={topImage.alt} />
+          <Image
+            src={topImage.url}
+            class="mb-7"
+            width={800}
+            height={500}
+            format="webp"
+            alt={topImage.alt}
+          />
         )}
 
         <div class="content">

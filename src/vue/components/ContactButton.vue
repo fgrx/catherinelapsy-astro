@@ -11,7 +11,7 @@ const toggleModal = () => (showModal.value = !showModal.value);
 
 <template>
   <div class="md:ml-4">
-    <btn color="gray-200" textColor="primary" v-on:click="toggleModal()">
+    <btn color="gray-200" textColor="dark" v-on:click="toggleModal()">
       <span class="uppercase">Une question ?</span>
       <span class="text-xs"><div>Nous contacter</div></span>
     </btn>

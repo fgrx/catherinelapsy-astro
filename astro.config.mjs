@@ -5,10 +5,12 @@ import partytown from "@astrojs/partytown";
 import netlify from "@astrojs/netlify/functions";
 import sitemap from "@astrojs/sitemap";
 
+import image from "@astrojs/image";
+
 // https://astro.build/config
 export default defineConfig({
   //output: "server",
   adapter: netlify(),
   site: "https://catherinelapsy.com",
-  integrations: [vue(), tailwind(), partytown(), sitemap()],
+  integrations: [vue(), tailwind(), partytown(), sitemap(), image()]
 });

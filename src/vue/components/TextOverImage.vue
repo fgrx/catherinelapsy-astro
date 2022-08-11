@@ -11,6 +11,7 @@ const { image } = defineProps({ image: String });
     <img
       v-if="image"
       :src="image"
+      :alt="image.alt"
       class="w-full container-block-image object-cover"
     />
   </div>
