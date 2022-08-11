@@ -164,7 +164,7 @@ const fonts =
       type="text/partytown"
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
     > -->
-    <script
+    <!-- <script
       data-cookiecategory="analytics"
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-221308343-1"
@@ -178,9 +178,10 @@ const fonts =
       gtag("js", new Date());
 
       gtag("config", "UA-221308343-1");
-    </script>
+    </script> -->
 
-    <link href="/plugins/cookieconsent/cookieconsent.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- <link href="/plugins/cookieconsent/cookieconsent.css" rel="stylesheet" /> -->
   </head>
   <main>
     <NavBar client:load links={links} />
@@ -201,5 +202,10 @@ const fonts =
     <script is:inline defer src="/plugins/cookieconsent/cookieconsent.init.js">
 
     </script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+ <script is:inline defer src="/plugins/osano/osano.init.js" />
+
+
   </main>
 </html>
