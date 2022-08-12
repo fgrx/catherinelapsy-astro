@@ -6,7 +6,6 @@ const { subtitle, explanation, heroImage } = defineProps({
 });
 
 const image = heroImage.formats.medium;
-
 const imageWebpUrl = image.url.replace(".png", ".webp");
 </script>
 
@@ -34,7 +33,7 @@ const imageWebpUrl = image.url.replace(".png", ".webp");
             :src="imageWebpUrl"
             :height="image.height"
             :width="image.width"
-            :alt="image.alternativeText"
+            alt="Portrait de Catherine et Fabien"
           />
         </div>
       </div>

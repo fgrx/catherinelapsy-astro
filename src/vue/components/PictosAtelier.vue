@@ -14,6 +14,7 @@ const { pictos } = defineProps({ pictos: Object });
         alt=""
         width="80"
         height="80"
+        loading="lazy"
       />
 
       <p class="mt-3">

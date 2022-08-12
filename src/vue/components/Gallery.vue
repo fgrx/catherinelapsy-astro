@@ -12,6 +12,7 @@ const { images } = defineProps({ images: Array });
           :width="image.width"
           :height="image.height"
           format="webp"
+          loading="lazy"
         />
       </div>
     </div>

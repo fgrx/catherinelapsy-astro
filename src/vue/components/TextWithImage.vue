@@ -40,7 +40,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
               ? imageService.formatImage(content.image, 'medium').height
               : imageService.formatImage(content.image, 'small').heihgt
           "
-          :alt="content.image.alt"
+          :alt="content.image.data.attributes.alternativeText"
           :class="content.roundImage ? 'rounded-full' : ''"
         />
       </div>

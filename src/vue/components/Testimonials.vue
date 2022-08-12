@@ -14,6 +14,7 @@ const { testimonials } = defineProps({ testimonials: Array });
           alt=""
           height="150"
           width="150"
+          loading="lazy"
           class="object-center"
         />
       </div>
