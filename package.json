@@ -9,13 +9,13 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/image": "^0.3.3",
-    "@astrojs/netlify": "^0.5.0",
+    "@astrojs/image": "^0.3.4",
+    "@astrojs/netlify": "^1.0.1",
     "@astrojs/partytown": "^0.1.9",
-    "@astrojs/sitemap": "^0.3.0",
-    "@astrojs/tailwind": "^0.2.5",
-    "@astrojs/vue": "^0.5.0",
-    "astro": "^1.0.0-rc.7",
+    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/tailwind": "^1.0.0",
+    "@astrojs/vue": "^1.0.0",
+    "astro": "^1.0.3",
     "vue": "^3.2.30"
   },
   "dependencies": {
