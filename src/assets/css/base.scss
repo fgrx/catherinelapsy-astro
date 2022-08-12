@@ -57,6 +57,15 @@ tr:nth-child(even) {
 
 @media screen and (min-width: 740px) {
   .cc-banner {
-    height: 30vh;
+    height: 7em;
+  }
+
+  .cc-message {
+    font-size: 1.3em;
+    background: url("../images/cookie.png") left no-repeat;
+    height: 100%;
+    background-size: 3em;
+    padding-left: 4em;
+    padding-top: 1em;
   }
 }
