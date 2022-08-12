@@ -54,3 +54,9 @@ thead,
 tr:nth-child(even) {
   background-color: rgb(231, 231, 231);
 }
+
+@media screen and (min-width: 740px) {
+  .cc-banner {
+    height: 30vh;
+  }
+}
