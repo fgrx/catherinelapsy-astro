@@ -26,8 +26,8 @@ const { title } = defineProps({
           <div class="">
             <h2 class="text-secondary text-3xl">{{ title }}</h2>
             <p>
-              Abonnez-vous gratuitement à notre email bimensuel pour comprendre
-              sa psychologie et mieux se connaitre.
+              Une newsletter bimensuelle pour mieux comprendre la psychologie et
+              la psychothérapie.
             </p>
           </div>
         </div>
