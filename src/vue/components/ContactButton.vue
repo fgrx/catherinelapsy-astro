@@ -11,7 +11,7 @@ const toggleModal = () => (showModal.value = !showModal.value);
 
 <template>
   <div class="md:ml-4">
-    <btn color="gray-200" textColor="dark" v-on:click="toggleModal()">
+    <btn color="gray-200" textColor="dark" @click="toggleModal()">
       <span class="uppercase">Une question ?</span>
       <span class="text-xs"><div>Nous contacter</div></span>
     </btn>
@@ -37,14 +37,11 @@ const toggleModal = () => (showModal.value = !showModal.value);
           </div>
           <!--body-->
           <div class="p-6 flex-auto items-start">
-            <ContactForm class="text-left items-start"></ContactForm>
-            <button
-              class="border-gray-900 hover:bg-gray-700 hover:text-white mt-3 bg-transparent border border-solid border-gray-900 font-bold text-sm px-6 px-4 py-3 rounded mx-3 mb-1"
-              type="button"
-              v-on:click="toggleModal()"
-            >
-              Fermer
-            </button>
+            <ContactForm
+              :hasCloseButton="true"
+              @close-form="toggleModal()"
+              class="text-left items-start"
+            ></ContactForm>
           </div>
         </div>
       </div>

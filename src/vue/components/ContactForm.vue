@@ -11,6 +11,12 @@ export default {
     Alert,
     Btn,
   },
+  props: {
+    hasCloseButton: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       color: "rose-600",
@@ -62,6 +68,9 @@ export default {
       } else {
         this.error = "Veuillez remplir tous les champs s'il vous plait.";
       }
+    },
+    closeAction() {
+      this.$emit("close-form");
     },
     isValidEmail(email) {
       const re =
@@ -148,13 +157,25 @@ export default {
             </label>
           </p>
           <p>
-            <Btn
-              @click="sendMessage"
-              typeButton="button"
-              class="mt-5"
-              :disabled="!isFormCompleted"
-              >Envoyer</Btn
-            >
+            <div class="flex">
+              <Btn
+                @click="sendMessage"
+                typeButton="button"
+                class="mt-5 mr-2"
+                :disabled="!isFormCompleted"
+                >Envoyer</Btn
+              >
+
+              <Btn
+                @click="closeAction"
+                typeButton="button"
+                class="mt-5 mr-2"
+                color="black"
+                >Fermer</Btn
+              >
+
+            </div>
+            
           </p>
         </form>
       </div>
