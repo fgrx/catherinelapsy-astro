@@ -118,7 +118,7 @@
           <li
             v-for="(link, index) in linksWithSubMenu"
             :key="index"
-            class="font-medium text-xl py-5"
+            class="font-medium text-2xl my-5"
             @click="isOpen = false"
           >
             <a class="hover:text-secondary" :href="link.to">{{ link.text }}</a>

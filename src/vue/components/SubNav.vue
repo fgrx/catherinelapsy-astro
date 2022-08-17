@@ -1,29 +1,21 @@
 <template>
   <nav
     v-show="isVisible"
-    :class="!isRaw ? 'absolute bg-dark px-2 z-20 rounded-md' : ''"
+    :class="!isRaw ? 'absolute bg-dark px-1 z-20 rounded-md' : ''"
   >
     <ul :class="!isRaw ? 'divide-y divide-gray-800' : ''">
       <li
         :class="!isRaw ? 'px-4' : 'px-2'"
-        class="text-sm"
+        class="text-base my-2"
         v-for="link in links"
         :key="link.title"
       >
         <a
-          v-if="link.target === '_blank'"
           :href="link.to"
-          target="link.target"
-          class="hover:text-secondary py-3 block"
+          :target="link.target === '_blank'?'_blank':'_self'"
+          class="hover:text-secondary w-full py-2 block"
         >
           <span v-if="link.isLive">Atelier en live</span>
-          {{ link.title }}</a
-        >
-        <a
-          class="hover:text-secondary py-3 block"
-          v-if="link.target !== '_blank'"
-          :href="link.to"
-        >
           {{ link.title }}</a
         >
       </li>

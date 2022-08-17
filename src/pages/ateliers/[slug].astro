@@ -11,8 +11,10 @@ import BuyBtn from "../../vue/components/BuyBtn.vue";
 import EmbedYoutube from "../../vue/components/EmbedYoutube.vue";
 import PictosAteliers from "../../vue/components/PictosAtelier.vue";
 import Testimonials from "../../vue/components/Testimonials.vue";
-import Gallery from "../../vue/components/Gallery.vue";
 import Expandables from "../../vue/components/Expandables.vue";
+
+//import Gallery from "../../components/Gallery.astro";
+import Gallery from "../../vue/components/Gallery.vue";
 
 import Markdown from "@astrojs/markdown-component";
 import "../../assets/css/base.scss";
@@ -62,7 +64,7 @@ const discount = {
             src={doc.image.url}
             class="mb-7"
             width={800}
-            height={500}
+            height={350}
             format="webp"
             loading="lazy"
             alt={doc.image.alt}
