@@ -4,7 +4,7 @@ const { links } = defineProps({ links: Object });
 
 <template>
   <div class="bg-dark text-gray-200">
-    <div class="container mx-auto text-center text-sm py-14">
+    <div class="container mx-auto text-center py-14">
       <div class="grid grid-cols-4">
         <div class="col-span-4 md:col-span-1 mb-8">
           <a href="/">
@@ -19,16 +19,18 @@ const { links } = defineProps({ links: Object });
           <nav>
             <ul class="grid grid-cols-2 md:grid-cols-3 gap-2">
               <li v-for="(link, index) in links" :key="index">
-                <a :href="link.to" class="hover:text-secondary">{{
-                  link.text
-                }}</a>
+                <a
+                  :href="link.to"
+                  class="hover:text-secondary py-1 my-1 block"
+                  >{{ link.text }}</a
+                >
               </li>
             </ul>
           </nav>
         </div>
       </div>
 
-      <div class="py-15 text-sm">
+      <div class="py-15">
         <p>
           © 2021
           <a
