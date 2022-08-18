@@ -5,7 +5,7 @@ const { images } = defineProps({ images: Array });
 <template>
   <section v-if="images">
     <div :class="`grid md:grid-cols-${images.length} gap-2 my-4`">
-      <div class="" v-for="image in images" :key="image">
+      <div class="flex justify-center" v-for="image in images" :key="image">
         <img
           :src="image.attributes.formats.small.url"
           :alt="image.attributes.alternativeText"

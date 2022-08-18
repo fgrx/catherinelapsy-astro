@@ -187,6 +187,10 @@ const fonts =
       href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
     /> -->
     <link href="/plugins/osano/osano.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/lite-youtube-embed/src/lite-yt-embed.css"
+    />
   </head>
   <main>
     <NavBar client:load links={links} />
@@ -206,6 +210,14 @@ const fonts =
     </script>
 
     <script is:inline defer src="/plugins/osano/osano.init.js">
+
+    </script>
+
+    <script
+      is:inline
+      defer
+      src="/node_modules/lite-youtube-embed/src/lite-yt-embed.js"
+    >
 
     </script>
   </main>

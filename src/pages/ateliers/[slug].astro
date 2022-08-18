@@ -105,13 +105,15 @@ const discount = {
 
         <PictosAteliers pictos={doc.picto} />
 
-        {doc.teaser && <EmbedYoutube youtubeID={doc.teaser.url} />}
+        {doc.teaser && (
+          <lite-youtube videoid={doc.teaser.url} playlabel={doc.teaser.title} />
+        )}
 
         <Markdown>
           {doc.content1}
         </Markdown>
 
-        {doc.youtubeURL && <EmbedYoutube youtubeID={doc.youtubeURL} />}
+        {doc.youtubeURL && <lite-youtube videoid={doc.youtubeURL} />}
 
         {doc.gallery && <Gallery images={doc.gallery.data} />}
 
@@ -191,6 +193,12 @@ const discount = {
     text-align: center;
     display: block;
     width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  lite-youtube {
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
   }
