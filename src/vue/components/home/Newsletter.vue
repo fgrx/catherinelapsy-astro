@@ -20,8 +20,8 @@ const { title } = defineProps({
             class="icon md:mr-10 hidden md:block"
             src="https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388187/mail_596664d_5d9d09b680.png"
             alt="Dessin de courrier"
-            width="200"
-            height="100"
+            width="203"
+            height="128"
           />
           <div class="">
             <h2 class="text-secondary text-3xl">{{ title }}</h2>
