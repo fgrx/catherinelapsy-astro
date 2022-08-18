@@ -167,6 +167,7 @@ export default {
               >
 
               <Btn
+                v-if="hasCloseButton"
                 @click="closeAction"
                 typeButton="button"
                 class="mt-5 mr-2"
@@ -183,4 +184,4 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+
