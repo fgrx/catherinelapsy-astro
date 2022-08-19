@@ -64,7 +64,9 @@ const contentsWithImage = doc.textwithimage;
             {doc.content}
           </Markdown>
 
-          {doc.youtube.map((video) => <YoutubePlayer video={video} />)}
+          {doc.youtube.map((video) => (
+            <lite-youtube videoid={video.url} playlabel={video.title} />
+          ))}
 
           {doc.podcast.map((podcast) => <AnchorPlayer podcast={podcast} />)}
 
