@@ -19,7 +19,7 @@ const toggleModal = () => (showModal.value = !showModal.value);
       src="../../assets/images/chat.svg"
       alt="chat icon"
       height="32px"
-      with="32px"
+      width="32px"
     />
   </button>
 

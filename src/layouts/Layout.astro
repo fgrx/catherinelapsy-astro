@@ -161,36 +161,9 @@ const fonts =
     <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png"
     />
     <meta name="theme-color" content="#ffffff" />
-    <!-- <script
-      type="text/partytown"
-      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    > -->
-    <!-- <script
-      data-cookiecategory="analytics"
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-221308343-1"
-    >
 
-    </script><script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-221308343-1");
-    </script> -->
-
-    <!-- <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
-    /> -->
     <link href="/plugins/osano/osano.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="/node_modules/lite-youtube-embed/src/lite-yt-embed.css"
-    />
+    <link href="/plugins/lite-yt-embed/lite-yt-embed.css" rel="stylesheet" />
   </head>
   <main>
     <NavBar client:load links={links} />
@@ -213,14 +186,9 @@ const fonts =
 
     </script>
 
-    <script
-      is:inline
-      defer
-      src="/node_modules/lite-youtube-embed/src/lite-yt-embed.js"
-    >
+    <script is:inline defer src="/plugins/lite-yt-embed/lite-yt-embed.js">
 
     </script>
   </main>
-
 
 </html>
