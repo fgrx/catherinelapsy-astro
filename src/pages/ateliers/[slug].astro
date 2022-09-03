@@ -102,10 +102,16 @@ const discount = {
           </div>
         )}
 
-        <PictosAteliers pictos={doc.picto} />
+        {doc.picto.length ? <PictosAteliers pictos={doc.picto} /> : ""}
 
         {doc.teaser && (
-          <lite-youtube videoid={doc.teaser.url} playlabel={doc.teaser.title} />
+          <div class="my-4">
+            <h2>Présentation en vidéo</h2>
+            <lite-youtube
+              videoid={doc.teaser.url}
+              playlabel={doc.teaser.title}
+            />
+          </div>
         )}
 
         <Markdown>
