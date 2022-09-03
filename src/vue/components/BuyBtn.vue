@@ -1,12 +1,13 @@
 <script setup>
 import Btn from "./Btn.vue";
 
-const { url, isClosed, price, discount, label } = defineProps({
+const { url, isClosed, price, discount, label, textPrice } = defineProps({
   url: String,
   isClosed: Boolean,
   price: Number,
   discount: Object,
   label: String,
+  textPrice: String,
 });
 </script>
 
@@ -26,6 +27,8 @@ const { url, isClosed, price, discount, label } = defineProps({
 
           <template v-else> {{ price }}€ </template>
         </template>
+
+        <div v-if="textPrice" class="text-xs">{{ textPrice }}</div>
 
         <div class="text-xs">(Vous serez redirigé sur podia.com)</div>
       </Btn>
