@@ -10,18 +10,16 @@ const { title } = defineProps({
 </script>
 
 <template>
-  <div
-    class="bg-gradient-to-r from-primaryDark to-primary text-white py-8 px-5"
-  >
+  <div class="bg-gradient-to-r from-primaryDark to-primary text-white py-8">
     <div class="container mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center px-5">
         <div class="flex md:col-span-7 lg:col-span-8 items-center">
           <img
-            class="icon md:mr-10 hidden md:block"
+            class="md:mr-10 hidden md:block object-scale-down"
             src="https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388187/mail_596664d_5d9d09b680.png"
             alt="Dessin de courrier"
-            width="300"
-            height="216"
+            width="200"
+            height="156"
           />
           <div class="">
             <h2 class="text-secondary text-3xl">{{ title }}</h2>
