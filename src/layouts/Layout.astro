@@ -10,30 +10,36 @@ const { title, metaDescription, imageOG } = Astro.props;
 
 const apiURL = import.meta.env.PUBLIC_API;
 
-const { menu: menuFooter } = await fetch(`${apiURL}/menus/menu-footer`).then(
-  (res) => res.json()
-);
+const { data: menuFooter } = await fetch(
+  `${apiURL}/menus/2?nested&populate=*`
+).then(async (res) => {
+  const result = await res.json();
+  return result.data.attributes.items;
+});
 
-const linksFooter = menuFooter.items.map((item) => {
+const linksFooter = menuFooter?.map((item) => {
   return {
     id: item.id,
-    text: item.title,
-    to: item.url,
+    text: item.attributes.title,
+    to: item.attributes.url,
   };
 });
 
-const { menu: MenuPrincipal } = await fetch(
-  `${apiURL}/menus/menu-principal?nested`
-).then((res) => res.json());
+const { data: menuPrincipal } = await fetch(
+  `${apiURL}/menus/1?nested&populate=*`
+).then(async (res) => {
+  const result = await res.json();
+  return result.data.attributes.items;
+});
 
-const links = MenuPrincipal.items.map((item) => {
+const links = menuPrincipal?.map((item) => {
   const formatChildrensMenu = () => {
-    if (item.children.length) {
-      return item.children.map((child) => {
+    if (item.attributes.children.data.length) {
+      return item.attributes.children.data.map((child) => {
         return {
-          title: child.title,
-          to: child.url,
-          target: child.target,
+          title: child.attributes.title,
+          to: child.attributes.url,
+          target: child.attributes.target,
           image: "",
         };
       });
@@ -44,9 +50,9 @@ const links = MenuPrincipal.items.map((item) => {
 
   return {
     id: item.id,
-    text: item.title,
-    to: item.url,
-    meta: { subMenu: item.children.length },
+    text: item.attributes.title,
+    to: item.attributes.url,
+    meta: { subMenu: item.attributes.children.data.length },
     children: formatChildrensMenu(),
   };
 });
@@ -190,5 +196,6 @@ const fonts =
 
     </script>
   </main>
+
 
 </html>
