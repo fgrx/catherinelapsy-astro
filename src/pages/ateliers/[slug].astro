@@ -13,7 +13,6 @@ import PictosAteliers from "../../vue/components/PictosAtelier.vue";
 import Testimonials from "../../vue/components/Testimonials.vue";
 import Expandables from "../../vue/components/Expandables.vue";
 
-//import Gallery from "../../components/Gallery.astro";
 import Gallery from "../../vue/components/Gallery.vue";
 
 import Markdown from "@astrojs/markdown-component";
@@ -21,7 +20,9 @@ import "../../assets/css/base.scss";
 
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
-  const response = await fetch(`${apiURL}/products?populate=*`);
+  const fetchUrl = `${apiURL}/products?populate=*`;
+  console.log(fetchUrl);
+  const response = await fetch(fetchUrl);
   const results = await response.json();
   return results.data.map((result) => ({
     params: { slug: result.attributes.slug },
