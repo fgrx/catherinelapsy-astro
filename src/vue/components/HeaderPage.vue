@@ -14,7 +14,7 @@ const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
       <div class="flex">
         <template v-if="logo?.length">
           <div class="hidden align-top md:block flex-initial">
-            <img :src="logo" alt="" class="logo-header pr-5 object-contain" />
+            <img  :src="logo" alt="" class="logo-header pr-5 object-contain" />
           </div>
         </template>
 
@@ -45,8 +45,8 @@ const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
 
 <style scoped>
 .logo-header {
-  height: 130px;
-  width: auto;
+  height: auto;
+  width: 200px;
   transform: rotate(0deg);
 }
 </style>
