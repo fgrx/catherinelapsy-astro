@@ -4,7 +4,7 @@ import imageService from "../../services/imageService";
 import Layout from "../../layouts/Layout.astro";
 
 import HeaderPage from "../../vue/components/HeaderPage.vue";
-import ListAlternate from "../../vue/components/ListAlternate.vue";
+import YoutubeVideosList from "../../components/YoutubeVideosList.astro";
 import Pagination from "../../vue/components/Pagination.vue";
 
 export async function getStaticPaths({ paginate }) {
@@ -47,6 +47,7 @@ const itemsToDisplay = data.map((element) => {
   const video = element.attributes;
   video.dir = "/videos";
   video.image = imageService.formatImage(video.image, "medium");
+  video.id = video.url;
   video.url = `https://www.youtube.com/watch?v=${video.url}`;
   return video;
 });
@@ -72,7 +73,7 @@ const pagination = {
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        <h2>Nos vidéos sur la psychologie</h2>
+        <h2>Nos vidéos sur la psychologie et la psychothérapie</h2>
         <p>
           Nous publions des vidéos sur le thème de la psychologie sur Youtube.
           Vous pouvez vous abonner en allant sur
@@ -82,7 +83,8 @@ const pagination = {
             >notre chaîne Youtube
           </a>.
         </p>
-        <ListAlternate items={itemsToDisplay} textBtn="Voir sur Youtube" />
+        <!-- <ListAlternate items={itemsToDisplay} textBtn="Voir sur Youtube" /> -->
+        <YoutubeVideosList videos={itemsToDisplay} />
       </div>
     </div>
   </article>

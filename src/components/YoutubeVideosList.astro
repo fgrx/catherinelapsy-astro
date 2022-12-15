@@ -1,0 +1,30 @@
+---
+import { YouTube } from "@astro-community/astro-embed-youtube";
+const { videos } = Astro.props;
+console.log(videos);
+---
+
+<div>
+  {videos.map((video, index) => (
+    <div
+      class={
+        Number.isInteger(index / 2)
+          ? "flex-row-reverse my-7 md:flex mb-20"
+          : "my-7 md:flex mb-20"
+      }
+    >
+      <div
+        class={
+          Number.isInteger(index / 2) ? "md:ml-5 flex-1" : "md:pr-5 flex-1"
+        }
+      >
+        <YouTube id={video.id} />
+      </div>
+
+      <div class="flex-1">
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
