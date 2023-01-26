@@ -21,7 +21,6 @@ import "../../assets/css/base.scss";
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
   const fetchUrl = `${apiURL}/products?populate=*`;
-  console.log(fetchUrl);
   const response = await fetch(fetchUrl);
   const results = await response.json();
   return results.data.map((result) => ({
