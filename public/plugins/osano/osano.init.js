@@ -48,6 +48,6 @@ function myScripts() {
     "//www.google-analytics.com/analytics.js",
     "ga"
   );
-  ga("create", "UA-221308343-1", "auto");
+  ga("create", "G-6W78WWF32Y", "auto");
   ga("send", "pageview");
 }
