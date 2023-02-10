@@ -89,6 +89,13 @@ const fonts =
     <link rel="stylesheet" href={fonts} media="print" onload="this.media='all'"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.9/dist/cookieconsent.css"
+      media="print"
+      onload="this.media='all'"
+    />
+
     <noscript>
       <link rel="stylesheet" href={fonts} />
     </noscript>
@@ -168,35 +175,35 @@ const fonts =
     />
     <meta name="theme-color" content="#ffffff" />
 
-    <link href="/plugins/osano/osano.css" rel="stylesheet" />
     <link href="/plugins/lite-yt-embed/lite-yt-embed.css" rel="stylesheet" />
   </head>
-  <main>
-    <NavBar client:load links={links} />
-    <Message
-      title={message.title}
-      content={message.content}
-      isShown={message.isShown}
-      link={message.link}
-      logo={message.logo.data.attributes}
-    />
-    <slot />
-    <ContactFabButton client:load />
-    <Footer links={linksFooter} />
+  <body>
+    <main>
+      <NavBar client:load links={links} />
+      <Message
+        title={message.title}
+        content={message.content}
+        isShown={message.isShown}
+        link={message.link}
+        logo={message.logo.data.attributes}
+      />
+      <slot />
+      <ContactFabButton client:load />
+      <Footer links={linksFooter} />
+    </main>
 
-    <script is:inline defer src="/plugins/osano/osano.js">
-
-    </script>
-
-    <script is:inline defer src="/plugins/osano/osano.init.js">
+    <script is:inline defer src="/plugins/lite-yt-embed/lite-yt-embed.js">
 
     </script>
 
-    <!-- <script is:inline defer src="/plugins/osano/osano.init.js">
+    <script defer src="/plugins/cookie-consent/cookie-consent.js">
 
     </script>
- -->
+    <script defer src="/plugins/cookie-consent/cookie-consent.init.js">
 
+    </script>
+
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W78WWF32Y"
     >
 
@@ -210,11 +217,5 @@ const fonts =
 
       gtag("config", "G-6W78WWF32Y");
     </script>
-
-    <script is:inline defer src="/plugins/lite-yt-embed/lite-yt-embed.js">
-
-    </script>
-  </main>
-
-
+  </body>
 </html>
