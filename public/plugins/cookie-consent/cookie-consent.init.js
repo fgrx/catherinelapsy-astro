@@ -7,11 +7,11 @@ cc.run({
   autoclear_cookies: true, // default: false
   page_scripts: true, // default: false
 
-  // mode: 'opt-in'                          // default: 'opt-in'; value: 'opt-in' or 'opt-out'
+  mode: "opt-in", // default: 'opt-in'; value: 'opt-in' or 'opt-out'
   // delay: 0,                               // default: 0
   // auto_language: null                     // default: null; could also be 'browser' or 'document'
   // autorun: true,                          // default: true
-  // force_consent: false,                   // default: false
+  force_consent: true, // default: false
   // hide_from_bots: true,                   // default: true
   // remove_cookie_tables: false             // default: false
   // cookie_name: 'cc_cookie',               // default: 'cc_cookie'

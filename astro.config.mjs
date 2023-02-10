@@ -12,5 +12,13 @@ export default defineConfig({
   //output: "server",
   adapter: netlify(),
   site: "https://catherinelapsy.com",
-  integrations: [vue(), tailwind(), partytown(), sitemap(), image()]
+  integrations: [
+    vue(),
+    tailwind(),
+    partytown(),
+    sitemap(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
+  ],
 });
