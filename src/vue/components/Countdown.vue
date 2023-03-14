@@ -10,8 +10,8 @@ const displayDays = ref(0);
 const displayHours = ref(0);
 const displayMinutes = ref(0);
 const displaySeconds = ref(0);
-const over = ref(false);
-const loaded = ref(false);
+const isOver = ref(false);
+const isLoaded = ref(false);
 
 const _seconds = 1000;
 const _minutes = _seconds * 60;
@@ -46,7 +46,7 @@ const showRemaining = () => {
 
     if (distance < 0) {
       clearInterval(timer);
-      over.value = true;
+      isOver.value = true;
       return;
     }
 
@@ -60,7 +60,7 @@ const showRemaining = () => {
     displayHours.value = formatNum(hours);
     displayDays.value = formatNum(days);
 
-    loaded.value = true;
+    isLoaded.value = true;
   }, _seconds);
 };
 
@@ -68,7 +68,7 @@ showRemaining();
 </script>
 
 <template>
-  <div class="my-8 text-dark" v-if="isShown && !over && loaded">
+  <div class="my-8 text-dark" v-if="isShown && !isOver && isLoaded">
     <h3 class="text-2xl md:text-3xl mb-4 text-center"><slot></slot></h3>
 
     <div class="flex text-center justify-center">

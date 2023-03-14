@@ -36,9 +36,18 @@ h4 {
 }
 
 article {
-  li {
-    list-style-type: disc;
-    margin-left: 2em;
+  ul {
+    li {
+      list-style-type: disc;
+      margin-left: 2em;
+    }
+  }
+
+  ol {
+    padding-left: 2em;
+    li {
+      list-style-type: decimal;
+    }
   }
 }
 
