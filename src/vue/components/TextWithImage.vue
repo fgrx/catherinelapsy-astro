@@ -23,26 +23,28 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
       :class="`md:w-${content.imageWidth}/${rowNumbers}`"
     >
       <div :class="content.position === 'left' ? 'md:pr-7' : 'md:pl-7'">
-        <img
-          class="mx-auto"
-          :src="
-            content.imageWidth > 3
-              ? imageService.formatImage(content.image, 'medium').url
-              : imageService.formatImage(content.image, 'small').url
-          "
-          :width="
-            content.imageWidth > 3
-              ? imageService.formatImage(content.image, 'medium').width
-              : imageService.formatImage(content.image, 'small').width
-          "
-          :height="
-            content.imageWidth > 3
-              ? imageService.formatImage(content.image, 'medium').height
-              : imageService.formatImage(content.image, 'small').heihgt
-          "
-          :alt="content.image.data.attributes.alternativeText"
-          :class="content.roundImage ? 'rounded-full' : ''"
-        />
+        <a :href="content.url">
+          <img
+            class="mx-auto"
+            :src="
+              content.imageWidth > 3
+                ? imageService.formatImage(content.image, 'medium').url
+                : imageService.formatImage(content.image, 'small').url
+            "
+            :width="
+              content.imageWidth > 3
+                ? imageService.formatImage(content.image, 'medium').width
+                : imageService.formatImage(content.image, 'small').width
+            "
+            :height="
+              content.imageWidth > 3
+                ? imageService.formatImage(content.image, 'medium').height
+                : imageService.formatImage(content.image, 'small').heihgt
+            "
+            :alt="content.image.data.attributes.alternativeText"
+            :class="content.roundImage ? 'rounded-full' : ''"
+          />
+        </a>
       </div>
     </div>
 
