@@ -104,7 +104,7 @@ const discount = {
 
         {doc.picto.length ? <PictosAteliers pictos={doc.picto} /> : ""}
 
-        {doc.teaser && (
+        {doc.teaser?.url && (
           <div class="my-4 text-center">
             <h2>Présentation en vidéo</h2>
             <lite-youtube
