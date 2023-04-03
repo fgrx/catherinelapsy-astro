@@ -1,6 +1,7 @@
 <script setup>
 import Btn from "./Btn.vue";
 import imageService from "../../services/imageService.js";
+import { marked } from "marked";
 
 const { contents } = defineProps({ contents: Object });
 
@@ -55,7 +56,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
       >
         <h2 class="text-primary text-3xl mb-2">{{ content.title }}</h2>
 
-        <p v-html="content.content"></p>
+        <p v-html="marked(content.content)"></p>
 
         <div v-if="content.url" class="mt-4">
           <a :href="content.url"
