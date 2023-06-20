@@ -42,7 +42,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
                 ? imageService.formatImage(content.image, 'medium').height
                 : imageService.formatImage(content.image, 'small').heihgt
             "
-            :alt="content.image.data.attributes.alternativeText"
+            :alt="content.image.data?.attributes?.alternativeText || ''"
             :class="content.roundImage ? 'rounded-full' : ''"
           />
         </a>
@@ -56,7 +56,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
       >
         <h2 class="text-primary text-3xl mb-2">{{ content.title }}</h2>
 
-        <p v-html="marked(content.content)"></p>
+        <p v-if="content?.content" v-html="marked(content.content)"></p>
 
         <div v-if="content.url" class="mt-4">
           <a :href="content.url"

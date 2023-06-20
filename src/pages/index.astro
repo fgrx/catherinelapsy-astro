@@ -14,6 +14,10 @@ const url = `${apiURL}/Site-configuation?populate=deep,4`;
 const { data } = await fetch(url).then((res) => res.json());
 
 const doc = data.attributes;
+
+const { contentBloc } = doc;
+
+const contentBlocsToDisplay = contentBloc.filter((bloc) => bloc.isShown);
 ---
 
 <Layout
@@ -33,10 +37,10 @@ const doc = data.attributes;
       <Newsletter title="S'abonner à la Lettre Psy" />
     </section>
 
-    {doc.contentBloc.length && (
+    {contentBlocsToDisplay.length && (
       <section class="bg-gray-200">
         <div class="py-10 px-5 container mx-auto">
-          <TextWithImage contents={doc.contentBloc} />
+          <TextWithImage contents={contentBlocsToDisplay} />
         </div>
       </section>
     )}

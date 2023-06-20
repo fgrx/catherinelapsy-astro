@@ -7,6 +7,8 @@ import TextWithImage from "../vue/components/TextWithImage.vue";
 import ContactButton from "../vue/components/ContactButton.vue";
 import ContactForm from "../vue/components/ContactForm.vue";
 import LinkBtn from "../vue/components/LinkBtn.vue";
+import Countdown from "../vue/components/Countdown.vue";
+import Person from "../components/Person.astro";
 
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
@@ -38,6 +40,10 @@ const links = doc.link.map((link) => {
 
 const imageOG = doc.imageOG?.data?.attributes.url;
 const contentsWithImage = doc.textwithimage;
+
+if (doc.countdown) {
+  doc.countdown.deadline = `${doc.countdown?.deadline} 23:59:59`;
+}
 ---
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
@@ -50,12 +56,30 @@ const contentsWithImage = doc.textwithimage;
       >
         {topImage && <img class="mb-4" src={topImage.url} alt={topImage.alt} />}
 
+        {doc.countdown?.deadline && (
+          <Countdown
+            client:load
+            showbeforedays={doc.countdown.showBeforeDays}
+            deadline={doc.countdown.deadline}
+          >
+            {doc.countdown.text}
+          </Countdown>
+        )}
+
         <div class="content">
           <div class="content-md">
             <Markdown>
               {doc.content}
             </Markdown>
           </div>
+
+          {doc.people && (
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
+              {doc.people.map((person) => (
+                <Person person={person} />
+              ))}
+            </div>
+          )}
 
           <TextWithImage contents={contentsWithImage} />
 

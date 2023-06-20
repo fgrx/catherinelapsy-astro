@@ -1,0 +1,33 @@
+---
+import { Image } from "@astrojs/image/components";
+const { person } = Astro.props;
+
+const { attributes: image } = person.image.data;
+const imageSize = 200;
+---
+
+<div class="bg-zinc-200 p-6 rounded-md border-neutral-300 border">
+  <Image
+    src={image.formats.small?.url || image.formats.thumbnail.url}
+    alt={image.alternativeText}
+    width={imageSize}
+    height={imageSize}
+    fit="cover"
+    format="webp"
+    loading="lazy"
+    class="rounded-full border-primary border-4"
+  />
+
+  <div class="text-xl font-semibold text-primary text-center">
+    {person.name}
+  </div>
+  <div class="text-center">{person.description}</div>
+
+  {person.url && (
+    <div class="text-center mt-4 text-primary">
+      <a target="blank" href={person.url}>
+        🔗 Site internet{" "}
+      </a>
+    </div>
+  )}
+</div>
