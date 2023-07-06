@@ -3,6 +3,7 @@ import { Image } from "@astrojs/image/components";
 import Layout from "../../layouts/Layout.astro";
 import imageService from "../../services/imageService";
 import LinkBtn from "../../vue/components/LinkBtn.vue";
+import Ribbon from "../../vue/components/Ribbon.vue";
 
 import HeaderPage from "../../vue/components/HeaderPage.vue";
 import Countdown from "../../vue/components/Countdown.vue";
@@ -58,15 +59,19 @@ const discount = {
         class="container mx-auto bg-gray-100 -m-14 py-12 pb-24 px-5 md:px-12 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
         {doc.image && (
-          <Image
-            src={doc.image.url}
-            class="mb-7"
-            width={1000}
-            height={400}
-            format="webp"
-            fit="cover"
-            alt={doc.image.alt || "Catherine présente l'atelier"}
-          />
+          <div class="relative overflow-hidden">
+            <Ribbon v-if="item.isPro">Atelier pro</Ribbon>
+
+            <Image
+              src={doc.image.url}
+              class="mb-7"
+              width={1000}
+              height={400}
+              format="webp"
+              fit="cover"
+              alt={doc.image.alt || "Catherine présente l'atelier"}
+            />
+          </div>
         )}
 
         {doc.purchaseURL && (

@@ -1,5 +1,6 @@
 <script setup>
 import Btn from "./Btn.vue";
+import Ribbon from "./Ribbon.vue";
 
 const { items, textBtn } = defineProps({ items: Array, textBtn: String });
 </script>
@@ -23,12 +24,16 @@ const { items, textBtn } = defineProps({ items: Array, textBtn: String });
         <!-- <EmbedYoutube v-if="item.video">{{ item.video }}</EmbedYoutube> -->
 
         <a v-if="item.image.url" :href="`${item.dir}/${item.slug}`">
-          <img
-            :src="item.image.url"
-            :width="item.image.width"
-            class="mb-7"
-            :alt="item.image.alt"
-          />
+          <div class="relative overflow-hidden">
+            <Ribbon v-if="item.isPro">Atelier pro</Ribbon>
+
+            <img
+              :src="item.image.url"
+              :width="item.image.width"
+              class="mb-7"
+              :alt="item.image.alt"
+            />
+          </div>
         </a>
       </div>
 
