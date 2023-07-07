@@ -7,7 +7,7 @@
   > -->
   <div class="absolute right-0 top-0">
     <div
-      class="bg-secondary font-semibold text-sm py-1 origin-top float-right mt-5 mr-7 w-40 text-center"
+      class="bg-secondary font-semibold text-sm py-1 origin-top float-right mt-7 mr-7 w-40 text-center"
       style="transform: translateX(50%) rotate(45deg)"
     >
       <slot />

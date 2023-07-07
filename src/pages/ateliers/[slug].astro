@@ -60,7 +60,7 @@ const discount = {
       >
         {doc.image && (
           <div class="relative overflow-hidden">
-            <Ribbon v-if="item.isPro">Atelier pro</Ribbon>
+            {doc.isPro && <Ribbon>Atelier pro</Ribbon>}
 
             <Image
               src={doc.image.url}
