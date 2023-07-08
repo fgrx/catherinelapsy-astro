@@ -15,7 +15,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
   <div class="md:w-1/6 md:w-2/6 md:w-3/6 md:w-4/6 md:w-5/6"></div>
 
   <div
-    class="mb-20 md:flex md-flex-wrap items-center"
+    class="mb-20 md:flex md-flex-wrap"
     :class="content.position === 'right' ? 'flex-row-reverse' : ''"
     v-for="content in contents"
   >
@@ -28,19 +28,19 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
           <img
             class="mx-auto"
             :src="
-              content.imageWidth > 3
-                ? imageService.formatImage(content.image, 'medium').url
+              content.imageWidth >= 3
+                ? imageService.formatImage(content.image, 'large').url
                 : imageService.formatImage(content.image, 'small').url
             "
             :width="
-              content.imageWidth > 3
-                ? imageService.formatImage(content.image, 'medium').width
+              content.imageWidth >= 3
+                ? imageService.formatImage(content.image, 'large').width
                 : imageService.formatImage(content.image, 'small').width
             "
             :height="
-              content.imageWidth > 3
-                ? imageService.formatImage(content.image, 'medium').height
-                : imageService.formatImage(content.image, 'small').heihgt
+              content.imageWidth >= 3
+                ? imageService.formatImage(content.image, 'large').height
+                : imageService.formatImage(content.image, 'small').height
             "
             :alt="content.image.data?.attributes?.alternativeText || ''"
             :class="content.roundImage ? 'rounded-full' : ''"
