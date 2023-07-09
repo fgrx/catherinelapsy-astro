@@ -22,7 +22,6 @@ const { items, textBtn } = defineProps({ items: Array, textBtn: String });
         ]"
       >
         <!-- <EmbedYoutube v-if="item.video">{{ item.video }}</EmbedYoutube> -->
-
         <a v-if="item.image.url" :href="`${item.dir}/${item.slug}`">
           <div class="relative overflow-hidden">
             <Ribbon v-if="item.isPro">Atelier pro</Ribbon>
@@ -30,7 +29,7 @@ const { items, textBtn } = defineProps({ items: Array, textBtn: String });
             <img
               :src="item.image.url"
               :width="item.image.width"
-              class="mb-7"
+              class="mb-7 w-full h-auto"
               :alt="item.image.alt"
             />
           </div>

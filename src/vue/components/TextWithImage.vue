@@ -26,7 +26,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
       <div :class="content.position === 'left' ? 'md:pr-7' : 'md:pl-7'">
         <a :href="content.url">
           <img
-            class="mx-auto"
+            class="mx-auto w-full h-auto"
             :src="
               content.imageWidth >= 3
                 ? imageService.formatImage(content.image, 'large').url
