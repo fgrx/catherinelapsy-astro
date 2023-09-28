@@ -1,5 +1,5 @@
 /node_modules
 /dist
 .netlify
-
+package-lock.json
 yarn.lock
