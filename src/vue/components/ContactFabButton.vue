@@ -16,7 +16,7 @@ const toggleModal = () => (showModal.value = !showModal.value);
     title="Contact Sale"
     class="fixed z-90 bottom-10 right-8 bg-primary w-16 h-16 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-teal-800 hover:drop-shadow-4xl hover:animate-bounce duration-300"
   >
-    <img :src="chatImage" alt="icone de chat" height="32px" width="32px" />
+    <img :src="chatImage.src" alt="icone de chat" height="32px" width="32px" />
   </button>
 
   <div
