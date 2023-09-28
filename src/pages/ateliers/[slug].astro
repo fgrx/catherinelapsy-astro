@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import imageService from "../../services/imageService";
 import LinkBtn from "../../vue/components/LinkBtn.vue";
@@ -14,7 +14,7 @@ import Expandables from "../../vue/components/Expandables.vue";
 
 import Gallery from "../../vue/components/Gallery.vue";
 
-import Markdown from "@astrojs/markdown-component";
+import { Markdown } from 'astro-remote';
 import "../../assets/css/base.scss";
 
 export async function getStaticPaths() {
@@ -103,7 +103,7 @@ const discount = {
 
         {doc.summary && (
           <div class="my-5 py-5 px-5 text-gray-800 text-lg important font-semibold border-gray-300 border rounded-md">
-            <Markdown>{doc.summary}</Markdown>
+            <Markdown content={doc.summary} />
           </div>
         )}
 
@@ -119,17 +119,17 @@ const discount = {
           </div>
         )}
 
-        <Markdown>
-          {doc.content1}
-        </Markdown>
+        { doc.content1 && (
+          <Markdown content={doc.content1} />
+        )}
 
         {doc.youtubeURL && <lite-youtube videoid={doc.youtubeURL} />}
 
         {doc.gallery && <Gallery images={doc.gallery.data} />}
 
-        <Markdown>
-          {doc.content2}
-        </Markdown>
+        { doc.content2 && (
+          <Markdown content={doc.content2} />
+        )}
 
         {doc.preview && (
           <div class="text-center my-8">
@@ -160,9 +160,9 @@ const discount = {
           ""
         )}
 
-        <Markdown>
-          {doc.content3}
-        </Markdown>
+          { doc.content3 && (
+            <Markdown content={doc.content3} />
+          )}
 
         {doc.purchaseURL && (
           <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">

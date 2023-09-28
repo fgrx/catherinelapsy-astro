@@ -1,5 +1,5 @@
 ---
-import Markdown from "@astrojs/markdown-component";
+import { Markdown } from 'astro-remote';
 import Layout from "../layouts/Layout.astro";
 
 import HeaderPage from "../vue/components/HeaderPage.vue";
@@ -68,9 +68,9 @@ if (doc.countdown) {
 
         <div class="content">
           <div class="content-md">
-            <Markdown>
-              {doc.content}
-            </Markdown>
+            { doc.content && (
+              <Markdown content={doc.content} />
+            )}
           </div>
 
           {doc.people && (

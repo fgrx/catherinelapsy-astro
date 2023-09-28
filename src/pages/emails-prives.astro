@@ -1,5 +1,5 @@
 ---
-import Markdown from "@astrojs/markdown-component";
+import { Markdown } from 'astro-remote';
 
 import Layout from "../layouts/Layout.astro";
 
@@ -38,20 +38,17 @@ const imageOG = doc.imageOG?.data?.attributes.url;
         )}
 
         <div class="content">
-          <Markdown>
-            {doc.content}
-          </Markdown>
+            { doc.content && (
+              <Markdown content={doc.content} />
+            )}
 
           <div class="border my-5 border-emerald-600 rounded p-5">
             <NewsLetterForm codeList="qD1uT" />
           </div>
 
-          <Markdown>
-            ## Envie de savoir à quoi ressemble la Lettre Psy ?
 
-            Voici quelques anciennes éditions qui vous permettrons de vous faire une idée du contenu que nous proposons
-            :
-          </Markdown>
+          <h2>Envie de savoir à quoi ressemble la Lettre Psy ?</h2>
+          <p>Voici quelques anciennes éditions qui vous permettrons de vous faire une idée du contenu que nous proposons :</p>
 
           <LettrePsyItems />
         </div>
