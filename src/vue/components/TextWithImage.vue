@@ -12,7 +12,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
 </script>
 
 <template>
-  <div class="md:w-1/6 md:w-2/6 md:w-3/6 md:w-4/6 md:w-5/6"></div>
+  <div class="md:w-1/6 md:w-2/6 md:w-3/6 md:w-4/6 md:w-5/6 mt-8"></div>
 
   <div
     class="mb-20 md:flex md-flex-wrap"
@@ -50,13 +50,14 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
     </div>
 
     <div :class="`md:w-${rowNumbers - content.imageWidth}/${rowNumbers}`">
-      <div
-        class="text-center"
-        :class="content.position === 'left' ? 'md:text-right' : 'md:text-left'"
-      >
+      <div>
         <h2 class="text-primary text-3xl mb-2">{{ content.title }}</h2>
 
-        <p v-if="content?.content" v-html="marked(content.content)"></p>
+        <p
+          class="content"
+          v-if="content?.content"
+          v-html="marked(content.content)"
+        ></p>
 
         <div v-if="content.url" class="mt-4">
           <a :href="content.url"
