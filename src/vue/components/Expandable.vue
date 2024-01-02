@@ -19,8 +19,14 @@ const isExpanded = ref(false);
   >
     <div>{{ expandable.title }}</div>
 
-    <img :src="arrowRight" alt="" height="30" width="30" v-if="!isExpanded" />
-    <img :src="arrowDown" alt="" height="30" width="30" v-if="isExpanded" />
+    <img
+      :src="arrowRight.src"
+      alt=""
+      height="30"
+      width="30"
+      v-if="!isExpanded"
+    />
+    <img :src="arrowDown.src" alt="" height="30" width="30" v-if="isExpanded" />
   </div>
 
   <div
