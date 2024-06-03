@@ -12,5 +12,8 @@ export default defineConfig({
   output: "hybrid",
   adapter: netlify(),
   site: "https://catherinelapsy.com",
-  integrations: [vue(), tailwind(), partytown(), sitemap()]
+  image: {
+    domains: ["res.cloudinary.com", "cloudinary.com"],
+  },
+  integrations: [vue(), tailwind(), partytown(), sitemap()],
 });
