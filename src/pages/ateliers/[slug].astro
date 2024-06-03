@@ -37,6 +37,7 @@ const { data } = await fetch(
 const doc = data[0].attributes;
 doc.image = imageService.formatImage(doc.image, "large");
 
+
 if (doc.countdown) {
   doc.countdown.deadline = `${doc.countdown?.deadline} 23:59:59`;
 }
@@ -48,6 +49,8 @@ const discount = {
   discountTo: doc.discountPrice,
   hasDiscount: doc.hasDiscount || false,
 };
+
+
 ---
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
@@ -58,6 +61,7 @@ const discount = {
       <div
         class="container mx-auto bg-gray-100 -m-14 py-12 pb-24 px-5 md:px-12 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
+
         {doc.image && (
           <div class="relative overflow-hidden">
             {doc.isPro && <Ribbon>Atelier pro</Ribbon>}
@@ -69,7 +73,7 @@ const discount = {
               height={400}
               format="webp"
               fit="cover"
-              alt={doc.image.alt || "Catherine présente l'atelier"}
+              alt={doc.image.alt || "Vignette de présentation de l'atelier"}
             />
           </div>
         )}
