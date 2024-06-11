@@ -8,19 +8,19 @@ import ListAlternate from "../../vue/components/ListAlternate.vue";
 const apiURL = import.meta.env.PUBLIC_API;
 
 const doc = {
-  title: "Tous les ateliers",
+  title: "Alliance",
   logo: "https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388922/computer_f6a7acae0f.svg?updated_at=2022-07-21T07:35:24.022Z",
   description:
-    "Des ateliers de psychothérapie à destination des particuliers et professionnels.",
+    "Catherine la Psy et Laure de LUV coaching vous proposent des ateliers en commun dans lesquel elles vous transmettent leurs connaissances théoriques et pratiques.",
 };
 
 const { data } = await fetch(
-  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Atelier&populate=*`
+  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Alliance&populate=*`
 ).then((res) => res.json());
 
 const products = data.map((element) => {
   const product = element.attributes;
-  product.dir = "/ateliers";
+  product.dir = "/alliance";
   product.image = imageService.formatImage(element.attributes.image, "small");
   return product;
 });
@@ -33,15 +33,8 @@ const products = data.map((element) => {
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        <h2>Tous nos Ateliers Psy</h2>
+        <h2>Alliance : Catherine la Psy & Laure LUV coaching</h2>
 
-        <p>
-          Les Ateliers psy de Catherine La Psy n’ont pas pour vocation de
-          remplacer une psychothérapie en face à face. Ils sont là pour vous
-          accompagner sur des sujets précis à votre rythme, chez vous, avec
-          toutes les ressources nécessaires pour effectuer vous-même un premier
-          travail.
-        </p>
         <ListAlternate items={products} textBtn="En savoir plus" />
       </div>
     </div>

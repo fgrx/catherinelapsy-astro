@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import imageService from "../../services/imageService";
+import LinkBtn from "../../vue/components/LinkBtn.vue";
+import Ribbon from "../../vue/components/Ribbon.vue";
+
+import HeaderPage from "../../vue/components/HeaderPage.vue";
+import Countdown from "../../vue/components/Countdown.vue";
+import BuyBtn from "../../vue/components/BuyBtn.vue";
+import PictosAteliers from "../../vue/components/PictosAtelier.vue";
+import Testimonials from "../../vue/components/Testimonials.vue";
+import Expandables from "../../vue/components/Expandables.vue";
+
+import Gallery from "../../vue/components/Gallery.vue";
+
+import { Markdown } from 'astro-remote';
+import "../../assets/css/base.scss";
+
+export async function getStaticPaths() {
+  const apiURL = import.meta.env.PUBLIC_API;
+  const fetchUrl = `${apiURL}/products?populate=*`;
+  const response = await fetch(fetchUrl);
+  const results = await response.json();
+  return results.data.map((result) => ({
+    params: { slug: result.attributes.slug },
+  }));
+}
+
+const apiURL = import.meta.env.PUBLIC_API;
+const { slug } = Astro.params;
+
+
+const { data } = await fetch(
+  `${apiURL}/products/?filters[slug]=${slug}&populate=deep,4`
+).then((res) => res.json());
+
+const doc = data[0].attributes;
+doc.image = imageService.formatImage(doc.image, "large");
+
+
+if (doc.countdown) {
+  doc.countdown.deadline = `${doc.countdown?.deadline} 23:59:59`;
+}
+
+const imageOG = doc.imageOG?.data?.attributes?.url;
+
+const discount = {
+  discountTitle: "Réduction",
+  discountTo: doc.discountPrice,
+  hasDiscount: doc.hasDiscount || false,
+};
+
+
+---
+
+<Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
+  <article>
+    <div class="bg-gray-200">
+      <HeaderPage doc={doc} />
+
+      <div
+        class="container mx-auto bg-gray-100 -m-14 py-12 pb-24 px-5 md:px-12 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
+      >
+
+        {doc.image && (
+          <div class="relative overflow-hidden">
+            {doc.isPro && <Ribbon>Atelier pro</Ribbon>}
+
+            <Image
+              src={doc.image.url}
+              class="mb-7"
+              width={1000}
+              height={400}
+              format="webp"
+              fit="cover"
+              alt={doc.image.alt || "Vignette de présentation de l'atelier"}
+            />
+          </div>
+        )}
+
+        {doc.purchaseURL && (
+          <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+            <div class="md:flex justify-center  md:my-0">
+              <BuyBtn
+                url={doc.purchaseURL}
+                isClosed={!doc.isOpen}
+                discount={discount}
+                price={doc.price}
+                label={
+                  doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                }
+                textPrice={doc.textprice}
+              />
+            </div>
+          </div>
+        )}
+
+        {doc.countdown?.deadline && (
+          <Countdown
+            client:load
+            showbeforedays={doc.countdown.showBeforeDays}
+            deadline={doc.countdown.deadline}
+          >
+            {doc.countdown.text}
+          </Countdown>
+        )}
+
+        {doc.summary && (
+          <div class="my-5 py-5 px-5 text-gray-800 text-lg important font-semibold border-gray-300 border rounded-md">
+            <Markdown content={doc.summary} />
+          </div>
+        )}
+
+        {doc.picto.length ? <PictosAteliers pictos={doc.picto} /> : ""}
+
+        {doc.teaser?.url && (
+          <div class="my-4 text-center">
+            <h2>Présentation en vidéo</h2>
+            <lite-youtube
+              videoid={doc.teaser.url}
+              playlabel={doc.teaser.title}
+            />
+          </div>
+        )}
+
+        { doc.content1 && (
+          <Markdown content={doc.content1} />
+        )}
+
+        {doc.youtubeURL && <lite-youtube videoid={doc.youtubeURL} />}
+
+        {doc.gallery && <Gallery images={doc.gallery.data} />}
+
+        { doc.content2 && (
+          <Markdown content={doc.content2} />
+        )}
+
+        {doc.preview && (
+          <div class="text-center my-8">
+            <LinkBtn
+              url={doc.preview.url}
+              target={doc.preview.target ? "_blank" : "_self"}
+            >
+              {doc.preview.text}
+            </LinkBtn>
+          </div>
+        )}
+
+        {doc.testimonial.length ? (
+          <section v-if="doc.testimonial">
+            <h2>Ce que pensent nos clients</h2>
+            <Testimonials testimonials={doc.testimonial} />
+          </section>
+        ) : (
+          ""
+        )}
+
+        {doc.program.length ? (
+          <section v-if="doc.program.length">
+            <h2>Programme</h2>
+            <Expandables client:load expandables={doc.program} />
+          </section>
+        ) : (
+          ""
+        )}
+
+          { doc.content3 && (
+            <Markdown content={doc.content3} />
+          )}
+
+        {doc.purchaseURL && (
+          <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+            <div class="md:flex justify-center  md:my-0">
+              <BuyBtn
+                url={doc.purchaseURL}
+                isClosed={!doc.isOpen}
+                discount={discount}
+                price={doc.price}
+                label={
+                  doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                }
+                textPrice={doc.textprice}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style lang="scss">
+  .content img {
+    width: 100%;
+    height: auto;
+  }
+
+  a {
+    background: #177e84;
+    color: white !important;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 2em;
+    padding-left: 2em;
+    border-radius: 5px;
+    margin-top: 1em;
+    margin-bottom: 3em;
+    text-align: center;
+    display: block;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  lite-youtube {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
