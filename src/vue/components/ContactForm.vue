@@ -27,6 +27,7 @@ export default {
       message: "",
       object: "renseignement_atelier",
       error: false,
+      messageTherapie:""
     };
   },
   computed: {
@@ -119,10 +120,18 @@ export default {
                   Renseignement sur les ateliers
                 </option>
                 <option value="aide_commande">Aide sur une commande</option>
+                <option value="therapie">Demande de thérapie</option>
                 <option value="autre">Autre</option>
               </select></label
             >
           </p>
+
+          <Alert type="warning" v-if="object==='therapie'">
+            <p class="text-xl">Catherine ne propose plus de consultation en présentiel ou en visio.</p>
+            <p>En revanche, Fabien propose des accompagnements en <b>hypnose Eriksonienne et en thérapie Mosaic</b> (proche de l'EMDR).</p>
+            <p> Si vous appréciez l’approche de Catherine, nous vous suggérons de consulter les annuaires du CEFTI ou de l’IFEMDR qui proposent des thérapeutes qui ont suivi des formations de qualité identiques à Catherine.</p>
+          
+          </Alert>
 
           <p class="mt-5">
             <label class="block font-semibold"
