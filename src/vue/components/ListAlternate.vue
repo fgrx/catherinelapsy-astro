@@ -29,9 +29,19 @@ const { items, textBtn } = defineProps({ items: Array, textBtn: String });
             <img
               :src="item.image.url"
               :width="item.image.width"
-              class="mb-7 w-full h-auto"
+              class="mb-7 md:mb-0 w-full h-auto"
               :alt="item.image.alt"
             />
+
+            <div class="discount text-xl" v-if="item.hasDiscount">
+              Réduction :
+              <template v-if="item.discountTitle"
+                >{{ item.discountTitle }} :
+              </template>
+
+              <s>{{ item.price }}</s>
+              <strong>€ {{ item.discountPrice }}€ </strong>
+            </div>
           </div>
         </a>
       </div>
@@ -43,16 +53,6 @@ const { items, textBtn } = defineProps({ items: Array, textBtn: String });
 
         <p v-if="item.description && !item.menuDescription" class="text-md">
           {{ item.description }}
-        </p>
-
-        <p v-if="item.hasDiscount">
-          <strong>
-            <template v-if="item.discountTitle"
-              >{{ item.discountTitle }} :
-            </template>
-            <s>{{ item.price }}</s
-            >€ {{ item.discountTo }}€</strong
-          >
         </p>
 
         <a v-if="item.dir !== '/videos'" :href="`${item.dir}/${item.slug}`">
@@ -73,5 +73,13 @@ img {
   &:hover {
     transform: scale(1.1);
   }
+}
+
+.discount {
+  text-align: center;
+  background-color: #fdea43;
+  color: #545454;
+  margin: auto;
+  display: block;
 }
 </style>

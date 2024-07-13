@@ -19,10 +19,13 @@ const { url, isClosed, price, discount, label, textPrice } = defineProps({
 
         <template v-if="price">
           <template v-if="discount && discount.hasDiscount">
-            <strong>
-              <s>{{ price }}</s
-              >€ {{ discount.discountTo }}€</strong
-            >
+            en réduction
+            <strong> {{ discount.discountTo }}€</strong>
+            <br />
+            <span class="text-xs">
+              Au lieu de
+              <s>{{ price }}€</s>
+            </span>
           </template>
 
           <template v-else> {{ price }}€ </template>
