@@ -112,7 +112,7 @@ export default {
               <select
                 v-model="object"
                 type="text"
-                name="object"
+                name="subject"
                 :class="`${cssFormLayout}`"
                 required
               >
