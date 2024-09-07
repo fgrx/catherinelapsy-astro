@@ -14,17 +14,17 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-end mr-0 md:mr-4">
+        <div class="flex items-center justify-end mr-0 lg:mr-4">
           <div
-            class="hidden md:block md:flex md:justify-between md:bg-transparent"
+            class="hidden lg:block lg:flex lg:justify-between lg:bg-transparent"
           >
             <div
-              class="flex hidden md:flex md:items-center order-3 md:order-1"
+              class="flex hidden lg:flex lg:items-center order-3 lg:order-1"
               id="menu"
             >
               <nav>
                 <ul
-                  class="md:flex items-center justify-between text-base text-white pt-4 md:pt-0"
+                  class="lg:flex items-center justify-between text-base text-white pt-4 lg:pt-0"
                 >
                   <li
                     @mouseenter="displaySubMenu(link)"
@@ -52,8 +52,8 @@
             </div>
           </div>
 
-          <div class="items-center mr-0 md:mr-4">
-            <label for="menu-toggle" class="cursor-pointer md:hidden block">
+          <div class="items-center mr-0 lg:mr-4">
+            <label for="menu-toggle" class="cursor-pointer lg:hidden block">
               <button
                 class="mr-2 text-white"
                 aria-label="Open Menu"
