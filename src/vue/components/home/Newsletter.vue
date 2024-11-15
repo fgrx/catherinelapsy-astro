@@ -7,6 +7,24 @@ import NewsletterForm from "../NewsletterForm.vue";
 const { title } = defineProps({
   title: { type: String, default: "S'abonner à la Lettre Psy" },
 });
+
+//Display getresponse number of subscribers
+const campaignId = "qD1uT";
+const getReponseKey = import.meta.env.PUBLIC_GETRESPONSE;
+const getResponseApiUrl = `https://api.getresponse.com/v3/campaigns/statistics/list-size?query[campaignId]=${campaignId}&query[groupBy]=total`;
+
+const headers = {
+  "X-Auth-Token": `api-key ${getReponseKey}`,
+};
+
+const request = new Request(getResponseApiUrl, {
+  method: "GET",
+  headers,
+});
+
+const response = await fetch(request).then((res) => res.json());
+
+const totalSubscribers = response[0].totalSubscribers;
 </script>
 
 <template>
@@ -32,6 +50,9 @@ const { title } = defineProps({
 
         <div class="flex-1 md:col-span-5 lg:col-span-4">
           <NewsletterForm />
+          <p class="text-xl">
+            Déjà {{ totalSubscribers }} personnes inscrites !
+          </p>
         </div>
       </div>
     </div>

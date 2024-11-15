@@ -29,8 +29,7 @@ const currentPage = 1;
 const itemsPerPage = 5;
 
 const { meta } = await fetch(`${apiURL}/posts?sort=date:desc`).then((res) =>
-  res.json()
-);
+
 
 const nbItems = meta.pagination.total;
 const nbPages = Math.ceil(nbItems / itemsPerPage);
