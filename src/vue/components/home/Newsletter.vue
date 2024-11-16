@@ -51,7 +51,7 @@ const totalSubscribers = response[0].totalSubscribers;
         <div class="flex-1 md:col-span-5 lg:col-span-4">
           <NewsletterForm />
           <p class="text-xl">
-            Déjà {{ totalSubscribers }} personnes inscrites !
+            Rejoignez les {{ totalSubscribers }} personnes inscrites !
           </p>
         </div>
       </div>

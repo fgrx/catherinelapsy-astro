@@ -25,6 +25,7 @@ export default {
       name: "",
       email: "",
       message: "",
+      content:"",
       object: "renseignement_atelier",
       error: false,
       messageTherapie:""
@@ -53,14 +54,16 @@ export default {
         };
 
         try {
-          const res = await fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            formData,
-            body: new URLSearchParams(formData).toString(),
-          });
+          if(this.content.length===0){
+            await fetch("/", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              formData,
+              body: new URLSearchParams(formData).toString(),
+            });
 
-          this.isSent = true;
+            this.isSent = true;
+          }
         } catch (error) {
           console.error(error);
           this.error =
@@ -154,6 +157,15 @@ export default {
                 :class="`${cssFormLayout}`"
             /></label>
           </p>
+
+          <textarea
+            v-model="content"
+            rows="8"
+            name="message"
+            class="piegeAVilain"
+          ></textarea>
+
+
           <p class="mt-5">
             <label class="block font-semibold"
               >Votre message :
@@ -194,3 +206,8 @@ export default {
 </template>
 
 
+<style lang="css">
+.piegeAVilain{
+  display:none
+}
+</style>

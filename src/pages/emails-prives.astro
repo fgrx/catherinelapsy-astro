@@ -18,9 +18,9 @@ const doc = data[0].attributes;
 const imageOG = doc.imageOG?.data?.attributes.url;
 
 //Display getresponse number of subscribers
-const campaignId = "qD1uT"
-const getReponseKey=import.meta.env.PUBLIC_GETRESPONSE
-const getResponseApiUrl=`https://api.getresponse.com/v3/campaigns/statistics/list-size?query[campaignId]=${campaignId}&query[groupBy]=total`
+const campaignId = "qD1uT";
+const getReponseKey=import.meta.env.PUBLIC_GETRESPONSE;
+const getResponseApiUrl=`https://api.getresponse.com/v3/campaigns/statistics/list-size?query[campaignId]=${campaignId}&query[groupBy]=total`;
 
 const headers = {
   "X-Auth-Token": `api-key ${getReponseKey}`,
@@ -64,7 +64,7 @@ const totalSubscribers=response[0].totalSubscribers
               <Markdown content={doc.content} />
             )}
 
-          <p class="text-4xl text-center">{totalSubscribers} personnes inscrites !</p>
+          <p class="text-2xl text-center">Rejoignez les {totalSubscribers} personnes inscrites !</p>
 
           <div class="border my-5 border-emerald-600 rounded p-5">
             <NewsLetterForm codeList="qD1uT" />
