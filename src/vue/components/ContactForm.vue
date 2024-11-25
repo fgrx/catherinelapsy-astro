@@ -108,6 +108,7 @@ export default {
           name="contact"
           method="POST"
           data-netlify="true"
+          netlify-honeypot="content"
         >
           <p>
             <label class="block font-semibold"
@@ -161,7 +162,7 @@ export default {
           <textarea
             v-model="content"
             rows="8"
-            name="message"
+            name="content"
             class="lePotDeMiel"
           ></textarea>
 
