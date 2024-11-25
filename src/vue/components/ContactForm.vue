@@ -162,8 +162,7 @@ export default {
             v-model="content"
             rows="8"
             name="message"
-            class="piegeAVilain"
-            v-show="false"
+            class="lePotDeMiel"
           ></textarea>
 
 
@@ -206,4 +205,16 @@ export default {
   </div>
 </template>
 
+
+<style lang="scss" scoped>
+.lePotDeMiel {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+</style>
 

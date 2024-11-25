@@ -10,7 +10,7 @@ const { codeList } = defineProps({
 
 const falseCodeList = "ABCD";
 
-const newSubscriber = ref({ name: "", email: "" });
+const newSubscriber = ref({ pot: "", email: "" });
 
 const isValidEmail = computed(() => {
   const re =
@@ -19,7 +19,7 @@ const isValidEmail = computed(() => {
 });
 
 const isValidForm = computed(() => {
-  if (isValidEmail && newSubscriber.value.email && !newSubscriber.value.name)
+  if (isValidEmail && newSubscriber.value.email && !newSubscriber.value.pot)
     return true;
   return false;
 });
@@ -38,11 +38,10 @@ const isValidForm = computed(() => {
       <div class="flex">
         <input
           type="text"
-          name="name"
-          v-show="false"
-          v-model="newSubscriber.name"
-          id="name"
-          class="flex-1 required email input w-full px-3 py-2 pb-2 text-dark"
+          name="simplename"
+          v-model="newSubscriber.pot"
+          id="simplename"
+          class="lePotDeMiel"
           placeholder="Milton Erickson"
         />
         <input
@@ -71,4 +70,14 @@ const isValidForm = computed(() => {
   </form>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.lePotDeMiel {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+</style>

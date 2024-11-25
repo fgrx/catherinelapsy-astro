@@ -92,4 +92,14 @@ thead,
 tr:nth-child(even) {
   background-color: rgb(231, 231, 231);
 }
+
+.lePotDeMiel {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
 </style>
