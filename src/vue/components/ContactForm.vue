@@ -163,6 +163,7 @@ export default {
             rows="8"
             name="message"
             class="piegeAVilain"
+            v-show="false"
           ></textarea>
 
 
@@ -206,8 +207,3 @@ export default {
 </template>
 
 
-<style lang="css">
-.piegeAVilain{
-  display:none
-}
-</style>

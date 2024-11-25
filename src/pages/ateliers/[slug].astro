@@ -135,16 +135,27 @@ const discount = {
           <Markdown content={doc.content2} />
         )}
 
-        {doc.preview && (
-          <div class="text-center my-8">
-            <LinkBtn
-              url={doc.preview.url}
-              target={doc.preview.target ? "_blank" : "_self"}
-            >
-              {doc.preview.text}
-            </LinkBtn>
-          </div>
-        )}
+          <section>
+            <div class="text-center my-8 flex justify-center">
+              {doc.preview && (
+                  <LinkBtn
+                    url={doc.preview.url}
+                    target={doc.preview.target ? "_blank" : "_self"}
+                  >
+                    {doc.preview.text}
+                  </LinkBtn>
+              )}
+                      
+                      
+              <LinkBtn
+                url="/faq"
+                target="_blank"
+                class="ml-2"
+              >
+                Une question sur nos ateliers ?
+              </LinkBtn>
+            </div>
+          </section>
 
         {doc.testimonial.length ? (
           <section v-if="doc.testimonial">
@@ -184,7 +195,10 @@ const discount = {
             </div>
           </div>
         )}
+
       </div>
+
+
     </div>
   </article>
 </Layout>

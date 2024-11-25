@@ -12,7 +12,10 @@ import Person from "../components/Person.astro";
 
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
-  const response = await fetch(`${apiURL}/pages`);
+  const pagesApiUrl = `${apiURL}/pages`
+  console.log(pagesApiUrl);
+  
+  const response = await fetch(pagesApiUrl);
   const results = await response.json();
   return results.data.map((result) => ({
     params: { slug: result.attributes.slug },
