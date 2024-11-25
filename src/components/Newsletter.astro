@@ -1,12 +1,7 @@
-<script setup>
-import NewsletterForm from "../NewsletterForm.vue";
+---
+import NewsletterForm from "../vue/components/NewsletterForm.vue";
 
-//import emailIcon from "../../../assets/images/mail.png";
-
-// https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388187/mail_596664d_5d9d09b680.png
-const { title } = defineProps({
-  title: { type: String, default: "S'abonner à la Lettre Psy" },
-});
+const { title } = Astro.props;
 
 //Display getresponse number of subscribers
 const campaignId = "qD1uT";
@@ -25,9 +20,9 @@ const request = new Request(getResponseApiUrl, {
 const response = await fetch(request).then((res) => res.json());
 
 const totalSubscribers = response[0].totalSubscribers;
-</script>
+---
 
-<template>
+
   <div class="bg-gradient-to-r from-primaryDark to-primary text-white py-8">
     <div class="container mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center px-5">
@@ -40,7 +35,7 @@ const totalSubscribers = response[0].totalSubscribers;
             height="156"
           />
           <div class="">
-            <h2 class="text-secondary text-3xl">{{ title }}</h2>
+            <h2 class="text-secondary text-3xl">{ title }</h2>
             <p>
               Une newsletter bimensuelle pour mieux comprendre la psychologie et
               la psychothérapie.
@@ -49,15 +44,14 @@ const totalSubscribers = response[0].totalSubscribers;
         </div>
 
         <div class="flex-1 md:col-span-5 lg:col-span-4">
-          <NewsletterForm />
+          <NewsletterForm client:load codeList="qD1uT" />
           <p class="text-xl">
-            Rejoignez les {{ totalSubscribers }} personnes inscrites !
+            Rejoignez les { totalSubscribers } personnes inscrites !
           </p>
         </div>
       </div>
     </div>
   </div>
-</template>
 
 <style scoped>
 .icon {
