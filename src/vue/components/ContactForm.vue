@@ -108,7 +108,7 @@ export default {
           name="contact"
           method="POST"
           data-netlify="true"
-          netlify-honeypot="content"
+          netlify-honeypot="bot-field"
         >
           <p>
             <label class="block font-semibold"
@@ -159,13 +159,9 @@ export default {
             /></label>
           </p>
 
-          <textarea
-            v-model="content"
-            rows="8"
-            name="content"
-            class="lePotDeMiel"
-          ></textarea>
-
+          <p class="lePotDeMiel">
+            <input name="bot-field" />
+          </p>
 
           <p class="mt-5">
             <label class="block font-semibold"
