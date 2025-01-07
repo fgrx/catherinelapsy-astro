@@ -17,16 +17,22 @@ const { data: menuFooter } = await fetch(
   return result.data.attributes.items;
 });
 
-const linksFooter = menuFooter?.map((item) => {
-  return {
-    id: item.id,
-    text: item.attributes.title,
-    to: item.attributes.url,
-  };
-});
+// const linksFooter = menuFooter?.map((item) => {
+//   return {
+//     id: item.id,
+//     text: item.attributes.title,
+//     to: item.attributes.url,
+//   };
+// });
+
+const linksFooter = []
+
+const menuApiUrl=`${apiURL}/menu?populate[0]=menus&populate[1]=menus.submenu`
+console.log(">>",menuApiUrl);
+
 
 const { data: menuPrincipal } = await fetch(
-  `${apiURL}/menus/1?nested&populate=*`
+  menuApiUrl
 ).then(async (res) => {
   const result = await res.json();
   return result.data.attributes.items;
@@ -205,7 +211,7 @@ const fonts =
 
     <!-- Google tag (gtag.js) -->
     <script
-      type="text/plain"
+      type="text/partytown"
       data-cookiecategory="analytics"
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-6W78WWF32Y"
@@ -214,7 +220,7 @@ const fonts =
     </script>
 
 
-    <script type="text/plain" data-cookiecategory="analytics">
+    <script type="text/partytown" data-cookiecategory="analytics">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);

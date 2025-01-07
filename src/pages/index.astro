@@ -9,11 +9,11 @@ import Ressources from "../vue/components/Ressources.vue";
 
 const apiURL = import.meta.env.PUBLIC_API;
 
-const url = `${apiURL}/Site-configuation?populate=deep,4`;
+const url = `${apiURL}/site-configuation?populate=*`;
 
-const { data } = await fetch(url).then((res) => res.json());
+const { data:doc } = await fetch(url).then((res) => res.json());
 
-const doc = data.attributes;
+console.log("hero",doc)
 
 const { contentBloc } = doc;
 
