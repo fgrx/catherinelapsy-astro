@@ -25,10 +25,10 @@ export default {
       name: "",
       email: "",
       message: "",
-      content:"",
+      content: "",
       object: "renseignement_atelier",
       error: false,
-      messageTherapie:""
+      messageTherapie: "",
     };
   },
   computed: {
@@ -54,7 +54,7 @@ export default {
         };
 
         try {
-          if(this.content.length===0){
+          if (this.content.length === 0) {
             await fetch("/", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -130,11 +130,22 @@ export default {
             >
           </p>
 
-          <Alert type="warning" v-if="object==='therapie'">
-            <p class="text-xl">Catherine ne propose plus de consultation en présentiel ou en visio.</p>
-            <p>En revanche, Fabien propose des accompagnements en <b>hypnose Eriksonienne et en thérapie Mosaic</b> (proche de l'EMDR).</p>
-            <p> Si vous appréciez l’approche de Catherine, nous vous suggérons de consulter les annuaires du CEFTI ou de l’IFEMDR qui proposent des thérapeutes qui ont suivi des formations de qualité identiques à Catherine.</p>
-          
+          <Alert type="warning" v-if="object === 'therapie'">
+            <p class="text-xl">
+              Catherine ne propose plus de consultation en présentiel ou en
+              visio.
+            </p>
+            <p>
+              En revanche, Fabien propose des accompagnements en
+              <b>hypnose Eriksonienne et en thérapie Mosaic</b> (proche de
+              l'EMDR).
+            </p>
+            <p>
+              Si vous appréciez l’approche de Catherine, nous vous suggérons de
+              consulter les annuaires du CEFTI ou de l’IFEMDR qui proposent des
+              thérapeutes qui ont suivi des formations de qualité identiques à
+              Catherine.
+            </p>
           </Alert>
 
           <p class="mt-5">
@@ -174,34 +185,30 @@ export default {
               ></textarea>
             </label>
           </p>
-          <p>
-            <div class="flex">
-              <Btn
-                @click="sendMessage"
-                typeButton="button"
-                class="mt-5 mr-2"
-                :disabled="!isFormCompleted"
-                >Envoyer</Btn
-              >
 
-              <Btn
-                v-if="hasCloseButton"
-                @click="closeAction"
-                typeButton="button"
-                class="mt-5 mr-2"
-                color="black"
-                >Fermer</Btn
-              >
+          <div class="flex">
+            <Btn
+              @click="sendMessage"
+              typeButton="button"
+              class="mt-5 mr-2"
+              :disabled="!isFormCompleted"
+              >Envoyer</Btn
+            >
 
-            </div>
-            
-          </p>
+            <Btn
+              v-if="hasCloseButton"
+              @click="closeAction"
+              typeButton="button"
+              class="mt-5 mr-2"
+              color="black"
+              >Fermer</Btn
+            >
+          </div>
         </form>
       </div>
     </transition>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .lePotDeMiel {
@@ -214,4 +221,3 @@ export default {
   z-index: -1;
 }
 </style>
-
