@@ -25,7 +25,7 @@ const apiURL = import.meta.env.PUBLIC_API;
 const { slug } = Astro.params;
 
 
-const url = `${apiURL}/pages/?filters[slug]=${slug}&populate[0]=image&populate[1]=link&populate[2]=people&populate[3]=countdown&populate[4]=textwithimage&populate[5]=textwithimage.image&populate[6]=logo`;
+const url = `${apiURL}/pages/?filters[slug]=${slug}&populate[0]=image&populate[1]=link&populate[2]=people&populate[3]=countdown&populate[4]=textwithimage&populate[5]=textwithimage.image&populate[6]=logo&populate[7]=people.image`;
 
 const { data } = await fetch(url).then((res) => res.json());
 
@@ -83,6 +83,7 @@ if (doc.countdown) {
               ))}
             </div>
           )}
+
 
           <TextWithImage contents={contentsWithImage} />
 

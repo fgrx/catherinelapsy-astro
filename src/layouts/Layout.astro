@@ -33,7 +33,7 @@ const linksFooter = bottomMenus?.map((item) => {
 
 const links = topMenus?.map((item) => {
   const formatChildrensMenu = () => {
-    if (item.submenu.length) {
+    if (item.submenu?.length) {
       return item.submenu.map((child) => {
         return {
           title: child.title,
@@ -51,7 +51,7 @@ const links = topMenus?.map((item) => {
     id: item.id,
     text: item.title,
     to: item.url,
-    meta: { subMenu: item.submenu.length },
+    meta: { subMenu: item.submenu?.length },
     children: formatChildrensMenu(),
   };
 });

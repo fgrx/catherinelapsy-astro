@@ -9,7 +9,7 @@ import NewsLetterForm from "../vue/components/NewsletterForm.vue";
 
 const apiURL = import.meta.env.PUBLIC_API;
 
-const url = `${apiURL}/pages/?filters[slug]=emails-prives&populate=deep,4`;
+const url = `${apiURL}/pages/?filters[slug]=lettre-psy&populate[0]=image&populate[1]=link&populate[2]=people&populate[3]=countdown&populate[4]=textwithimage&populate[5]=textwithimage.image&populate[6]=logo`;
 
 const { data } = await fetch(url).then((res) => res.json());
 
@@ -35,7 +35,6 @@ const response = await fetch(request).then(res=>res.json());
 
 const totalSubscribers=response[0].totalSubscribers
 
-
 ---
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
@@ -48,7 +47,7 @@ const totalSubscribers=response[0].totalSubscribers
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        {doc.image.url && (
+        {doc.image?.url && (
           <img
             src={doc.image?.url}
             class="mb-7"

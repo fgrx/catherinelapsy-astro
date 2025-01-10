@@ -112,7 +112,7 @@ const discount = {
           </div>
         )}
 
-        {doc.picto.length ? <PictosAteliers pictos={doc.picto} /> : ""}
+        {doc.picto?.length ? <PictosAteliers pictos={doc.picto} /> : ""}
 
         {doc.teaser?.url && (
           <div class="my-4 text-center">
@@ -147,7 +147,7 @@ const discount = {
           </div>
         )}
 
-        {doc.testimonial.length ? (
+        {doc.testimonial?.length ? (
           <section v-if="doc.testimonial">
             <h2>Ce que pensent nos clients</h2>
             <Testimonials testimonials={doc.testimonial} />
@@ -156,7 +156,7 @@ const discount = {
           ""
         )}
 
-        {doc.program.length ? (
+        {doc.program?.length ? (
           <section v-if="doc.program.length">
             <h2>Programme</h2>
             <Expandables client:load expandables={doc.program} />

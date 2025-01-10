@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 const { person } = Astro.props;
 
-const { attributes: image } = person.image.data;
+const { image } = person;
 const imageSize = 200;
 ---
 

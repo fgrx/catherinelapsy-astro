@@ -31,11 +31,12 @@ const apiURL = import.meta.env.PUBLIC_API;
 const { slug } = Astro.params;
 
 const { data } = await fetch(
-  `${apiURL}/products/?filters[slug]=${slug}&populate[0]=program&populate[1]=picto&populate[7]=picto.image&populate[2]=countdown&populate[3]=testimonial&populate[8]=testimonial.image&populate[4]=preview&populate[5]=teaser&populate[6]=image&populate[10]=gallery`
+  `${apiURL}/products/?filters[slug]=${slug}&populate[0]=program&populate[1]=picto&populate[7]=picto.image&populate[2]=countdown&populate[3]=testimonial&populate[8]=testimonial.image&populate[4]=preview&populate[5]=teaser&populate[6]=image&populate[10]=gallery&populate[12]=imageOG`
 ).then((res) => res.json());
 
-
 const doc = data[0];
+
+
 doc.image = imageService.formatImage(doc.image, "large");
 
 if (doc.countdown) {
@@ -111,7 +112,7 @@ const discount = {
           </div>
         )}
 
-        {doc.picto.length ? <PictosAteliers pictos={doc.picto} /> : ""}
+        {doc.picto?.length ? <PictosAteliers pictos={doc.picto} /> : ""}
 
         {doc.teaser?.url && (
           <div class="my-4 text-center">
@@ -129,7 +130,7 @@ const discount = {
 
         {doc.youtubeURL && <lite-youtube videoid={doc.youtubeURL} />}
 
-        {doc.gallery.length && <Gallery images={doc.gallery} />}
+        {doc.gallery?.length && <Gallery images={doc.gallery} />}
 
         { doc.content2 && (
           <Markdown content={doc.content2} />
@@ -157,7 +158,7 @@ const discount = {
             </div>
           </section>
 
-        {doc.testimonial.length ? (
+        {doc.testimonial?.length ? (
           <section v-if="doc.testimonial">
             <h2>Ce que pensent nos clients</h2>
             <Testimonials testimonials={doc.testimonial} />
@@ -166,8 +167,8 @@ const discount = {
           ""
         )}
 
-        {doc.program.length ? (
-          <section v-if="doc.program.length">
+        {doc.program?.length ? (
+          <section v-if="doc.program?.length">
             <h2>Programme</h2>
             <Expandables client:load expandables={doc.program} />
           </section>
