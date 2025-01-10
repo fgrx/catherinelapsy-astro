@@ -7,11 +7,13 @@ import HeaderPage from "../../vue/components/HeaderPage.vue";
 import YoutubeVideosList from "../../components/YoutubeVideosList.astro";
 import Pagination from "../../vue/components/Pagination.vue";
 
+const itemsPerPage = 10;
+
 export async function getStaticPaths({ paginate }) {
   const apiURL = import.meta.env.PUBLIC_API;
   const response = await fetch(`${apiURL}/youtube-videos?sort=date:desc`);
   const results = await response.json();
-  return paginate(results.data, { pageSize: 5 });
+  return paginate(results.data, { pageSize: 10 });
 }
 
 const apiURL = import.meta.env.PUBLIC_API;
@@ -26,7 +28,7 @@ const doc = {
 const imageOG = "";
 
 const currentPage = parseInt(page) || 1;
-const itemsPerPage = 5;
+
 
 const { meta } = await fetch(`${apiURL}/youtube-videos?sort=date:desc`).then(
   (res) => res.json()
@@ -44,7 +46,7 @@ const { data } = await fetch(
 ).then((res) => res.json());
 
 const itemsToDisplay = data.map((element) => {
-  const video = element.attributes;
+  const video = element;
   video.dir = "/videos";
   video.image = imageService.formatImage(video.image, "medium");
   video.id = video.url;

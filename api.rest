@@ -1,4 +1,12 @@
-get https://catherinelapsy-backend.herokuapp.com/api/products/?filters[slug]=contre-transfert&populate=deep,4
+get http://localhost:1337/api/menu?populate[0]=menus&populate[1]=menus.submenu
 
+###
 
+get http://localhost:1337/api/menu?populate[0]=menus&populate[1]=menus.submenu
 
+###
+
+get http://localhost:1337/api/site-configuation?populate[0]=ressources&populate[1]=contentBloc&populate[2]=Message&populate[3]=Message.link
+
+###
+https://catherinelapsy-backend.up.railway.app/api/pages/?filters[slug]=qui-sommes-nous&populate[0]=image&populate[1]=link&populate[2]=people&populate[3]=countdown&populate[4]=textwithimage

@@ -10,36 +10,35 @@ const { title, metaDescription, imageOG } = Astro.props;
 
 const apiURL = import.meta.env.PUBLIC_API;
 
-const { data: menuFooter } = await fetch(
-  `${apiURL}/menus/2?nested&populate=*`
-).then(async (res) => {
-  const result = await res.json();
-  return result.data.attributes.items;
-});
+const menus = await fetch(`${apiURL}/menu?populate[0]=menus&populate[1]=menus.submenu`)
+                  .then(
+                    async(res)=>{
+                      const result = await res.json();
+                      return result.data.menus;
+                    }
+                  );
 
-const linksFooter = menuFooter?.map((item) => {
+const topMenus = menus.filter(menu=>menu.isTop)
+const bottomMenus = menus.filter(menu=>menu.isBottom)
+
+
+const linksFooter = bottomMenus?.map((item) => {
   return {
     id: item.id,
-    text: item.attributes.title,
-    to: item.attributes.url,
+    text: item.title,
+    to: item.url,
   };
 });
 
-const { data: menuPrincipal } = await fetch(
-  `${apiURL}/menus/1?nested&populate=*`
-).then(async (res) => {
-  const result = await res.json();
-  return result.data.attributes.items;
-});
 
-const links = menuPrincipal?.map((item) => {
+const links = topMenus?.map((item) => {
   const formatChildrensMenu = () => {
-    if (item.attributes.children.data.length) {
-      return item.attributes.children.data.map((child) => {
+    if (item.submenu.length) {
+      return item.submenu.map((child) => {
         return {
-          title: child.attributes.title,
-          to: child.attributes.url,
-          target: child.attributes.target,
+          title: child.title,
+          to: child.url,
+          target: child.target,
           image: "",
         };
       });
@@ -50,18 +49,22 @@ const links = menuPrincipal?.map((item) => {
 
   return {
     id: item.id,
-    text: item.attributes.title,
-    to: item.attributes.url,
-    meta: { subMenu: item.attributes.children.data.length },
+    text: item.title,
+    to: item.url,
+    meta: { subMenu: item.submenu.length },
     children: formatChildrensMenu(),
   };
 });
 
-// Display message alert
-const url = `${apiURL}/Site-configuation?populate=deep,4`;
-const { data } = await fetch(url).then((res) => res.json());
 
-const message = data.attributes.Message;
+// Display message alert
+const url = `${apiURL}/site-configuation?populate[0]=ressources&populate[1]=contentBloc&populate[2]=Message&populate[3]=Message.link`;
+const {data} = await fetch(url).then((res) => res.json());
+
+
+
+
+const {Message:message}=data;
 
 const fonts =
   "https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Playfair+Display:ital,wght@0,400;1,700&display=swap";
@@ -185,7 +188,7 @@ const fonts =
         content={message.content}
         isShown={message.isShown}
         link={message.link}
-        logo={message.logo.data.attributes}
+        logo={message.logo}
       />
       <slot />
       <ContactFabButton client:load />
@@ -205,7 +208,7 @@ const fonts =
 
     <!-- Google tag (gtag.js) -->
     <script
-      type="text/plain"
+      type="text/partytown"
       data-cookiecategory="analytics"
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-6W78WWF32Y"
@@ -214,7 +217,7 @@ const fonts =
     </script>
 
 
-    <script type="text/plain" data-cookiecategory="analytics">
+    <script type="text/partytown" data-cookiecategory="analytics">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);

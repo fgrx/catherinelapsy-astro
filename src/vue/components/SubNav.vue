@@ -12,7 +12,7 @@
       >
         <a
           :href="link.to"
-          :target="link.target === '_blank'?'_blank':'_self'"
+          :target="link.target === '_blank' ? '_blank' : '_self'"
           class="hover:text-secondary w-full py-2 block"
         >
           <span v-if="link.isLive">Atelier en live</span>

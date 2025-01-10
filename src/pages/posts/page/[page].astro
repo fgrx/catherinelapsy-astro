@@ -44,7 +44,7 @@ const { data } = await fetch(
 ).then((res) => res.json());
 
 const itemsToDisplay = data.map((element) => {
-  const post = element.attributes;
+  const post = element;
   post.dir = "/posts";
   post.image = imageService.formatImage(post.image, "medium");
   return post;

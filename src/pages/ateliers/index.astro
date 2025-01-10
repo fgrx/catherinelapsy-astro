@@ -15,13 +15,14 @@ const doc = {
 };
 
 const { data } = await fetch(
-  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Atelier&populate=*`
+  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Atelier&populate[0]=program&populate[1]=picto&populate[2]=countdown&populate[3]=testimonial&populate[4]=preview&populate[5]=teaser&populate[6]=image`
 ).then((res) => res.json());
 
+
 const products = data.map((element) => {
-  const product = element.attributes;
+  const product = element;
   product.dir = "/ateliers";
-  product.image = imageService.formatImage(element.attributes.image, "small");
+  product.image = imageService.formatImage(element.image, "small");
   return product;
 });
 ---

@@ -12,8 +12,7 @@ const { testimonials } = defineProps({ testimonials: Array });
         <img
           v-if="testimonial"
           :src="
-            testimonial?.image?.data?.attributes?.formats?.small?.url ||
-            testimonial?.image?.data?.attributes.url
+            testimonial?.image?.formats?.small?.url || testimonial?.image?.url
           "
           alt=""
           height="150"

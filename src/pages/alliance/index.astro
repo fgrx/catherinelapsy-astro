@@ -4,6 +4,7 @@ import imageService from "../../services/imageService";
 
 import HeaderPage from "../../vue/components/HeaderPage.vue";
 import ListAlternate from "../../vue/components/ListAlternate.vue";
+import NewsLetterForm from "../../vue/components/NewsletterForm.vue";
 
 const apiURL = import.meta.env.PUBLIC_API;
 
@@ -11,19 +12,23 @@ const doc = {
   title: "Alliance",
   logo: "https://res.cloudinary.com/dyyzsnhr4/image/upload/v1658388922/computer_f6a7acae0f.svg?updated_at=2022-07-21T07:35:24.022Z",
   description:
-    "Catherine la Psy et Laure de LUV coaching vous proposent des ateliers en commun dans lesquel elles vous transmettent leurs connaissances théoriques et pratiques.",
+    "Catherine la Psy et Laure Albouy de LUV coaching vous proposent des ateliers en commun dans lesquel elles vous transmettent leurs connaissances théoriques et pratiques.",
 };
 
 const { data } = await fetch(
-  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Alliance&populate=*`
+  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Alliance&populate[0]=image`
 ).then((res) => res.json());
 
 const products = data.map((element) => {
-  const product = element.attributes;
+  const product = element;
   product.dir = "/alliance";
-  product.image = imageService.formatImage(element.attributes.image, "small");
+  product.image = imageService.formatImage(element.image, "small");
   return product;
 });
+
+const currentProducts = products.filter(product=>!product.isOver)
+const endedProducts = products.filter(product=>product.isOver)
+
 ---
 
 <Layout title={doc.title} metaDescription={doc.description}>
@@ -33,9 +38,30 @@ const products = data.map((element) => {
       <div
         class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
-        <h2>Alliance : Catherine la Psy & Laure LUV coaching</h2>
 
-        <ListAlternate items={products} textBtn="En savoir plus" />
+        <section>
+          <h2>Les programmes Alliance du moment</h2>
+          <ListAlternate items={currentProducts} textBtn="En savoir plus" />
+        </section>
+        
+        <section>
+          <div class="my-16">
+            <h2>Vous souhaitez être tenus informés de la sortie de nos ateliers ?</h2>
+            <p>Abonnez-vous à notre Lettre Psy. Vous recevrez ainsi toutes nos actualités, des articles exclusifs et des réductions sur nos futurs produits.</p>
+            <div class="border my-5 border-emerald-600 rounded text-light bg-primary p-5">
+                <NewsLetterForm client:load codeList="qD1uT"  />
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          {endedProducts.length &&
+          <h2>Nos produits Alliance passés</h2>
+          <ListAlternate items={endedProducts} textBtn="En savoir plus" />
+          }
+        </section>
+
       </div>
     </div>
   </article>

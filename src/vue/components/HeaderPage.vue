@@ -3,7 +3,7 @@ import { computed } from "vue";
 
 const { doc } = defineProps({ doc: Object });
 
-const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
+const logo = computed(() => doc.logo?.url || doc.logo);
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const logo = computed(() => doc.logo?.data?.attributes?.url || doc.logo);
       <div class="flex">
         <template v-if="logo?.length">
           <div class="hidden align-top md:block flex-initial">
-            <img  :src="logo" alt="" class="logo-header pr-5 object-contain" />
+            <img :src="logo" alt="" class="logo-header pr-5 object-contain" />
           </div>
         </template>
 

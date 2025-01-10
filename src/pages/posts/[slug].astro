@@ -13,20 +13,20 @@ export async function getStaticPaths() {
   const response = await fetch(`${apiURL}/posts`);
   const results = await response.json();
   return results.data.map((result) => ({
-    params: { slug: result.attributes.slug },
+    params: { slug: result.slug },
   }));
 }
 
 const apiURL = import.meta.env.PUBLIC_API;
 const { slug } = Astro.params;
 
-const url = `${apiURL}/posts/?filters[slug]=${slug}&populate=deep,4`;
+const url = `${apiURL}/posts/?filters[slug]=${slug}&populate[0]=image&populate[1]=youtube&populate[2]=podcast`;
 
 const { data } = await fetch(url).then((res) => res.json());
 
-const doc = data[0].attributes;
+const doc = data[0];
 
-const topImage = doc.image?.data?.attributes;
+const topImage = doc.image;
 
 // const links = doc.link.map((link) => {
 //   return {
@@ -36,7 +36,7 @@ const topImage = doc.image?.data?.attributes;
 //   };
 // });
 
-const imageOG = doc.imageOG?.data?.attributes.url;
+const imageOG = doc.imageOG?.url;
 ---
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>

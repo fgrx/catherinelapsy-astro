@@ -5,8 +5,8 @@ const { subtitle, explanation, heroImage } = defineProps({
   heroImage: Object,
 });
 
-const image = heroImage.formats.medium;
-const imageWebpUrl = image.url.replace(".png", ".webp");
+const image = heroImage?.formats?.medium;
+const imageWebpUrl = image?.url?.replace(".png", ".webp");
 </script>
 
 <template>
@@ -30,6 +30,7 @@ const imageWebpUrl = image.url.replace(".png", ".webp");
         </div>
         <div class="flex-1">
           <img
+            v-if="heroImage"
             :src="imageWebpUrl"
             :height="image.height"
             :width="image.width"

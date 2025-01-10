@@ -7,8 +7,8 @@ const { images } = defineProps({ images: Array });
     <div :class="`grid md:grid-cols-${images.length} gap-2 my-4`">
       <div class="flex justify-center" v-for="image in images" :key="image">
         <img
-          :src="image.attributes.formats.small.url"
-          :alt="image.attributes.alternativeText"
+          :src="image.formats.small.url"
+          :alt="image.alternativeText"
           :width="image.width"
           :height="image.height"
           format="webp"

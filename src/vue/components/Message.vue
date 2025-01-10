@@ -16,9 +16,10 @@ const { title, content, logo, link } = defineProps({
         <div class="md:flex items-center">
           <div class="hidden md:block flex-initial">
             <img
+              v-if="logo"
               style="width: 96px; height: 96px"
-              :width="logo.width"
-              :height="logo.height"
+              :width="logo?.width || 96"
+              :height="logo?.height || 96"
               :src="logo.url"
               alt=""
               class="mr-8"

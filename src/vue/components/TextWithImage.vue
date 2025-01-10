@@ -7,8 +7,6 @@ const { contents } = defineProps({ contents: Object });
 
 const rowNumbers = 6;
 const defaultWidth = 3;
-
-const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
 </script>
 
 <template>
@@ -42,7 +40,7 @@ const contentWidth = rowNumbers - contents.imageWidth || defaultWidth;
                 ? imageService.formatImage(content.image, 'large').height
                 : imageService.formatImage(content.image, 'small').height
             "
-            :alt="content.image.data?.attributes?.alternativeText || ''"
+            :alt="content.image.data?.alternativeText || ''"
             :class="content.roundImage ? 'rounded-full' : ''"
           />
         </a>

@@ -20,9 +20,9 @@ const { data } = await fetch(
 ).then((res) => res.json());
 
 const products = data.map((element) => {
-  const product = element.attributes;
+  const product = element;
   product.dir = "/ateliers";
-  product.image = imageService.formatImage(element.attributes.image, "small");
+  product.image = imageService.formatImage(element.image, "small");
   return product;
 });
 ---
