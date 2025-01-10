@@ -19,11 +19,11 @@ import "../../assets/css/base.scss";
 
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
-  const fetchUrl = `${apiURL}/products?populate=*`;
+  const fetchUrl = `${apiURL}/products`;
   const response = await fetch(fetchUrl);
   const results = await response.json();
   return results.data.map((result) => ({
-    params: { slug: result.attributes.slug },
+    params: { slug: result.slug },
   }));
 }
 
@@ -31,18 +31,18 @@ const apiURL = import.meta.env.PUBLIC_API;
 const { slug } = Astro.params;
 
 const { data } = await fetch(
-  `${apiURL}/products/?filters[slug]=${slug}&populate=deep,4`
+  `${apiURL}/products/?filters[slug]=${slug}&populate[0]=program&populate[1]=picto&populate[7]=picto.image&populate[2]=countdown&populate[3]=testimonial&populate[8]=testimonial.image&populate[4]=preview&populate[5]=teaser&populate[6]=image&populate[10]=gallery`
 ).then((res) => res.json());
 
-const doc = data[0].attributes;
-doc.image = imageService.formatImage(doc.image, "large");
 
+const doc = data[0];
+doc.image = imageService.formatImage(doc.image, "large");
 
 if (doc.countdown) {
   doc.countdown.deadline = `${doc.countdown?.deadline} 23:59:59`;
 }
 
-const imageOG = doc.imageOG?.data?.attributes?.url;
+const imageOG = doc.imageOG?.url;
 
 const discount = {
   discountTitle: "Réduction",
@@ -129,7 +129,7 @@ const discount = {
 
         {doc.youtubeURL && <lite-youtube videoid={doc.youtubeURL} />}
 
-        {doc.gallery && <Gallery images={doc.gallery.data} />}
+        {doc.gallery.length && <Gallery images={doc.gallery} />}
 
         { doc.content2 && (
           <Markdown content={doc.content2} />

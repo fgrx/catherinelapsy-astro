@@ -9,11 +9,9 @@ import Ressources from "../vue/components/Ressources.vue";
 
 const apiURL = import.meta.env.PUBLIC_API;
 
-const url = `${apiURL}/site-configuation?populate=*`;
+const url = `${apiURL}/site-configuation?populate[0]=ressources&populate[1]=contentBloc&populate[2]=Message&populate[3]=Message.link&populate[4]=ressources.image&populate[5]=ressources.logo&populate[6]=hero&populate[7]=contentBloc.image`;
 
 const { data:doc } = await fetch(url).then((res) => res.json());
-
-console.log("hero",doc)
 
 const { contentBloc } = doc;
 
@@ -26,11 +24,13 @@ const contentBlocsToDisplay = contentBloc.filter((bloc) => bloc.isShown);
 >
   <main>
     <section>
+    
       <TopHome
         subtitle={doc.homeSubtitle}
         explanation={doc.homeExplanation}
-        heroImage={doc.hero.data.attributes}
+        heroImage={doc.hero}
       />
+
     </section>
 
     <section>

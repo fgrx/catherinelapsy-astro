@@ -13,9 +13,9 @@ const url = `${apiURL}/pages/?filters[slug]=emails-prives&populate=deep,4`;
 
 const { data } = await fetch(url).then((res) => res.json());
 
-const doc = data[0].attributes;
+const doc = data[0];
 
-const imageOG = doc.imageOG?.data?.attributes.url;
+const imageOG = doc.imageOG?.url;
 
 //Display getresponse number of subscribers
 const campaignId = "qD1uT";

@@ -9,7 +9,7 @@ const { pictos } = defineProps({ pictos: Object });
       class="md:flex-1 mt-5 px-5 text-center container"
     >
       <img
-        :src="picto.image.data[0].attributes.url"
+        :src="picto.image[0].url"
         class="mx-auto"
         alt=""
         width="80"

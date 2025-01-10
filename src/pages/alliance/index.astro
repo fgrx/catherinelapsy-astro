@@ -16,13 +16,13 @@ const doc = {
 };
 
 const { data } = await fetch(
-  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Alliance&populate=*`
+  `${apiURL}/products/?sort=order:desc&filters[isOpen]=true&filters[isDisplayed]=true&filters[type][$contains]=Alliance&populate[0]=image`
 ).then((res) => res.json());
 
 const products = data.map((element) => {
-  const product = element.attributes;
+  const product = element;
   product.dir = "/alliance";
-  product.image = imageService.formatImage(element.attributes.image, "small");
+  product.image = imageService.formatImage(element.image, "small");
   return product;
 });
 

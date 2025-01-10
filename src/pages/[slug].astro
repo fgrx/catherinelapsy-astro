@@ -13,25 +13,25 @@ import Person from "../components/Person.astro";
 export async function getStaticPaths() {
   const apiURL = import.meta.env.PUBLIC_API;
   const pagesApiUrl = `${apiURL}/pages`
-  console.log(pagesApiUrl);
   
   const response = await fetch(pagesApiUrl);
   const results = await response.json();
   return results.data.map((result) => ({
-    params: { slug: result.attributes.slug },
+    params: { slug: result.slug },
   }));
 }
 
 const apiURL = import.meta.env.PUBLIC_API;
 const { slug } = Astro.params;
 
-const url = `${apiURL}/pages/?filters[slug]=${slug}&populate=deep,4`;
+
+const url = `${apiURL}/pages/?filters[slug]=${slug}&populate[0]=image&populate[1]=link&populate[2]=people&populate[3]=countdown&populate[4]=textwithimage&populate[5]=textwithimage.image&populate[6]=logo`;
 
 const { data } = await fetch(url).then((res) => res.json());
 
-const doc = data[0].attributes;
+const doc = data[0];
 
-const topImage = doc.image?.data?.attributes;
+const topImage = doc.image;
 
 const links = doc.link.map((link) => {
   return {
@@ -41,7 +41,7 @@ const links = doc.link.map((link) => {
   };
 });
 
-const imageOG = doc.imageOG?.data?.attributes.url;
+const imageOG = doc.imageOG?.url;
 const contentsWithImage = doc.textwithimage;
 
 if (doc.countdown) {

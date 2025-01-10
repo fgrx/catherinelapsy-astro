@@ -11,8 +11,8 @@ const { images } = Astro.props;
         images.map(image=>{
             <div>
                       <Image
-          src={image.attributes.formats.small.url}
-          alt={image.attributes.alternativeText}
+          src={image.formats.small.url}
+          alt={image.alternativeText}
           width={image.width}
           height={image.height}
           format="webp"
