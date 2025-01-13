@@ -1,0 +1,7 @@
+[
+  {
+    "app_id": "09cbd491-4e99-4932-b77a-5879e1a04a4f",
+    "payload": "{\n  \"billing_address\": \"\",\n  \"client_code\": \"cus_RZFLc3XBcQ9gPY\",\n  \"client_name\": \"catherinelapsy@gmail.com\"\n  \"invoice_date\": 21-01-1970,\n  \"due_date\":  21-01-1970,\n  \"invoice_number\": \"py_3Qg6qfIN1veYR2y71eSLu9z9\",\n  \"payment_mode\": \"Stripe\",\n  \"total_without_vat\":true,\n  \"deposit\": 0.0,\n  \"lineItems\": [\n    {\n      \"code\": \"py_3Qg6qfIN1veYR2y71eSLu9z9\",\n      \"description\": \"test fab\",\n      \"quantity\": 1,\n      \"price\": true\n    }\n  ]\n}",
+    "document_template_id": "1cf7da89-9f09-49c0-9e50-5a40568adee7"
+  }
+]
