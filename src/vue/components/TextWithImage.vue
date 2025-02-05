@@ -10,18 +10,18 @@ const defaultWidth = 3;
 </script>
 
 <template>
-  <div class="md:w-1/6 md:w-2/6 md:w-3/6 md:w-4/6 md:w-5/6 mt-8"></div>
+  <div class="lg:w-1/6 lg:w-2/6 lg:w-3/6 lg:w-4/6 lg:w-5/6 mt-8"></div>
 
   <div
-    class="mb-20 md:flex md-flex-wrap"
+    class="mb-20 lg:flex lg-flex-wrap"
     :class="content.position === 'right' ? 'flex-row-reverse' : ''"
     v-for="content in contents"
   >
     <div
       v-if="content.image"
-      :class="`md:w-${content.imageWidth}/${rowNumbers}`"
+      :class="`lg:w-${content.imageWidth}/${rowNumbers}`"
     >
-      <div :class="content.position === 'left' ? 'md:pr-7' : 'md:pl-7'">
+      <div :class="content.position === 'left' ? 'lg:pr-7' : 'lg:pl-7'">
         <a :href="content.url">
           <img
             class="mx-auto w-full h-auto"
@@ -47,9 +47,11 @@ const defaultWidth = 3;
       </div>
     </div>
 
-    <div :class="`md:w-${rowNumbers - content.imageWidth}/${rowNumbers}`">
+    <div :class="`lg:w-${rowNumbers - content.imageWidth}/${rowNumbers}`">
       <div>
-        <h2 class="text-primary text-3xl mb-2">{{ content.title }}</h2>
+        <h2 class="text-primary text-3xl mb-2 mt-4 lg:mt-0">
+          {{ content.title }}
+        </h2>
 
         <p
           class="content"
@@ -57,7 +59,10 @@ const defaultWidth = 3;
           v-html="marked(content.content)"
         ></p>
 
-        <div v-if="content.url" class="mt-4">
+        <div
+          v-if="content.url"
+          class="mt-4 flex flex-col items-center lg:flex-none lg:block"
+        >
           <a :href="content.url"
             ><Btn>{{ content.textURL }}</Btn></a
           >
