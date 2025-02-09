@@ -1,1 +1,4 @@
+User-agent: *
 Disallow: /documents/*
+Disallow: discord-pro
+Disallow: discord-perso
