@@ -8,25 +8,10 @@ interface Gift {
   docName: string;
 }
 
-//Display getresponse number of subscribers
-const campaignId = "qD1uT";
-const getReponseKey = import.meta.env.PUBLIC_GETRESPONSE;
-const getResponseApiUrl = `https://api.getresponse.com/v3/campaigns/statistics/list-size?query[campaignId]=${campaignId}&query[groupBy]=total`;
-
-const headers = {
-  "X-Auth-Token": `api-key ${getReponseKey}`,
-};
-
-const request = new Request(getResponseApiUrl, {
-  method: "GET",
-  headers,
-});
-
-const response = await fetch(request).then((res) => res.json());
-
-const totalSubscribers = response[0].totalSubscribers;
-
-const { gift } = defineProps<{ gift: Gift }>();
+const { gift, totalSubscribers } = defineProps<{
+  gift: Gift;
+  totalSubscribers: number;
+}>();
 </script>
 
 <template>
