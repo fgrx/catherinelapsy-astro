@@ -1,0 +1,12 @@
+Je veux un composant vue.js qui récupère un code dans l'url et en fonction de ce code affiche un contenu avec un bouton de téléchargement.
+Pour la présentation, je veux que tu utilises des classes Tailwind.css
+
+je veux que tu fasses : 
+- La création d'un composant vue.js qui s'appelle Gift.vue et codé en Typescript dans src/vue/components
+- Il récupère un code dans l'URL et récupère les informations en faisant un call http sur l'adresse : 
+- En cas de document non trouvé, je veux qu'il affiche qu'aucun document n'a été trouvé
+- Si un document a été trouvé, je veux qu'il affiche un formulaire qui permet de récupérer une adresse email accompagné du texte : Pour récupérer votre document "nom_du_document", saisissez votre adresse email
+- Je veux que tu ajoutes un honey pot pour bloquer les robots
+- Je veux que le composant vérifie qu'il s'agisse d'un email bien formé. En cas de mail mal formé, un message doit apparaitre : "Veuillez saisir une adresse email valide"
+- Si l'adresse est bien formée et le bouton appuyé je veux que tu ajoutes le mail à l'adresse : 
+- Une fois les informations récupérées, je veux qu'il affiche le paramètre title en titre, le contenu avec content et un bouton avec url qui permet de télécharger un document

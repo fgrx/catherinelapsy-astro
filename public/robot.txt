@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /documents/*
+Disallow: /gifts/*
 Disallow: discord-pro
 Disallow: discord-perso

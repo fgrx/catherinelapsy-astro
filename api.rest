@@ -10,3 +10,10 @@ get http://localhost:1337/api/site-configuation?populate[0]=ressources&populate[
 
 ###
 https://catherinelapsy-backend.up.railway.app/api/pages/?filters[slug]=qui-sommes-nous&populate[0]=image&populate[1]=link&populate[2]=people&populate[3]=countdown&populate[4]=textwithimage
+
+
+###
+https://catherinelapsy-backend.up.railway.app/api/gifts?populate[0]=gifts
+
+###
+https://catherinelapsy-backend.up.railway.app/api/gifts?populate[0]=gifts&populate[1]=gifts.document&filters[gifts][slug]=bienveillance-autosabotage

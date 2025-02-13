@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import HeaderPage from "../../vue/components/HeaderPage.vue";
+import Gift from "../../vue/components/Gift.vue";
+
+import { Markdown } from 'astro-remote';
+
+import "../../assets/css/base.scss";
+
+export async function getStaticPaths() {
+  const apiURL = import.meta.env.PUBLIC_API;
+  const fetchUrl = `${apiURL}/gifts?populate[0]=gifts`;
+  const response = await fetch(fetchUrl);
+  const results = await response.json();
+
+  return results.data.map((result) => ({
+    params: { slug: result.gifts[0].slug },
+  }));
+}
+
+const apiURL = import.meta.env.PUBLIC_API;
+const { slug } = Astro.params;
+const urlToFetch = `${apiURL}/gifts?populate[0]=gifts&populate[1]=gifts.document&filters[gifts][slug]=${slug}`
+
+const { data } = await fetch(
+  urlToFetch
+).then((res) => res.json());
+
+const doc = data[0].gifts[0];
+
+const gift={title:doc.title as string,url:doc.document.url as string, docName:doc.document.name as string}
+
+const infosHeader={title:`Téléchargez votre exercice`,description:`Téléchargez maintenant l'exercice : "${doc.title}"`}
+
+---
+
+<Layout title={infosHeader.title} metaDescription={infosHeader.description} >
+  <article>
+    <div class="bg-gray-200">
+      <HeaderPage doc={infosHeader} />
+
+      <div
+        class="container mx-auto bg-gray-100 -m-14 py-6 pb-24 px-5 md:px-12 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
+      >
+
+      <h2>{doc.title}</h2>
+
+      <Markdown content={doc.description} />
+       
+      <Gift client:load gift={gift} />
+      </div>
+    </div>
+  </article>
+</Layout>
