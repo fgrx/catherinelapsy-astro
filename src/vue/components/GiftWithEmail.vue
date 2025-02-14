@@ -17,6 +17,7 @@ const isDownloadable = ref(false);
 
 //honeypot
 const name = ref("");
+const nameNeeded = ref("");
 
 const isValidEmail = computed(() => {
   const re =
@@ -27,44 +28,55 @@ const isValidEmail = computed(() => {
 const { gift } = defineProps<{ gift: Gift }>();
 
 const isFormCompleted = computed(() => {
-  if (isValidEmail.value && isConsent.value) return true;
+  if (isValidEmail.value && isConsent.value && nameNeeded.value) return true;
   return false;
 });
 
-const subscribeToMailingList = async (email: string) => {
-  const API_URL = "https://app.getresponse.com/add_subscriber.html";
-  const CAMPAIGN_ID = "ABCD";
+const subscribeToMailingList = async (email: string, name: string) => {
+  const API_URL =
+    "https://email-server-api-production.up.railway.app/add-contact";
 
-  const data = {
+  const body = JSON.stringify({
     email,
-    campaign: { campaignId: CAMPAIGN_ID },
-    dayOfCycle: 0,
+    name,
+  });
+
+  const headers = {
+    "Content-Type": "application/json;charset=utf-8",
   };
 
-  fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const res = await fetch(API_URL, { method: "POST", headers, body });
+  console.log(res);
 };
 
 const validationAction = () => {
   if (isFormCompleted && !name.value) {
-    subscribeToMailingList(email.value);
+    subscribeToMailingList(email.value, nameNeeded.value);
     isDownloadable.value = true;
   }
 };
 </script>
 
 <template>
-  <div>
+  <div class="border-dashed border-4 border-primary px-6 py-6">
     <form v-if="!isDownloadable">
+      <h3>Téléchargement du fichier "{{ gift.docName }}"</h3>
       <p class="mt-5">
         <label class="block font-semibold"
-          >Pour télécharger "{{ gift.title }}", veuillez saisir votre adresse
-          email :
+          >Veuillez saisir votre nom :
+          <input
+            v-model="nameNeeded"
+            type="text"
+            name="name"
+            :class="`${cssFormLayout}`"
+            required
+            placeholder="Milton Erickson"
+        /></label>
+      </p>
+
+      <p class="mt-5">
+        <label class="block font-semibold"
+          >Veuillez saisir votre adresse email :
           <input
             v-model="email"
             type="text"
