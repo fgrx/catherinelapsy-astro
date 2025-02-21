@@ -210,7 +210,7 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .lePotDeMiel {
   opacity: 0;
   position: absolute;
