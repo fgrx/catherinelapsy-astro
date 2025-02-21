@@ -170,10 +170,6 @@ export default {
             /></label>
           </p>
 
-          <p class="lePotDeMiel">
-            <input name="bot-field" />
-          </p>
-
           <p class="mt-5">
             <label class="block font-semibold"
               >Votre message :
@@ -185,6 +181,8 @@ export default {
               ></textarea>
             </label>
           </p>
+
+          <input class="lePotDeMiel" name="bot-field" />
 
           <div class="flex">
             <Btn
