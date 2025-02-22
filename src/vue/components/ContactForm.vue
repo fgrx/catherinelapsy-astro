@@ -26,7 +26,7 @@ export default {
       email: "",
       message: "",
       content: "",
-      object: "renseignement_atelier",
+      subject: "renseignement_atelier",
       error: false,
       messageTherapie: "",
     };
@@ -34,7 +34,7 @@ export default {
   computed: {
     isFormCompleted() {
       if (
-        this.object &&
+        this.subject &&
         this.name.length > 3 &&
         this.message.length > 5 &&
         this.isValidEmail(this.email)
@@ -51,6 +51,7 @@ export default {
           name: this.name,
           email: this.email,
           message: this.message,
+          subject: this.subject,
         };
 
         try {
@@ -114,7 +115,7 @@ export default {
             <label class="block font-semibold"
               >Objet de votre message :
               <select
-                v-model="object"
+                v-model="subject"
                 type="text"
                 name="subject"
                 :class="`${cssFormLayout}`"
@@ -125,12 +126,13 @@ export default {
                 </option>
                 <option value="aide_commande">Aide sur une commande</option>
                 <option value="therapie">Demande de thérapie</option>
+                <option value="supervision">Demande de supervision</option>
                 <option value="autre">Autre</option>
               </select></label
             >
           </p>
 
-          <Alert type="warning" v-if="object === 'therapie'">
+          <Alert type="warning" v-if="subject === 'therapie'">
             <p class="text-xl">
               Catherine ne propose plus de consultation en présentiel ou en
               visio.
@@ -139,12 +141,6 @@ export default {
               En revanche, Fabien propose des accompagnements en
               <b>hypnose Eriksonienne et en thérapie Mosaic</b> (proche de
               l'EMDR).
-            </p>
-            <p>
-              Si vous appréciez l’approche de Catherine, nous vous suggérons de
-              consulter les annuaires du CEFTI ou de l’IFEMDR qui proposent des
-              thérapeutes qui ont suivi des formations de qualité identiques à
-              Catherine.
             </p>
           </Alert>
 
