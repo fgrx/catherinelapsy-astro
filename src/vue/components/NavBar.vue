@@ -47,6 +47,20 @@
                       v-if="link.meta?.subMenu"
                     />
                   </li>
+                  <li class="ml-12">
+                    <a href="https://ctpsy.podia.com/login">
+                      <Btn>
+                        <img
+                          :src="loginImage.src"
+                          width="24"
+                          height="24"
+                          alt="Image de connexion"
+                          class="float-left mr-2"
+                        />
+                        Connexion
+                      </Btn>
+                    </a>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -115,6 +129,22 @@
         </div>
 
         <ul class="px-4 mt-1">
+          <li class="font-medium text-2xl my-5">
+            <a
+              href="https://ctpsy.podia.com/login"
+              class="hover:text-secondary"
+            >
+              <img
+                :src="loginImage.src"
+                width="24"
+                height="24"
+                alt="Image de connexion"
+                class="float-left mr-2 mt-1"
+              />
+              Connexion
+            </a>
+          </li>
+
           <li
             v-for="(link, index) in linksWithSubMenu"
             :key="index"
@@ -142,10 +172,13 @@
 
 <script is:inline>
 import SubNav from "./SubNav.vue";
+import Btn from "./Btn.vue";
+import loginImage from "../../assets/images/login.png";
 
 export default {
   components: {
     SubNav,
+    Btn,
   },
   props: {
     links: {
@@ -153,11 +186,11 @@ export default {
       default: [],
     },
   },
-
   data() {
     return {
       isOpen: false,
       linkToDisplay: {},
+      loginImage,
     };
   },
   computed: {

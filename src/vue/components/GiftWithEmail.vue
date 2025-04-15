@@ -46,7 +46,6 @@ const subscribeToMailingList = async (email: string, name: string) => {
   };
 
   const res = await fetch(API_URL, { method: "POST", headers, body });
-  console.log(res);
 };
 
 const validationAction = () => {
