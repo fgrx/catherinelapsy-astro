@@ -27,6 +27,7 @@ export default {
       message: "",
       content: "",
       subject: "renseignement_atelier",
+      subjetctDetails: "",
       error: false,
       messageTherapie: "",
     };
@@ -37,6 +38,7 @@ export default {
         this.subject &&
         this.name.length > 3 &&
         this.message.length > 5 &&
+        this.subjetctDetails.length > 5 &&
         this.isValidEmail(this.email)
       )
         return true;
@@ -52,6 +54,7 @@ export default {
           email: this.email,
           message: this.message,
           subject: this.subject,
+          subjetctDetails: this.subjetctDetails,
         };
 
         try {
@@ -113,7 +116,7 @@ export default {
         >
           <p>
             <label class="block font-semibold"
-              >Objet de votre message :
+              >Catégorie :
               <select
                 v-model="subject"
                 type="text"
@@ -142,45 +145,87 @@ export default {
               <b>hypnose Eriksonienne et en thérapie Mosaic</b> (proche de
               l'EMDR).
             </p>
+            <p>
+              <strong>Pour plus d'informations, rendez-vous sur :</strong>
+            </p>
+            <p>
+              <a target="blank" href="https://therapiefgx.com">
+                <btn color="dark"> therapiefgx.com</btn>
+              </a>
+            </p>
           </Alert>
 
-          <p class="mt-5">
-            <label class="block font-semibold"
-              >Votre nom :
-              <input
-                v-model="name"
-                type="text"
-                name="name"
-                :class="`${cssFormLayout}`"
-                required
-            /></label>
-          </p>
-          <p class="mt-5">
-            <label class="block font-semibold"
-              >Votre adresse email :
-              <input
-                v-model="email"
-                type="email"
-                name="email"
-                :class="`${cssFormLayout}`"
-            /></label>
-          </p>
+          <Alert type="warning" v-if="subject === 'supervision'">
+            <p class="text-xl">
+              Catherine ne prend plus de nouvelles supervisions individuelles.
+            </p>
+            <p>
+              En revanche elle proposera prochainement
+              <b>des supervisions de groupe</b>.
+            </p>
+            <p>
+              Pour être tenu au courant des prochaines supervisions de groupe,
+              inscrivez-vous à la mailing list dédiée en cliquant sur :
+              <a href="https://catherinelapsy.com/supervisions/">
+                <btn color="dark"> Mailing list des supevisions de groupe</btn>
+              </a>
+            </p>
+          </Alert>
 
-          <p class="mt-5">
-            <label class="block font-semibold"
-              >Votre message :
-              <textarea
-                v-model="message"
-                rows="8"
-                name="message"
-                :class="`${cssFormLayout}`"
-              ></textarea>
-            </label>
-          </p>
+          <template v-if="subject !== 'supervision' && subject !== 'therapie'">
+            <p class="mt-5">
+              <label class="block font-semibold"
+                >Objet de votre email :
+                <input
+                  v-model="subjetctDetails"
+                  type="text"
+                  name="subjetctDetails"
+                  :class="`${cssFormLayout}`"
+                  required
+              /></label>
+            </p>
 
-          <input class="lePotDeMiel" name="bot-field" />
+            <p class="mt-5">
+              <label class="block font-semibold"
+                >Votre nom :
+                <input
+                  v-model="name"
+                  type="text"
+                  name="name"
+                  :class="`${cssFormLayout}`"
+                  required
+              /></label>
+            </p>
+            <p class="mt-5">
+              <label class="block font-semibold"
+                >Votre adresse email :
+                <input
+                  v-model="email"
+                  type="email"
+                  name="email"
+                  :class="`${cssFormLayout}`"
+              /></label>
+            </p>
 
-          <div class="flex">
+            <p class="mt-5">
+              <label class="block font-semibold"
+                >Votre message :
+                <textarea
+                  v-model="message"
+                  rows="8"
+                  name="message"
+                  :class="`${cssFormLayout}`"
+                ></textarea>
+              </label>
+            </p>
+
+            <input class="lePotDeMiel" name="bot-field" />
+          </template>
+
+          <div
+            class="flex"
+            v-if="subject !== 'supervision' && subject !== 'therapie'"
+          >
             <Btn
               @click="sendMessage"
               typeButton="button"
