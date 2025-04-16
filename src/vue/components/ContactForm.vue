@@ -53,8 +53,7 @@ export default {
           name: this.name,
           email: this.email,
           message: this.message,
-          subject: this.subject,
-          subjetctDetails: this.subjetctDetails,
+          subject: `${this.subjetctDetails} - ${this.subject}`,
         };
 
         try {
