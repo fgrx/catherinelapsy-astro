@@ -10,17 +10,15 @@ const { title, metaDescription, imageOG } = Astro.props;
 
 const apiURL = import.meta.env.PUBLIC_API;
 
-const menus = await fetch(`${apiURL}/menu?populate[0]=menus&populate[1]=menus.submenu`)
-                  .then(
-                    async(res)=>{
-                      const result = await res.json();
-                      return result.data.menus;
-                    }
-                  );
+const menus = await fetch(
+  `${apiURL}/menu?populate[0]=menus&populate[1]=menus.submenu`
+).then(async (res) => {
+  const result = await res.json();
+  return result.data.menus;
+});
 
-const topMenus = menus.filter(menu=>menu.isTop)
-const bottomMenus = menus.filter(menu=>menu.isBottom)
-
+const topMenus = menus.filter((menu) => menu.isTop);
+const bottomMenus = menus.filter((menu) => menu.isBottom);
 
 const linksFooter = bottomMenus?.map((item) => {
   return {
@@ -29,7 +27,6 @@ const linksFooter = bottomMenus?.map((item) => {
     to: item.url,
   };
 });
-
 
 const links = topMenus?.map((item) => {
   const formatChildrensMenu = () => {
@@ -56,21 +53,17 @@ const links = topMenus?.map((item) => {
   };
 });
 
-
 // Display message alert
 const url = `${apiURL}/site-configuation?populate[0]=ressources&populate[1]=contentBloc&populate[2]=Message&populate[3]=Message.link`;
-const {data} = await fetch(url).then((res) => res.json());
+const { data } = await fetch(url).then((res) => res.json());
 
-
-
-
-const {Message:message}=data;
+const { Message: message } = data;
 
 const fonts =
   "https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Playfair+Display:ital,wght@0,400;1,700&display=swap";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -89,7 +82,11 @@ const fonts =
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href={fonts} rel="preload" as="style" />
 
-    <link rel="stylesheet" href={fonts} media="print" onload="this.media='all'"
+    <link
+      rel="stylesheet"
+      href={fonts}
+      media="print"
+      onload="this.media='all'"
     />
 
     <link
@@ -174,7 +171,9 @@ const fonts =
     />
     <link rel="manifest" href="/favicons/manifest.json" />
     <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png"
+    <meta
+      name="msapplication-TileImage"
+      content="/favicons/ms-icon-144x144.png"
     />
     <meta name="theme-color" content="#ffffff" />
 
@@ -195,16 +194,11 @@ const fonts =
       <Footer links={linksFooter} />
     </main>
 
-    <script is:inline defer src="/plugins/lite-yt-embed/lite-yt-embed.js">
+    <script is:inline defer src="/plugins/lite-yt-embed/lite-yt-embed.js"
+    ></script>
 
-    </script>
-
-    <script defer src="/plugins/cookie-consent/cookie-consent.js">
-
-    </script>
-    <script defer src="/plugins/cookie-consent/cookie-consent.init.js">
-
-    </script>
+    <script defer src="/plugins/cookie-consent/cookie-consent.js"></script>
+    <script defer src="/plugins/cookie-consent/cookie-consent.init.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script
@@ -212,23 +206,7 @@ const fonts =
       data-cookiecategory="analytics"
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-6W78WWF32Y"
-    >
-    </script>
-
-    <!-- Google tag ads (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-844972199"></script>
-    <script
-          type="text/partytown"
-          data-cookiecategory="analytics"
-          async
-    >
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-844972199');
-    </script>
-
+    ></script>
 
     <script type="text/partytown" data-cookiecategory="analytics">
       window.dataLayer = window.dataLayer || [];
@@ -239,6 +217,5 @@ const fonts =
 
       gtag("config", "G-6W78WWF32Y");
     </script>
-
   </body>
 </html>
