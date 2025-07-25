@@ -15,26 +15,6 @@ const { data } = await fetch(url).then((res) => res.json());
 const doc = data[0];
 
 const imageOG = doc.imageOG?.url;
-
-//Display getresponse number of subscribers
-const campaignId = "qD1uT";
-const getReponseKey = import.meta.env.PUBLIC_GETRESPONSE;
-const getResponseApiUrl = `https://api.getresponse.com/v3/campaigns/statistics/list-size?query[campaignId]=${campaignId}&query[groupBy]=total`;
-
-const headers = {
-  "X-Auth-Token": `api-key ${getReponseKey}`,
-};
-
-const request = new Request(getResponseApiUrl, {
-  method: "GET",
-  headers,
-});
-
-const response = await fetch(request).then((res) => res.json());
-
-const totalSubscribers = response[0].totalSubscribers;
-
-const subscriberID = totalSubscribers + 1;
 ---
 
 <Layout title={doc.title} metaDescription={doc.description} og={imageOG}>
@@ -63,7 +43,7 @@ const subscriberID = totalSubscribers + 1;
 
           <transition name="slide">
             <div>
-              <Alert v-if="isSent" type="success" title="Inscription confirmée">
+              <Alert title="Inscription confirmée">
                 <p>Vous êtes désormais abonné·e à notre Lettre Psy.</p>
                 <p>Vous recevrez la prochaine édition à sa publication.</p>
                 <p>

@@ -52,6 +52,12 @@ const isValidForm = computed(() => {
           class="flex-1 required email input w-full px-3 py-2 pb-2 text-dark"
           placeholder="martin.dubois@gmail.com"
         />
+        <!-- Page de remerciement (optionnel) -->
+        <input
+          type="hidden"
+          name="thankyou_url"
+          value="https://catherinelapsy.com/lettre-psy-inscription-ok"
+        />
         <input
           type="submit"
           :disabled="!isValidForm"
