@@ -188,7 +188,7 @@ const discount = {
         {
           doc.FAQ?.length ? (
             <section v-if="doc.FAQ?.length">
-              <h2>Il vous reste quelques questions ? - FAQ</h2>
+              <h2>Il vous reste quelques questions ?</h2>
               <Faq client:load questions={doc.FAQ} />
             </section>
           ) : (
@@ -209,7 +209,7 @@ const discount = {
               )
             }
 
-            <LinkBtn url="/faq" target="_blank" class="ml-2">
+            <LinkBtn url="/contact" target="_blank" class="ml-2">
               Une question sur nos ateliers ?
             </LinkBtn>
           </div>
