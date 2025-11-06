@@ -1,7 +1,12 @@
 <script setup>
 import { computed } from "vue";
+import { marked } from "marked";
 
 const { doc } = defineProps({ doc: Object });
+
+if (doc.description) {
+  doc.description = marked.parse(doc.description);
+}
 
 const logo = computed(() => doc.logo?.url || doc.logo);
 </script>
@@ -31,12 +36,12 @@ const logo = computed(() => doc.logo?.url || doc.logo);
           <h2 class="text-secondary text-2xl" v-if="doc.subtitle">
             {{ doc.subtitle }}
           </h2>
-          <p
-            :class="`text-left text-xl text-${doc.colorText || 'white'}`"
+          <div
+            :class="`my-5 text-left text-xl text-${doc.colorText || 'white'}`"
             v-if="doc.description"
           >
-            {{ doc.description }}
-          </p>
+            <div v-html="doc.description"></div>
+          </div>
         </div>
       </div>
     </div>

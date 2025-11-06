@@ -16,4 +16,5 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/forms")],
+  safelist: ["md:grid-cols-2", "grid-cols-2", "gap-4", "px-4", "py-4"],
 };

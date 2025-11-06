@@ -3,7 +3,9 @@ const { testimonials } = defineProps({ testimonials: Array });
 </script>
 
 <template>
-  <div class="w-full md:flex flex-wrap md:justify-arround mb-8">
+  <div
+    class="w-full grid grid-cols-2 md:grid-cols-4 gap-6 flex-wrap md:justify-arround mb-8"
+  >
     <div
       v-for="testimonial in testimonials"
       class="testimonial md:flex-1 mt-5 text-center container"
@@ -18,10 +20,10 @@ const { testimonials } = defineProps({ testimonials: Array });
           height="150"
           width="150"
           loading="lazy"
-          class="object-center"
+          class="object-center rounded-full"
         />
       </div>
-      <blockquote class="text-center">
+      <blockquote class="mt-3 text-center">
         <p class="italic">"{{ testimonial.content }}"</p>
         <p v-if="testimonial.atelier">{{ testimonial.atelier }}</p>
         <cite class="not-italic font-semibold">{{ testimonial.name }}</cite>
