@@ -4,15 +4,16 @@ const { testimonials } = defineProps({ testimonials: Array });
 
 <template>
   <div
-    class="w-full grid grid-cols-2 md:grid-cols-4 gap-6 flex-wrap md:justify-arround mb-8"
+    class="w-full grid grid-cols-2 md:grid-cols-3 gap-6 flex-wrap md:justify-arround mb-8"
   >
     <div
-      v-for="testimonial in testimonials"
-      class="testimonial md:flex-1 mt-5 text-center container"
+      v-for="(testimonial, index) in testimonials"
+      :key="index"
+      :class="`testimonial md:flex-1 mt-5 text-center container ${index > 3 ? 'hidden md:block' : ''}`"
     >
       <div class="center">
         <img
-          v-if="testimonial"
+          v-if="testimonial?.image"
           :src="
             testimonial?.image?.formats?.small?.url || testimonial?.image?.url
           "
@@ -20,7 +21,7 @@ const { testimonials } = defineProps({ testimonials: Array });
           height="150"
           width="150"
           loading="lazy"
-          class="object-center rounded-full"
+          :class="`object-center rounded-full`"
         />
       </div>
       <blockquote class="mt-3 text-center">
