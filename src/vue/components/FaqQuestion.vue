@@ -15,9 +15,18 @@ const isExpanded = ref(false);
 <template>
   <div
     @click="isExpanded = !isExpanded"
-    class="flex justify-between rounded-sm font-semibold text-black p-2 cursor-pointer"
+    class="flex bg-tertiary rounded-sm font-semibold text-white p-2 cursor-pointer"
   >
-    <div>➡ {{ question.question }}</div>
+    <img
+      :src="arrowRight.src"
+      alt=""
+      height="20"
+      width="20"
+      v-if="!isExpanded"
+    />
+    <img :src="arrowDown.src" alt="" height="20" width="20" v-if="isExpanded" />
+
+    <div>{{ question.question }}</div>
   </div>
 
   <div
