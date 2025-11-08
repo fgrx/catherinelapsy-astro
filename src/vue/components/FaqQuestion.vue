@@ -15,7 +15,7 @@ const isExpanded = ref(false);
 <template>
   <div
     @click="isExpanded = !isExpanded"
-    class="flex bg-tertiary rounded-sm font-semibold text-white p-2 cursor-pointer"
+    class="flex bg-gray-300 rounded-sm font-semibold text-gray-900 p-2 cursor-pointer"
   >
     <img
       :src="arrowRight.src"

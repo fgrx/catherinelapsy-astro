@@ -179,11 +179,11 @@ const discount = {
         {
           doc.testimonial?.length ? (
             <section v-if="doc.testimonial">
-              <h2>
+              <h3>
                 2200 personnes (particuliers ou professionnel·le·s) nous ont
                 fait confiance, voici ce qu’elles disent de nos accompagnements
                 :{" "}
-              </h2>
+              </h3>
               <Testimonials testimonials={doc.testimonial} />
             </section>
           ) : (
@@ -233,25 +233,6 @@ const discount = {
             ""
           )
         }
-
-        <section>
-          <div class="text-center my-8 flex justify-center">
-            {
-              doc.preview && (
-                <LinkBtn
-                  url={doc.preview.url}
-                  target={doc.preview.target ? "_blank" : "_self"}
-                >
-                  {doc.preview.text}
-                </LinkBtn>
-              )
-            }
-
-            <LinkBtn url="/contact" target="_blank" class="ml-2">
-              Une question sur nos ateliers ?
-            </LinkBtn>
-          </div>
-        </section>
 
         {
           doc.purchaseURL && (
