@@ -132,11 +132,49 @@ const discount = {
 
         {doc.content1 && <Markdown content={doc.content1} />}
 
+        {
+          doc.purchaseURL && (
+            <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+              <div class="md:flex justify-center  md:my-0">
+                <BuyBtn
+                  url={doc.purchaseURL}
+                  isClosed={!doc.isOpen}
+                  discount={discount}
+                  price={doc.price}
+                  label={
+                    doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                  }
+                  textPrice={doc.textprice}
+                />
+              </div>
+            </div>
+          )
+        }
+
         {doc.youtubeURL && <lite-youtube videoid={doc.youtubeURL} />}
 
         {doc.gallery?.length && <Gallery images={doc.gallery} />}
 
         {doc.content2 && <Markdown content={doc.content2} />}
+
+        {
+          doc.purchaseURL && (
+            <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+              <div class="md:flex justify-center  md:my-0">
+                <BuyBtn
+                  url={doc.purchaseURL}
+                  isClosed={!doc.isOpen}
+                  discount={discount}
+                  price={doc.price}
+                  label={
+                    doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                  }
+                  textPrice={doc.textprice}
+                />
+              </div>
+            </div>
+          )
+        }
 
         {
           doc.testimonial?.length ? (
@@ -214,6 +252,25 @@ const discount = {
             </LinkBtn>
           </div>
         </section>
+
+        {
+          doc.purchaseURL && (
+            <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
+              <div class="md:flex justify-center  md:my-0">
+                <BuyBtn
+                  url={doc.purchaseURL}
+                  isClosed={!doc.isOpen}
+                  discount={discount}
+                  price={doc.price}
+                  label={
+                    doc.type === "Atelier en live" ? "s'inscrire" : "Acheter"
+                  }
+                  textPrice={doc.textprice}
+                />
+              </div>
+            </div>
+          )
+        }
       </div>
     </div>
   </article>
