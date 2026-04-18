@@ -30,7 +30,7 @@ const { gift, totalSubscribers } = defineProps<{
     </section>
 
     <div
-      class="bg-gradient-to-r from-primaryDark to-primary text-white mt-12 py-8"
+      class="bg-linear-to-r from-primaryDark to-primary text-white mt-12 py-8"
     >
       <div class="container mx-auto">
         <div class="flex-none md:flex gap-5 items-center px-5">

@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@theme {
+  /* Couleurs personnalisées */
+  --color-primary: #177e84;
+  --color-primaryDark: #0a5a5e;
+  --color-primaryLight: #249fa6;
+  --color-secondary: #fdea43;
+  --color-tertiary: #592a17;
+  --color-quaternary: #a4a4a3;
+  --color-dark: #2f2d2e;
+  --color-light: #fff;
+
+  /* Note sur les espacements personnalisés (w-30, l-30) : 
+     Si tu utilisais des valeurs spécifiques non standards, 
+     on les définit ici pour qu'elles génèrent les classes.
+  */
+  --spacing-30: 7.5rem; /* Correspond généralement à 30 x 0.25rem */
+}
+
+/* Importation du plugin Forms */
+@plugin "@tailwindcss/forms";

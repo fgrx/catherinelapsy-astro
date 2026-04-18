@@ -25,7 +25,7 @@ const { title, content, logo, link } = defineProps({
               class="mr-8"
             />
           </div>
-          <div class="md:flex-grow">
+          <div class="md:grow">
             <h2>{{ title }}</h2>
             <p>{{ content }}</p>
           </div>

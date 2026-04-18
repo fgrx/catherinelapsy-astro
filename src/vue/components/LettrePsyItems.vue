@@ -38,7 +38,7 @@ const lettresPsys = [
 <template>
   <div class="md:grid md:grid-cols-3 md:gap-10">
     <div
-      class="col-span-1 mb-10 flex flex-col text-white bg-gradient-to-r bg-primary p-5 rounded-md transition-all transform ease-in-out duration-300 hover:scale-105"
+      class="col-span-1 mb-10 flex flex-col text-white bg-linear-to-r bg-primary p-5 rounded-md transition-all transform ease-in-out duration-300 hover:scale-105"
       v-for="lettrePsy in lettresPsys"
       :key="lettrePsy.id"
     >

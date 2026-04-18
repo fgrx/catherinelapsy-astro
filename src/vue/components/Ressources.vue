@@ -11,7 +11,7 @@ const { ressources } = defineProps({ ressources: Array });
       <div
         v-for="ressource in ressources"
         :key="ressource.id"
-        class="text-white bg-black bg-opacity-60"
+        class="text-white bg-black/60"
       >
         <a :href="ressource.url" class="no-underline">
           <TextOverImage

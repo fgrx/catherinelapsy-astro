@@ -5,7 +5,7 @@
       class="alert flex flex-row items-center bg-emerald-200 p-5 rounded border-b-2 border-emerald-300"
     >
       <div
-        class="alert-icon flex items-center bg-emerald-100 border-2 border-emerald-500 justify-center h-10 w-10 flex-shrink-0 rounded-full"
+        class="alert-icon flex items-center bg-emerald-100 border-2 border-emerald-500 justify-center h-10 w-10 shrink-0 rounded-full"
       >
         <span class="text-emerald-500">
           <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">
@@ -32,7 +32,7 @@
       class="alert flex flex-row items-center bg-red-200 p-5 rounded border-b-2 border-red-300"
     >
       <div
-        class="alert-icon flex items-center bg-red-100 border-2 border-red-500 justify-center h-10 w-10 flex-shrink-0 rounded-full"
+        class="alert-icon flex items-center bg-red-100 border-2 border-red-500 justify-center h-10 w-10 shrink-0 rounded-full"
       >
         <span class="text-red-500">
           <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">
@@ -59,7 +59,7 @@
       class="alert flex flex-row items-center bg-yellow-200 p-5 rounded border-b-2 border-yellow-300"
     >
       <div
-        class="alert-icon flex items-center bg-yellow-100 border-2 border-yellow-500 justify-center h-10 w-10 flex-shrink-0 rounded-full"
+        class="alert-icon flex items-center bg-yellow-100 border-2 border-yellow-500 justify-center h-10 w-10 shrink-0 rounded-full"
       >
         <span class="text-yellow-500">
           <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">

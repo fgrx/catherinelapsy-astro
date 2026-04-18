@@ -13,7 +13,7 @@ const logo = computed(() => doc.logo?.url || doc.logo);
 
 <template>
   <div
-    class="header pb-14 md:py-10 mb-5 bg-gradient-to-r from-primary to-primaryDark"
+    class="header pb-14 md:py-10 mb-5 bg-linear-to-r from-primary to-primaryDark"
   >
     <div class="container mx-auto py-5 px-5 md:w-10/12 lg:w-9/12 xl:w-7/12">
       <div class="flex">

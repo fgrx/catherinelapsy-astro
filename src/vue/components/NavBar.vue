@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="w-full bg-dark py-1 mb-70 shadow-lg">
+    <nav class="w-full bg-dark py-1 shadow-lg">
       <div class="container mx-auto flex justify-between">
         <div class="items-center px-5 py-2 mt-0">
           <div class="text-white font-medium text-lg hover:text-secondary">

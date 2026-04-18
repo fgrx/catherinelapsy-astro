@@ -11,7 +11,7 @@ const apiURL = import.meta.env.PUBLIC_API;
 
 const url = `${apiURL}/site-configuation?populate[0]=ressources&populate[1]=contentBloc&populate[2]=Message&populate[3]=Message.link&populate[4]=ressources.image&populate[5]=ressources.logo&populate[6]=hero&populate[7]=contentBloc.image`;
 
-const { data:doc } = await fetch(url).then((res) => res.json());
+const { data: doc } = await fetch(url).then((res) => res.json());
 
 const { contentBloc } = doc;
 
@@ -24,26 +24,26 @@ const contentBlocsToDisplay = contentBloc.filter((bloc) => bloc.isShown);
 >
   <main>
     <section>
-    
       <TopHome
         subtitle={doc.homeSubtitle}
         explanation={doc.homeExplanation}
         heroImage={doc.hero}
       />
-
     </section>
 
     <section>
       <Newsletter title="S'abonner à la Lettre Psy" />
     </section>
 
-    {contentBlocsToDisplay.length && (
-      <section class="bg-gray-200">
-        <div class="py-10 px-5 container mx-auto">
-          <TextWithImage contents={contentBlocsToDisplay} />
-        </div>
-      </section>
-    )}
+    {
+      contentBlocsToDisplay.length && (
+        <section class="bg-gray-200">
+          <div class="py-10 px-5 container mx-auto">
+            <TextWithImage contents={contentBlocsToDisplay} />
+          </div>
+        </section>
+      )
+    }
 
     <section>
       <div class="pt-10">
@@ -53,6 +53,4 @@ const contentBlocsToDisplay = contentBloc.filter((bloc) => bloc.isShown);
   </main>
 </Layout>
 
-<style>
-
-</style>
+<style></style>
