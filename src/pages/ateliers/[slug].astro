@@ -59,6 +59,7 @@ const discount = {
       <div
         class="container mx-auto bg-gray-100 -m-14 py-12 pb-24 px-5 md:px-12 md:w-10/12 lg:w-9/12 xl:w-7/12 content"
       >
+        <!-- 
         {
           doc.image && (
             <div class="relative overflow-hidden">
@@ -76,7 +77,7 @@ const discount = {
             </div>
           )
         }
-
+-->
         {
           doc.purchaseURL && (
             <div class="text-center my-7" v-if="doc.purchaseURL && doc.isOpen">
@@ -180,21 +181,6 @@ const discount = {
         }
 
         {
-          doc.testimonial?.length ? (
-            <section v-if="doc.testimonial">
-              <h3>
-                2200 personnes (particuliers ou professionnel·le·s) nous ont
-                fait confiance, voici ce qu’elles disent de nos accompagnements
-                :{" "}
-              </h3>
-              <Testimonials testimonials={doc.testimonial} />
-            </section>
-          ) : (
-            ""
-          )
-        }
-
-        {
           doc.program?.length ? (
             <section v-if="doc.program?.length">
               <h2>Programme</h2>
@@ -226,6 +212,21 @@ const discount = {
         }
 
         {doc.content3 && <Markdown content={doc.content3} />}
+
+        {
+          doc.testimonial?.length ? (
+            <section v-if="doc.testimonial">
+              <h3>
+                2300 personnes (particuliers ou professionnel·le·s) nous ont
+                fait confiance, voici ce qu’elles disent de nos accompagnements
+                :{" "}
+              </h3>
+              <Testimonials testimonials={doc.testimonial} />
+            </section>
+          ) : (
+            ""
+          )
+        }
 
         {
           doc.FAQ?.length ? (

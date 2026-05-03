@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../safelist.txt";
 
 @theme {
   /* Couleurs personnalisées */
@@ -7,6 +8,7 @@
   --color-primaryLight: #249fa6;
   --color-secondary: #fdea43;
   --color-tertiary: #592a17;
+  --color-block: #e9e7e7;
   --color-quaternary: #a4a4a3;
   --color-dark: #2f2d2e;
   --color-light: #fff;
