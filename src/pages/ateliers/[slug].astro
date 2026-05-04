@@ -214,6 +214,17 @@ const discount = {
         {doc.content3 && <Markdown content={doc.content3} />}
 
         {
+          doc.FAQ?.length ? (
+            <section v-if="doc.FAQ?.length">
+              <h2>Il vous reste quelques questions ?</h2>
+              <Faq client:load questions={doc.FAQ} />
+            </section>
+          ) : (
+            ""
+          )
+        }
+
+        {
           doc.testimonial?.length ? (
             <section v-if="doc.testimonial">
               <h3>
@@ -222,17 +233,6 @@ const discount = {
                 :{" "}
               </h3>
               <Testimonials testimonials={doc.testimonial} />
-            </section>
-          ) : (
-            ""
-          )
-        }
-
-        {
-          doc.FAQ?.length ? (
-            <section v-if="doc.FAQ?.length">
-              <h2>Il vous reste quelques questions ?</h2>
-              <Faq client:load questions={doc.FAQ} />
             </section>
           ) : (
             ""
